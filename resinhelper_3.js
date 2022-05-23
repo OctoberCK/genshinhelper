@@ -11,6 +11,8 @@ config[1] = "cn_gf01"
 config[2] = "cookie"
 // ========= ↑将生成的配置粘贴这以上↑ ========
 
+const userRoleNumber = 0 // 如果你有多个角色，请将0依次改为1,2,3...后运行查看
+
 let widget = await createWidget()
 if (config.runsInWidget) {
   Script.setWidget(widget)
@@ -88,7 +90,7 @@ async function createWidget() {
   const userRole = genshinRsp["data"]["list"][userRoleNumber]
 
   // 获取原神便笺
-  var genshinRsp = await getData("https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/dailyNote?role_id=" + userRole["game_uid"] + "&server=" + userRole["region"])
+  var genshinRsp = await getData("https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/dailyNote?server=" + config[1] + "&role_id=" + config[0])
   genshinData = genshinRsp["data"]
 
   // 创建小组件
@@ -116,12 +118,12 @@ async function createWidget() {
   stackHeader.addSpacer(3)
 
   // 添加旅行者信息
-  var textItem = widget.addText(`${userRole["level"]}级 - ${userRole["nickname"]}`)
-  textItem.font = getFont('regular', 11)
-  textItem.textColor = textColor
-  textItem.centerAlignText()
+  //var textItem = widget.addText(`${userRole["level"]}级 - ${userRole["nickname"]}`)
+  //textItem.font = Font.mediumRoundedSystemFont(12)
+  //textItem.textColor = Color.white()
+  //textItem.centerAlignText()
 
-  widget.addSpacer(5)
+  //widget.addSpacer(5)
 
   // 添加 树脂信息
   var stackText = widget.addStack()
@@ -129,26 +131,25 @@ async function createWidget() {
   resinIcon.imageSize = new Size(12, 12)
   stackText.addSpacer(1)
   var textItem = stackText.addText("当前树脂: ")
-  textItem.font = getFont('regular', 10)
-  textItem.textColor = textColor
+  textItem.font = Font.boldRoundedSystemFont(12)
+  textItem.textColor = Color.white()
   var textItem = stackText.addText(`${genshinData["current_resin"]}/${genshinData["max_resin"]}`)
-  textItem.font = getFont('regular', 10)
+  textItem.font = Font.mediumRoundedSystemFont(12)
   if (genshinData["current_resin"] >= genshinData["max_resin"] * 0.9) {
-    textItem.textColor = Color.red()
+    textItem.textColor = Color.white()
   } else {
-    textItem.textColor = textColor
+    textItem.textColor = Color.white()
   }
   // 树脂恢复时间
   if (genshinData["current_resin"] != genshinData["max_resin"]) {
     var stackText = widget.addStack()
     var textItem = stackText.addText(`·`)
     stackText.addSpacer()
-    textItem.font = getFont('regular', 8)
+    textItem.font = Font.mediumRoundedSystemFont(12)
     var restDate = await getClock(genshinData["resin_recovery_time"])
     var textItem = stackText.addText(`全部恢复时间: ${restDate}`)
-    textItem.font = getFont('regular', 8)
-    // textItem.textColor = new Color('f0fcff')
-    textItem.textColor = new Color('e3f9fd')
+    textItem.font = Font.mediumRoundedSystemFont(12)
+    textItem.textColor = Color.white()
     textItem.rightAlignText()
   }
 
@@ -158,25 +159,25 @@ async function createWidget() {
   huIcon.imageSize = new Size(12, 12)
   stackText.addSpacer(1)
   var textItem = stackText.addText("洞天宝钱: ")
-  textItem.font = getFont('regular', 10)
-  textItem.textColor = textColor
+  textItem.font = Font.mediumRoundedSystemFont(12)
+  textItem.textColor = Color.white()
   var textItem = stackText.addText(`已累计 ${genshinData["current_home_coin"]} 枚`)
-  textItem.font = getFont('regular', 10)
+  textItem.font = Font.mediumRoundedSystemFont(12)
   if (genshinData["current_home_coin"] >= genshinData["max_home_coin"] * 0.9) {
-    textItem.textColor = Color.red()
+    textItem.textColor = Color.white()
   } else {
-    textItem.textColor = textColor
+    textItem.textColor = Color.white()
   }
   // 洞天宝钱恢复时间
   if (genshinData["current_home_coin"] != genshinData["max_home_coin"]) {
     var stackText = widget.addStack()
     var textItem = stackText.addText(`·`)
     stackText.addSpacer()
-    textItem.font = getFont('regular', 8)
+    textItem.font = Font.mediumRoundedSystemFont(12)
     var restDate = await getClock(genshinData["home_coin_recovery_time"])
     var textItem = stackText.addText(`全部恢复时间: ${restDate}`)
-    textItem.font = getFont('regular', 8)
-    textItem.textColor = new Color('e3f9fd')
+    textItem.font = Font.mediumRoundedSystemFont(12)
+    textItem.textColor = Color.white()
     textItem.rightAlignText()
   }
 
@@ -186,15 +187,15 @@ async function createWidget() {
   taskIcon.imageSize = new Size(12, 12)
   stackText.addSpacer(1)
   var textItem = stackText.addText("每日委托: ")
-  textItem.font = getFont('regular', 10)
-  textItem.textColor = textColor
+  textItem.font = Font.mediumRoundedSystemFont(12)
+  textItem.textColor = Color.white()
 
   var textItem = stackText.addText(`已完成 ${genshinData["finished_task_num"]}/${genshinData["total_task_num"]} 个`)
-  textItem.font = getFont('regular', 10)
+  textItem.font = Font.mediumRoundedSystemFont(12)
   if (genshinData["finished_task_num"] != genshinData["total_task_num"]) {
-    textItem.textColor = Color.red()
+    textItem.textColor = Color.white()
   } else {
-    textItem.textColor = textColor
+    textItem.textColor = Color.white()
   }
 
   // 生成派遣状态, 最短的派遣恢复时间
@@ -223,18 +224,18 @@ async function createWidget() {
   laborIcon.cornerRadius = 5
   stackText.addSpacer(1)
   var textItem = stackText.addText("探索派遣: ")
-  textItem.font = getFont('regular', 10)
-  textItem.textColor = textColor
+  textItem.font = Font.mediumRoundedSystemFont(12)
+  textItem.textColor = Color.white()
   if (minCdTime < 0) {
     var textItem = stackText.addText(`已完成 ${finish_count}/${genshinData["max_expedition_num"]} 人`)
-    textItem.font = getFont('regular', 8)
-    textItem.textColor = Color.red()
+    textItem.font = Font.mediumRoundedSystemFont(12)
+    textItem.textColor = Color.white()
   } else {
     if (minCdTime != 500000) {
       var restDate = await getClock(minCdTime)
       var textItem = stackText.addText(`${restDate}`)
-      textItem.font = getFont('regular', 10)
-      textItem.textColor = new Color('e3f9fd')
+      textItem.font = Font.mediumRoundedSystemFont(12)
+      textItem.textColor = Color.white()
     }
   }
 
@@ -244,32 +245,32 @@ async function createWidget() {
   transformIcon.imageSize = new Size(12, 12)
   stackText.addSpacer(1)
   var textItem = stackText.addText("参量质变仪: ")
-  textItem.font = getFont('regular', 10)
-  textItem.textColor = textColor
+  textItem.font = Font.mediumRoundedSystemFont(12)
+  textItem.textColor = Color.white()
   if (genshinData['transformer']['recovery_time']['reached']) {
     var textItem = stackText.addText(`可使用`)
-    textItem.font = getFont('regular', 10)
-    textItem.textColor = Color.red()
+    textItem.font = Font.mediumRoundedSystemFont(12)
+    textItem.textColor = Color.white()
   } else {
     if (genshinData['transformer']['recovery_time']['Day'] != 0) {
       var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Day']}天`)
-      textItem.font = getFont('regular', 10)
-      textItem.textColor = textColor
+      textItem.font = Font.mediumRoundedSystemFont(12)
+      textItem.textColor = Color.white()
     }
     if (genshinData['transformer']['recovery_time']['Hour'] != 0) {
       var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Hour']}小时`)
-      textItem.font = getFont('regular', 10)
-      textItem.textColor = textColor
+      textItem.font = Font.mediumRoundedSystemFont(12)
+      textItem.textColor = Color.white()
     }
     if (genshinData['transformer']['recovery_time']['Minute'] != 0) {
       var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Minute']}分钟`)
-      textItem.font = getFont('regular', 10)
-      textItem.textColor = textColor
+      textItem.font = Font.mediumRoundedSystemFont(12)
+      textItem.textColor = Color.white()
     }
     if (genshinData['transformer']['recovery_time']['Second'] != 0) {
       var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Second']}秒`)
-      textItem.font = getFont('regular', 10)
-      textItem.textColor = textColor
+      textItem.font = Font.mediumRoundedSystemFont(12)
+      textItem.textColor = Color.white()
     }
   }
   return widget
