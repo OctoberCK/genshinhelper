@@ -130,7 +130,7 @@ async function createWidget() {
   var textItem = stackText.addText(`${genshinData["current_resin"]}/${genshinData["max_resin"]}`)
   textItem.font = Font.boldRoundedSystemFont(15)
   if (genshinData["current_resin"] >= genshinData["max_resin"] * 0.9) {
-    textItem.textColor = Color.white()
+    textItem.textColor = new Color("#FC766A")
   } else {
     textItem.textColor = Color.white()
   }
@@ -165,7 +165,7 @@ widget.addSpacer(2)
   var textItem = stackText.addText(`${genshinData["current_home_coin"]}/2400`)
   textItem.font = Font.boldRoundedSystemFont(15)
   if (genshinData["current_home_coin"] >= genshinData["max_home_coin"] * 0.9) {
-    textItem.textColor = Color.white()
+    textItem.textColor = new Color("#FC766A")
   } else {
     textItem.textColor = Color.white()
   }
