@@ -36,8 +36,8 @@
     iconRadius: 6,
     iconSpacer: 4,
     textSize: 11,
-    tipSize: 8,
-    avatarSize: 16,
+    tipSize: 9,
+    avatarSize: 18,
     topSpacer: 30,
     bottomSpacer: 15,
 }
@@ -68,26 +68,26 @@ let widget = new ListWidget()
 let gradient = new LinearGradient()
 gradient.locations = [0, 1]
 gradient.colors = [
-new Color("141414"),
-new Color("2a5398")
+new Color("2a5398"),
+new Color("141414")
 ]
 widget.backgroundGradient = gradient
 
 // 布局
 let topHorizon = widget.addStack()
 topHorizon.layoutHorizontally()
-widget.addSpacer(6)
+widget.addSpacer(5)
 let bottomHorizon = widget.addStack()
 bottomHorizon.layoutHorizontally()
-widget.addSpacer(6)
+widget.addSpacer(5)
 let finalHorizon = widget.addStack()
 finalHorizon.layoutHorizontally()
-widget.addSpacer(3)
+//widget.addSpacer(2)
 
 let topLeftStack = topHorizon.addStack()
 topLeftStack.layoutVertically()
 topLeftStack.topAlignContent()
-topHorizon.addSpacer(44)
+topHorizon.addSpacer(30)
 let topRightStack = topHorizon.addStack()
 topRightStack.layoutVertically()
 topRightStack.bottomAlignContent()
@@ -95,7 +95,7 @@ topRightStack.bottomAlignContent()
 let bottomLeftStack = bottomHorizon.addStack()
 bottomLeftStack.layoutVertically()
 bottomLeftStack.topAlignContent()
-bottomHorizon.addSpacer(35)
+bottomHorizon.addSpacer(25)
 let bottomRightStack = bottomHorizon.addStack()
 bottomRightStack.layoutVertically()
 bottomRightStack.bottomAlignContent()
@@ -103,7 +103,7 @@ bottomRightStack.bottomAlignContent()
 let finalLeftStack = finalHorizon.addStack()
 finalLeftStack.layoutVertically()
 finalLeftStack.topAlignContent()
-finalHorizon.addSpacer(40)
+finalHorizon.addSpacer(42)
 let finalRightStack = finalHorizon.addStack()
 finalRightStack.layoutVertically()
 finalRightStack.bottomAlignContent()
@@ -127,7 +127,7 @@ if (resin.current_resin >= resin.max_resin * 0.9) {
        ResinElement2.textColor = Color.white()
 }
 ResinElement2.textOpacity = 1
-ResinElement2.font = Font.boldRoundedSystemFont(15)
+ResinElement2.font = Font.boldRoundedSystemFont(16)
 let ResinTipElement = resinTipStack.addText(`${await getTime(resin.resin_recovery_time)}(${await getClock(resin.resin_recovery_time)})`)
 ResinTipElement.textColor = Color.white()
 ResinTipElement.textOpacity = 0.5
@@ -152,7 +152,7 @@ if (resin.current_home_coin >= resin.max_home_coin * 0.9) {
         CoinElement2.textColor = Color.white()
 }
 CoinElement2.textOpacity = 1
-CoinElement2.font = Font.boldRoundedSystemFont(15)
+CoinElement2.font = Font.boldRoundedSystemFont(16)
 coinStack.addSpacer(8)
 let CoinTipElement = coinTipStack.addText(`${await getTime(resin.home_coin_recovery_time)}(${await getClock(resin.home_coin_recovery_time)})`)
 CoinTipElement.textColor = Color.white()
@@ -179,7 +179,7 @@ if (resin.remain_resin_discount_num != 0) {
         ResinDiscountTextElement2.textColor = Color.white()
 }
 ResinDiscountTextElement2.textOpacity = 1
-ResinDiscountTextElement2.font = Font.boldRoundedSystemFont(15)
+ResinDiscountTextElement2.font = Font.boldRoundedSystemFont(16)
 let recoverWeekTime = (weekEnd - new Date())/1000
 let ResinDiscountTipElement = resinDiscountTipStack.addText(`${await getTime(recoverWeekTime)}(${await getClock(recoverWeekTime)})`)
 ResinDiscountTipElement.textColor = Color.white()
@@ -206,7 +206,7 @@ if (resin.finished_task_num != resin.total_task_num) {
         TaskElement2.textColor = Color.white()
 }
 TaskElement2.textOpacity = 1
-TaskElement2.font = Font.boldRoundedSystemFont(15)
+TaskElement2.font = Font.boldRoundedSystemFont(16)
 let recoverTaskTime = (dayEnd - new Date())/1000
 let TaskTipElement = taskTipStack.addText(`${await getTime(recoverTaskTime)}(${await getClock(recoverTaskTime)})`)
 TaskTipElement.textColor = Color.white()
@@ -220,20 +220,15 @@ let expeditionsTitleStack2 = finalLeftStack.addStack()
 let isHasFinished = false
 let minCoverTime = 0
 let AvatorIconElement = expeditionsTitleStack.addImage(avatorIcon)
-AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
+AvatorIconElement.imageSize = new Size(13, 13)
 AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
 expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
 let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣限制：`)
 expeditionsTitleElement.textColor = Color.white()
 expeditionsTitleElement.textOpacity = 0.6
 expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
-//let expeditionsTitleElement2 = expeditionsTitleStack2.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
-//expeditionsTitleElement2.textColor = Color.white()
-//expeditionsTitleElement2.textOpacity = 1
-//expeditionsTitleElement2.font = Font.boldRoundedSystemFont(15)
 let expeditionsStack = widget.addStack()
-expeditionsStack.layoutHorizontally()
-expeditionsStack.centerAlignContent()
+expeditionsStack.bottomAlignContent()
 const expeditions = resin.expeditions || []
 minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
 for(let i = -1;i++ < resin.max_expedition_num;) {
@@ -249,20 +244,20 @@ for(let i = -1;i++ < resin.max_expedition_num;) {
             avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
             avatarImgElement.cornerRadius = 0
             if (expeditions[i].status !== 'Finished') {
-                    let remainedTimeElemnet = expeditionStack.addText(`进行中`)
+                    let remainedTimeElemnet = expeditionStack.addText(`进行中   `)
                     remainedTimeElemnet.centerAlignText()
                     remainedTimeElemnet.textColor = Color.white()
                     remainedTimeElemnet.textOpacity = 0.5
                     remainedTimeElemnet.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             } else {
                     isHasFinished = true
-                    let remainedTimeElemnet = expeditionStack.addText('已完成')
+                    let remainedTimeElemnet = expeditionStack.addText('已完成   ')
                     remainedTimeElemnet.centerAlignText()
                     remainedTimeElemnet.textColor = new Color("#FC766A")
                     remainedTimeElemnet.textOpacity = 0.8
                     remainedTimeElemnet.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             }
-            expeditionStack.centerAlignContent()
+            expeditionStack.bottomAlignContent()
     }
 }
 if (isHasFinished) {
@@ -287,7 +282,7 @@ genshinData = genshinRsp["data"]
 var stackText = finalRightStack.addStack()
 var transformIcon = stackText.addImage(JingyanIcon)
 transformIcon.imageSize = new Size(13, 13)
-stackText.addSpacer(1)
+stackText.addSpacer(2)
 var textItem = stackText.addText("参量质变仪: ")
 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
 textItem.textColor = Color.white()
