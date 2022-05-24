@@ -103,7 +103,7 @@ bottomRightStack.bottomAlignContent()
 let finalLeftStack = finalHorizon.addStack()
 finalLeftStack.layoutVertically()
 finalLeftStack.topAlignContent()
-finalHorizon.addSpacer(42)
+finalHorizon.addSpacer(40)
 let finalRightStack = finalHorizon.addStack()
 finalRightStack.layoutVertically()
 finalRightStack.bottomAlignContent()
@@ -274,11 +274,7 @@ if (isHasFinished) {
     
 }
 
-// 质变仪这里是一坨屎，以后再改
-var genshinData = {}
-var genshinRsp = await getData2("https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/dailyNote?server=" + config[1] + "&role_id=" + config[0])
-genshinData = genshinRsp["data"]
-
+// 参量质变仪
 var stackText = finalRightStack.addStack()
 var transformIcon = stackText.addImage(JingyanIcon)
 transformIcon.imageSize = new Size(13, 13)
@@ -287,28 +283,28 @@ var textItem = stackText.addText("参量质变仪: ")
 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
 textItem.textColor = Color.white()
 textItem.textOpacity = 0.6
-if (genshinData['transformer']['recovery_time']['reached']) {
+if (resin.transformer.recovery_time.reached) {
     var textItem = stackText.addText(`可使用`)
     textItem.font = Font.boldRoundedSystemFont(10)
     textItem.textColor = new Color("#FC766A")
   } else {
-    if (genshinData['transformer']['recovery_time']['Day'] != 0) {
-      var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Day']}天`)
+    if (resin.transformer.recovery_time.Day != 0) {
+      var textItem = stackText.addText(`${resin.transformer.recovery_time.Day} 天`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
       textItem.textColor = Color.white()
     }
-    if (genshinData['transformer']['recovery_time']['Hour'] != 0) {
-      var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Hour']}小时`)
+    if (resin.transformer.recovery_time.Hour != 0) {
+      var textItem = stackText.addText(`${resin.transformer.recovery_time.Hour} 小时`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
       textItem.textColor = Color.white()
     }
-    if (genshinData['transformer']['recovery_time']['Minute'] != 0) {
-      var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Minute']}分钟`)
+    if (resin.transformer.recovery_time.Minute != 0) {
+      var textItem = stackText.addText(`${resin.transformer.recovery_time.Minute} 分钟`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
       textItem.textColor = Color.white()
     }
-    if (genshinData['transformer']['recovery_time']['Second'] != 0) {
-      var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Second']}秒`)
+    if (resin.transformer.recovery_time.Second != 0) {
+      var textItem = stackText.addText(`${resin.transformer.recovery_time.Second} 秒`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
       textItem.textColor = Color.white()
     }
@@ -342,27 +338,6 @@ let data = resp.data
 
 return data
 }
-
-async function getData2(url) {
-let randomStr = randomIntFromInterval(100000, 200000)
-let timestamp = Math.floor(Date.now() / 1000)
-let sign = md5("salt=xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs&t=" + timestamp + "&r="+ randomStr + "&b=&q=role_id=" + config[0] + "&server=" + config[1])
-        
-let req = new Request(url)
-req.method = "GET"
-req.headers = {
-"DS": timestamp + "," + randomStr + "," + sign,
-"x-rpc-app_version": "2.17.1",
-"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/2.11.1",
-"x-rpc-client_type": "5",
-"Referer": "https://webstatic.mihoyo.com/",
-"Cookie": config[2],
-}
-        
-await req.load()
-return req.loadJSON()
-}
-
 
 async function getTime(time) {
 let hh = ~~(time/3600)
