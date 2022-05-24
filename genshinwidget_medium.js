@@ -26,16 +26,18 @@
     iconSize: 12,
     iconRadius: 6,
     iconSpacer: 4,
-    textSize: 12,
-    tipSize: 10,
-    avatarSize: 16,
-    topSpacer: 40,
-    bottomSpacer: 20,
+    textSize: 11,
+    infoSize: 15,
+    tipSize: 9,
+    avatarSize: 18,
+    topSpacer: 30,
+    bottomSpacer: 15,
 } : {
     iconSize: 12,
     iconRadius: 6,
     iconSpacer: 4,
     textSize: 11,
+    infoSize: 15,
     tipSize: 9,
     avatarSize: 18,
     topSpacer: 30,
@@ -127,7 +129,7 @@ if (resin.current_resin >= resin.max_resin * 0.9) {
        ResinElement2.textColor = Color.white()
 }
 ResinElement2.textOpacity = 1
-ResinElement2.font = Font.boldRoundedSystemFont(16)
+ResinElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
 let ResinTipElement = resinTipStack.addText(`- ${await getTime(resin.resin_recovery_time)} (${await getClock(resin.resin_recovery_time)} )`)
 ResinTipElement.textColor = Color.white()
 ResinTipElement.textOpacity = 0.5
@@ -152,7 +154,7 @@ if (resin.current_home_coin >= resin.max_home_coin * 0.9) {
         CoinElement2.textColor = Color.white()
 }
 CoinElement2.textOpacity = 1
-CoinElement2.font = Font.boldRoundedSystemFont(16)
+CoinElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
 coinStack.addSpacer(8)
 let CoinTipElement = coinTipStack.addText(`- ${await getTime(resin.home_coin_recovery_time)} (${await getClock(resin.home_coin_recovery_time)} )`)
 CoinTipElement.textColor = Color.white()
@@ -179,7 +181,7 @@ if (resin.remain_resin_discount_num != 0) {
         ResinDiscountTextElement2.textColor = Color.white()
 }
 ResinDiscountTextElement2.textOpacity = 1
-ResinDiscountTextElement2.font = Font.boldRoundedSystemFont(16)
+ResinDiscountTextElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
 let recoverWeekTime = (weekEnd - new Date())/1000
 let ResinDiscountTipElement = resinDiscountTipStack.addText(`- ${await getTime(recoverWeekTime)} (${await getClock(recoverWeekTime)} )`)
 ResinDiscountTipElement.textColor = Color.white()
@@ -206,7 +208,7 @@ if (resin.finished_task_num != resin.total_task_num) {
         TaskElement2.textColor = Color.white()
 }
 TaskElement2.textOpacity = 1
-TaskElement2.font = Font.boldRoundedSystemFont(16)
+TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
 let recoverTaskTime = (dayEnd - new Date())/1000
 let TaskTipElement = taskTipStack.addText(`- ${await getTime(recoverTaskTime)} (${await getClock(recoverTaskTime)} )`)
 TaskTipElement.textColor = Color.white()
