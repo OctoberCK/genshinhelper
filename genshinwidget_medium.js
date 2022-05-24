@@ -286,7 +286,7 @@ if (isHasFinished) {
 var stackText = finalRightStack.addStack()
 var transformIcon = stackText.addImage(JingyanIcon)
 transformIcon.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
-stackText.addSpacer(2)
+stackText.addSpacer(ThemeConfig.iconSpacer)
 var textItem = stackText.addText("参量质变仪: ")
 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
 textItem.textColor = Color.white()
