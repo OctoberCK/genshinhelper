@@ -76,10 +76,10 @@ widget.backgroundGradient = gradient
 // 布局
 let topHorizon = widget.addStack()
 topHorizon.layoutHorizontally()
-widget.addSpacer(5)
+widget.addSpacer(4)
 let bottomHorizon = widget.addStack()
 bottomHorizon.layoutHorizontally()
-widget.addSpacer(5)
+widget.addSpacer(4)
 let finalHorizon = widget.addStack()
 finalHorizon.layoutHorizontally()
 //widget.addSpacer(2)
@@ -87,7 +87,7 @@ finalHorizon.layoutHorizontally()
 let topLeftStack = topHorizon.addStack()
 topLeftStack.layoutVertically()
 topLeftStack.topAlignContent()
-topHorizon.addSpacer(30)
+topHorizon.addSpacer(45)
 let topRightStack = topHorizon.addStack()
 topRightStack.layoutVertically()
 topRightStack.bottomAlignContent()
@@ -95,7 +95,7 @@ topRightStack.bottomAlignContent()
 let bottomLeftStack = bottomHorizon.addStack()
 bottomLeftStack.layoutVertically()
 bottomLeftStack.topAlignContent()
-bottomHorizon.addSpacer(25)
+bottomHorizon.addSpacer(43)
 let bottomRightStack = bottomHorizon.addStack()
 bottomRightStack.layoutVertically()
 bottomRightStack.bottomAlignContent()
@@ -103,7 +103,7 @@ bottomRightStack.bottomAlignContent()
 let finalLeftStack = finalHorizon.addStack()
 finalLeftStack.layoutVertically()
 finalLeftStack.topAlignContent()
-finalHorizon.addSpacer(40)
+finalHorizon.addSpacer(35)
 let finalRightStack = finalHorizon.addStack()
 finalRightStack.layoutVertically()
 finalRightStack.bottomAlignContent()
@@ -128,7 +128,7 @@ if (resin.current_resin >= resin.max_resin * 0.9) {
 }
 ResinElement2.textOpacity = 1
 ResinElement2.font = Font.boldRoundedSystemFont(16)
-let ResinTipElement = resinTipStack.addText(`${await getTime(resin.resin_recovery_time)}(${await getClock(resin.resin_recovery_time)})`)
+let ResinTipElement = resinTipStack.addText(`- ${await getTime(resin.resin_recovery_time)} (${await getClock(resin.resin_recovery_time)} )`)
 ResinTipElement.textColor = Color.white()
 ResinTipElement.textOpacity = 0.5
 ResinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
@@ -154,7 +154,7 @@ if (resin.current_home_coin >= resin.max_home_coin * 0.9) {
 CoinElement2.textOpacity = 1
 CoinElement2.font = Font.boldRoundedSystemFont(16)
 coinStack.addSpacer(8)
-let CoinTipElement = coinTipStack.addText(`${await getTime(resin.home_coin_recovery_time)}(${await getClock(resin.home_coin_recovery_time)})`)
+let CoinTipElement = coinTipStack.addText(`- ${await getTime(resin.home_coin_recovery_time)} (${await getClock(resin.home_coin_recovery_time)} )`)
 CoinTipElement.textColor = Color.white()
 CoinTipElement.textOpacity = 0.5
 CoinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
@@ -181,7 +181,7 @@ if (resin.remain_resin_discount_num != 0) {
 ResinDiscountTextElement2.textOpacity = 1
 ResinDiscountTextElement2.font = Font.boldRoundedSystemFont(16)
 let recoverWeekTime = (weekEnd - new Date())/1000
-let ResinDiscountTipElement = resinDiscountTipStack.addText(`${await getTime(recoverWeekTime)}(${await getClock(recoverWeekTime)})`)
+let ResinDiscountTipElement = resinDiscountTipStack.addText(`- ${await getTime(recoverWeekTime)} (${await getClock(recoverWeekTime)} )`)
 ResinDiscountTipElement.textColor = Color.white()
 ResinDiscountTipElement.textOpacity = 0.5
 ResinDiscountTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
@@ -208,7 +208,7 @@ if (resin.finished_task_num != resin.total_task_num) {
 TaskElement2.textOpacity = 1
 TaskElement2.font = Font.boldRoundedSystemFont(16)
 let recoverTaskTime = (dayEnd - new Date())/1000
-let TaskTipElement = taskTipStack.addText(`${await getTime(recoverTaskTime)}(${await getClock(recoverTaskTime)})`)
+let TaskTipElement = taskTipStack.addText(`- ${await getTime(recoverTaskTime)} (${await getClock(recoverTaskTime)} )`)
 TaskTipElement.textColor = Color.white()
 TaskTipElement.textOpacity = 0.5
 TaskTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
@@ -244,7 +244,7 @@ for(let i = -1;i++ < resin.max_expedition_num;) {
             avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
             avatarImgElement.cornerRadius = 0
             if (expeditions[i].status !== 'Finished') {
-                    let remainedTimeElemnet = expeditionStack.addText(`进行中   `)
+                    let remainedTimeElemnet = expeditionStack.addText(` - ${await getTime(expeditions[i].remained_time)} `)
                     remainedTimeElemnet.centerAlignText()
                     remainedTimeElemnet.textColor = Color.white()
                     remainedTimeElemnet.textOpacity = 0.5
@@ -343,7 +343,7 @@ async function getTime(time) {
 let hh = ~~(time/3600)
 let mm = ~~((time%3600)/60)
 
-return hh + "小时" + mm + "分钟"
+return hh + ":" + mm
 }
 
 async function getClock(time) {
