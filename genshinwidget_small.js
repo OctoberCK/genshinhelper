@@ -5,9 +5,8 @@
 // These must be at the very top of the file. Do not edit.
 
 const config = new Array()
-config[0] = "uid"
-config[1] = "cn_gf01"
-config[2] = "cookie"
+// ========= ↓将生成的配置粘贴这以下↓=========
+
 // ========= ↑将生成的配置粘贴这以上↑ ========
 
 const userRoleNumber = 0 // 如果你有多个角色，请将0依次改为1,2,3...后运行查看
