@@ -23,8 +23,11 @@
  */
 
  const ThemeConfig = Device.isPad() ? {
+    coinSize: 10,
     iconSize: 12,
+    iconSize2: 13,
     iconRadius: 6,
+    coinRadius: 5,
     iconSpacer: 4,
     textSize: 11,
     infoSize: 15,
@@ -33,8 +36,11 @@
     topSpacer: 30,
     bottomSpacer: 15,
 } : {
+    coinSize: 10,
     iconSize: 12,
+    iconSize2: 13,
     iconRadius: 6,
+    coinRadius: 5,
     iconSpacer: 4,
     textSize: 11,
     infoSize: 15,
@@ -140,8 +146,8 @@ let coinStack = topRightStack.addStack()
 let coinStack2 = topRightStack.addStack()
 let coinTipStack = topRightStack.addStack()
 let CoinIconElement = coinStack.addImage(coinIcon)
-CoinIconElement.imageSize = new Size(10, 10)
-CoinIconElement.cornerRadius = 5
+CoinIconElement.imageSize = new Size(ThemeConfig.coinSize, ThemeConfig.coinSize)
+CoinIconElement.cornerRadius = ThemeConfig.coinRadius
 coinStack.addSpacer(5)
 let CoinElement = coinStack.addText(`洞天宝钱：`)
 CoinElement.textColor = Color.white()
@@ -222,7 +228,7 @@ let expeditionsTitleStack2 = finalLeftStack.addStack()
 let isHasFinished = false
 let minCoverTime = 0
 let AvatorIconElement = expeditionsTitleStack.addImage(avatorIcon)
-AvatorIconElement.imageSize = new Size(13, 13)
+AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
 AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
 expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
 let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣限制：`)
@@ -279,7 +285,7 @@ if (isHasFinished) {
 // 参量质变仪
 var stackText = finalRightStack.addStack()
 var transformIcon = stackText.addImage(JingyanIcon)
-transformIcon.imageSize = new Size(13, 13)
+transformIcon.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
 stackText.addSpacer(2)
 var textItem = stackText.addText("参量质变仪: ")
 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
