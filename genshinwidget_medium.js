@@ -269,7 +269,7 @@ for(let i = -1;i++ < resin.max_expedition_num;) {
     }
 }
 if (isHasFinished) {
-    let expeditionsTitleElement2 = expeditionsTitleStack2.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
+    let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
     expeditionsTitleElement2.textColor = new Color("#FC766A")
     expeditionsTitleElement2.textOpacity = 1
     expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
