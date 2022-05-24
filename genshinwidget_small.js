@@ -61,7 +61,9 @@ async function getClock(time) {
   let str = ""
   if(timeRecovery < tommorow){
     str = "本日"
-  }else{
+  } else if (timeRecovery - tommorow > 86400000) {
+    str = `周${'日一二三四五六'.charAt(timeRecovery.getDay())}`
+  } else {
     str = "次日"
   }
 
