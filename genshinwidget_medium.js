@@ -1,9 +1,9 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-brown; icon-glyph: magic;
-config[0] = "107204672"
-config[1] = "cn_gf01"
-config[2] = "_MHYUUID=4b7c6ad3-14a0-4360-a1db-3146e7bc593b; mi18nLang=zh-cn; _ga_6BQ6ZYZ4YR=GS1.1.1633335279.1.1.1633335684.0; _ga_CXN1FSHKS4=GS1.1.1635654446.1.1.1635654577.0; _ga_4PPV2TWM03=GS1.1.1635991714.3.1.1635992012.0; _ga_87WPJV8929=GS1.1.1636789839.1.1.1636789860.0; _ga_HKTGWLY8PN=GS1.1.1637507730.6.1.1637507730.0; _ga_Q3LKDGYS1J=GS1.1.1644213515.1.0.1644213526.0; _ga=GA1.2.1233403174.1602206664; _gid=GA1.2.499822757.1648791055; _gat=1; ltoken=zhcWK10TNrqjhaPXcDj7ECStqqrg3qnkcrWj2PVL; ltuid=179764850; cookie_token=E3eW6tuqweTJzq98dqYP6M6AxPNYk3YnpRSkF2wp; account_id=179764850"
+
+// ========= ↓将生成的配置粘贴这以下↓=========
+
 // ========= ↑将生成的配置粘贴这以上↑ ========
 /**
  * @typedef {Object} ResinResponse
