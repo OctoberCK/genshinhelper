@@ -108,8 +108,8 @@ async function createWidget() {
   let gradient = new LinearGradient()
   gradient.locations = [0, 1]
   gradient.colors = [
-    new Color("141414"),
-    new Color("2a5398")
+    Color.dynamic(new Color("#ffae00"), new Color("141414")), 
+    Color.dynamic(new Color("#ffd884"), new Color("2a5398"))
   ]
   widget.backgroundGradient = gradient
 
@@ -124,16 +124,16 @@ async function createWidget() {
   stackText.addSpacer(1)
   var textItem = stackText.addText("当前树脂: ")
   textItem.font = Font.mediumRoundedSystemFont(10)
-  textItem.textColor = Color.white()
+  textItem.textColor = Color.dynamic(Color.black(), Color.white())
   textItem.textOpacity = 0.6
   var stackText = widget.addStack()
   stackText.addSpacer(13)
   var textItem = stackText.addText(`${genshinData["current_resin"]}/${genshinData["max_resin"]}`)
   textItem.font = Font.boldRoundedSystemFont(15)
   if (genshinData["current_resin"] >= genshinData["max_resin"] * 0.9) {
-    textItem.textColor = new Color("#FC766A")
+    textItem.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
   } else {
-    textItem.textColor = Color.white()
+    textItem.textColor = Color.dynamic(Color.black(), Color.white())
   }
   
   // 树脂恢复时间
@@ -142,12 +142,12 @@ async function createWidget() {
     var textItem = stackText.addText(`  -`)
     stackText.addSpacer(5)
     textItem.font = Font.mediumRoundedSystemFont(8)
-    textItem.textColor = Color.white()
+    textItem.textColor = Color.dynamic(Color.black(), Color.white())
     textItem.textOpacity = 0.5
     var restDate = await getClock(genshinData["resin_recovery_time"])
     var textItem = stackText.addText(`复原时间: ${restDate}`)
     textItem.font = Font.mediumRoundedSystemFont(8)
-    textItem.textColor = Color.white()
+    textItem.textColor = Color.dynamic(Color.black(), Color.white())
     textItem.textOpacity = 0.5
     textItem.rightAlignText()
   }
@@ -160,16 +160,16 @@ widget.addSpacer(2)
   stackText.addSpacer(1)
   var textItem = stackText.addText("洞天宝钱: ")
   textItem.font = Font.mediumRoundedSystemFont(10)
-  textItem.textColor = Color.white()
+  textItem.textColor = Color.dynamic(Color.black(), Color.white())
   textItem.textOpacity = 0.6
   var stackText = widget.addStack()
   stackText.addSpacer(13)
   var textItem = stackText.addText(`${genshinData["current_home_coin"]}/2400`)
   textItem.font = Font.boldRoundedSystemFont(15)
   if (genshinData["current_home_coin"] >= genshinData["max_home_coin"] * 0.9) {
-    textItem.textColor = new Color("#FC766A")
+    textItem.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
   } else {
-    textItem.textColor = Color.white()
+    textItem.textColor = Color.dynamic(Color.black(), Color.white())
   }
   // 洞天宝钱恢复时间
   if (genshinData["current_home_coin"] != genshinData["max_home_coin"]) {
@@ -177,12 +177,12 @@ widget.addSpacer(2)
     var textItem = stackText.addText(`  -`)
     stackText.addSpacer(5)
     textItem.font = Font.mediumRoundedSystemFont(8)
-    textItem.textColor = Color.white()
+    textItem.textColor = Color.dynamic(Color.black(), Color.white())
     textItem.textOpacity = 0.5
     var restDate = await getClock(genshinData["home_coin_recovery_time"])
     var textItem = stackText.addText(`复原时间: ${restDate}`)
     textItem.font = Font.mediumRoundedSystemFont(8)
-    textItem.textColor = Color.white()
+    textItem.textColor = Color.dynamic(Color.black(), Color.white())
     textItem.textOpacity = 0.5
     textItem.rightAlignText()
   }
@@ -194,14 +194,14 @@ widget.addSpacer(2)
   stackText.addSpacer(2)
   var textItem = stackText.addText("每日委托: ")
   textItem.font = Font.mediumRoundedSystemFont(10)
-  textItem.textColor = Color.white()
+  textItem.textColor = Color.dynamic(Color.black(), Color.white())
   textItem.textOpacity = 0.6
   var textItem = stackText.addText(`${genshinData["finished_task_num"]}/${genshinData["total_task_num"]}`)
   textItem.font = Font.boldRoundedSystemFont(10)
   if (genshinData["finished_task_num"] != genshinData["total_task_num"]) {
-    textItem.textColor = new Color("#FC766A")
+    textItem.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
   } else {
-    textItem.textColor = Color.white()
+    textItem.textColor = Color.dynamic(Color.black(), Color.white())
   }
 widget.addSpacer(2)
   // 生成派遣状态, 最短的派遣恢复时间
@@ -231,21 +231,21 @@ widget.addSpacer(2)
   stackText.addSpacer(1)
   var textItem = stackText.addText("探索派遣: ")
   textItem.font = Font.mediumRoundedSystemFont(10)
-  textItem.textColor = Color.white()
+  textItem.textColor = Color.dynamic(Color.black(), Color.white())
   textItem.textOpacity = 0.6
   if (minCdTime < 0) {
     var textItem = stackText.addText(`已完成 ${finish_count}/${genshinData["max_expedition_num"]} 人`)
     textItem.font = Font.boldRoundedSystemFont(10)
-    textItem.textColor = new Color("#FC766A")
+    textItem.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
   } else {
     if (minCdTime != 500000) {
       var restDate = await getClock(minCdTime)
       var textItem = stackText.addText(`进行中`)
       textItem.font = Font.boldRoundedSystemFont(10)
-      textItem.textColor = Color.white()
+      textItem.textColor = Color.dynamic(Color.black(), Color.white())
 //      var textItem = stackText.addText(`${restDate}`)
 //      textItem.font = Font.mediumRoundedSystemFont(5)
-//      textItem.textColor = Color.white()
+//      textItem.textColor = Color.dynamic(Color.black(), Color.white())
 //      textItem.textOpacity = 0.5
     }
   }
@@ -257,32 +257,32 @@ widget.addSpacer(2)
   stackText.addSpacer(1)
   var textItem = stackText.addText("参量质变仪: ")
   textItem.font = Font.mediumRoundedSystemFont(10)
-  textItem.textColor = Color.white()
+  textItem.textColor = Color.dynamic(Color.black(), Color.white())
   textItem.textOpacity = 0.6
   if (genshinData['transformer']['recovery_time']['reached']) {
     var textItem = stackText.addText(`可使用`)
     textItem.font = Font.boldRoundedSystemFont(10)
-    textItem.textColor = new Color("#FC766A")
+    textItem.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
   } else {
     if (genshinData['transformer']['recovery_time']['Day'] != 0) {
       var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Day']}天`)
       textItem.font = Font.boldRoundedSystemFont(10)
-      textItem.textColor = Color.white()
+      textItem.textColor = Color.dynamic(Color.black(), Color.white())
     }
     if (genshinData['transformer']['recovery_time']['Hour'] != 0) {
       var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Hour']}小时`)
       textItem.font = Font.boldRoundedSystemFont(10)
-      textItem.textColor = Color.white()
+      textItem.textColor = Color.dynamic(Color.black(), Color.white())
     }
     if (genshinData['transformer']['recovery_time']['Minute'] != 0) {
       var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Minute']}分钟`)
       textItem.font = Font.boldRoundedSystemFont(10)
-      textItem.textColor = Color.white()
+      textItem.textColor = Color.dynamic(Color.black(), Color.white())
     }
     if (genshinData['transformer']['recovery_time']['Second'] != 0) {
       var textItem = stackText.addText(`${genshinData['transformer']['recovery_time']['Second']}秒`)
       textItem.font = Font.boldRoundedSystemFont(10)
-      textItem.textColor = Color.white()
+      textItem.textColor = Color.dynamic(Color.black(), Color.white())
     }
   }
   return widget
