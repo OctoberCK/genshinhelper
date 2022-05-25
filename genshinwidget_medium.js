@@ -136,7 +136,7 @@ ResinElement.textOpacity = 0.6
 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let ResinElement2 = resinStack2.addText(`${resin.current_resin} / ${resin.max_resin}`)
 if (resin.current_resin >= resin.max_resin * 0.9) {
-       ResinElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
+       ResinElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
 } else {
        ResinElement2.textColor = Color.dynamic(Color.black(), Color.white())
 }
@@ -162,7 +162,7 @@ CoinElement.textOpacity = 0.6
 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let CoinElement2 = coinStack2.addText(`${resin.current_home_coin} / ${resin.max_home_coin}`)
 if (resin.current_home_coin >= resin.max_home_coin * 0.9) {
-        CoinElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
+        CoinElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
 } else {
         CoinElement2.textColor = Color.dynamic(Color.black(), Color.white())
 }
@@ -190,7 +190,7 @@ ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let done_resin_discount_num = resin.resin_discount_num_limit - resin.remain_resin_discount_num
 let ResinDiscountTextElement2 = resinDiscountStack2.addText(`${done_resin_discount_num} / ${resin.resin_discount_num_limit}`)
 if (resin.remain_resin_discount_num != 0) {
-        ResinDiscountTextElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
+        ResinDiscountTextElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
 } else {
         ResinDiscountTextElement2.textColor = Color.dynamic(Color.black(), Color.white())
 }
@@ -217,7 +217,7 @@ TaskElement.textOpacity = 0.6
 TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let TaskElement2 = taskStack2.addText(`${resin.finished_task_num} / ${resin.total_task_num}`)
 if (resin.finished_task_num != resin.total_task_num) {
-        TaskElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
+        TaskElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
 } else {
         TaskElement2.textColor = Color.dynamic(Color.black(), Color.white())
 }
@@ -269,7 +269,7 @@ for(let i = -1;i++ < resin.max_expedition_num;) {
                     isHasFinished = true
                     let remainedTimeElemnet = expeditionStack.addText('已完成   ')
                     remainedTimeElemnet.centerAlignText()
-                    remainedTimeElemnet.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
+                    remainedTimeElemnet.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
                     remainedTimeElemnet.textOpacity = 0.8
                     remainedTimeElemnet.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             }
@@ -278,7 +278,7 @@ for(let i = -1;i++ < resin.max_expedition_num;) {
 }
 if (isHasFinished) {
     let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
-    expeditionsTitleElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
+    expeditionsTitleElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
     expeditionsTitleElement2.textOpacity = 1
     expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     
@@ -302,7 +302,7 @@ textItem.textOpacity = 0.6
 if (resin.transformer.recovery_time.reached) {
     var textItem = stackText.addText(`可使用`)
     textItem.font = Font.boldRoundedSystemFont(10)
-    textItem.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
+    textItem.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
   } else {
     if (resin.transformer.recovery_time.Day != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Day} 天`)
