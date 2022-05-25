@@ -76,8 +76,8 @@ let widget = new ListWidget()
 let gradient = new LinearGradient()
 gradient.locations = [0, 1]
 gradient.colors = [
-new Color("2a5398"),
-new Color("141414")
+Color.dynamic(new Color("#ffd884"), new Color("2a5398")), 
+Color.dynamic(new Color("#ffae00"), new Color("141414"))
 ]
 widget.backgroundGradient = gradient
 
@@ -131,19 +131,19 @@ ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize
 ResinIconElement.cornerRadius = ThemeConfig.iconRadius
 resinStack.addSpacer(ThemeConfig.iconSpacer)
 let ResinElement = resinStack.addText(`当前树脂：`)
-ResinElement.textColor = Color.white()
+ResinElement.textColor = Color.dynamic(Color.black(), Color.white())
 ResinElement.textOpacity = 0.6
 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let ResinElement2 = resinStack2.addText(`${resin.current_resin} / ${resin.max_resin}`)
 if (resin.current_resin >= resin.max_resin * 0.9) {
-       ResinElement2.textColor = new Color("#FC766A")
+       ResinElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
 } else {
-       ResinElement2.textColor = Color.white()
+       ResinElement2.textColor = Color.dynamic(Color.black(), Color.white())
 }
 ResinElement2.textOpacity = 1
 ResinElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
 let ResinTipElement = resinTipStack.addText(`- ${await getTime(resin.resin_recovery_time)} (${await getClock(resin.resin_recovery_time)} )`)
-ResinTipElement.textColor = Color.white()
+ResinTipElement.textColor = Color.dynamic(Color.black(), Color.white())
 //ResinTipElement.minimumScaleFactor = 0.8
 ResinTipElement.textOpacity = 0.5
 ResinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
@@ -157,20 +157,20 @@ CoinIconElement.imageSize = new Size(ThemeConfig.coinSize, ThemeConfig.coinSize)
 CoinIconElement.cornerRadius = ThemeConfig.coinRadius
 coinStack.addSpacer(5)
 let CoinElement = coinStack.addText(`洞天宝钱：`)
-CoinElement.textColor = Color.white()
+CoinElement.textColor = Color.dynamic(Color.black(), Color.white())
 CoinElement.textOpacity = 0.6
 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let CoinElement2 = coinStack2.addText(`${resin.current_home_coin} / ${resin.max_home_coin}`)
 if (resin.current_home_coin >= resin.max_home_coin * 0.9) {
-        CoinElement2.textColor = new Color("#FC766A")
+        CoinElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
 } else {
-        CoinElement2.textColor = Color.white()
+        CoinElement2.textColor = Color.dynamic(Color.black(), Color.white())
 }
 CoinElement2.textOpacity = 1
 CoinElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
 coinStack.addSpacer(8)
 let CoinTipElement = coinTipStack.addText(`- ${await getTime(resin.home_coin_recovery_time)} (${await getClock(resin.home_coin_recovery_time)} )`)
-CoinTipElement.textColor = Color.white()
+CoinTipElement.textColor = Color.dynamic(Color.black(), Color.white())
 CoinTipElement.textOpacity = 0.5
 CoinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
 coinStack.centerAlignContent()
@@ -184,21 +184,21 @@ ResinDiscountIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.
 ResinDiscountIconElement.cornerRadius = ThemeConfig.iconRadius
 resinDiscountStack.addSpacer(ThemeConfig.iconSpacer)
 let ResinDiscountTextElement = resinDiscountStack.addText(`值得铭记的强敌：`)
-ResinDiscountTextElement.textColor = Color.white()
+ResinDiscountTextElement.textColor = Color.dynamic(Color.black(), Color.white())
 ResinDiscountTextElement.textOpacity = 0.6
 ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let done_resin_discount_num = resin.resin_discount_num_limit - resin.remain_resin_discount_num
 let ResinDiscountTextElement2 = resinDiscountStack2.addText(`${done_resin_discount_num} / ${resin.resin_discount_num_limit}`)
 if (resin.remain_resin_discount_num != 0) {
-        ResinDiscountTextElement2.textColor = new Color("#FC766A")
+        ResinDiscountTextElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
 } else {
-        ResinDiscountTextElement2.textColor = Color.white()
+        ResinDiscountTextElement2.textColor = Color.dynamic(Color.black(), Color.white())
 }
 ResinDiscountTextElement2.textOpacity = 1
 ResinDiscountTextElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
 let recoverWeekTime = (weekEnd - new Date())/1000
 let ResinDiscountTipElement = resinDiscountTipStack.addText(`- ${await getTime(recoverWeekTime)} (${await getClock(recoverWeekTime)} )`)
-ResinDiscountTipElement.textColor = Color.white()
+ResinDiscountTipElement.textColor = Color.dynamic(Color.black(), Color.white())
 ResinDiscountTipElement.textOpacity = 0.5
 ResinDiscountTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
 resinDiscountStack.centerAlignContent()
@@ -212,20 +212,20 @@ TaskIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
 TaskIconElement.cornerRadius = ThemeConfig.iconRadius
 taskStack.addSpacer(ThemeConfig.iconSpacer)
 let TaskElement = taskStack.addText(`每日委托：`)
-TaskElement.textColor = Color.white()
+TaskElement.textColor = Color.dynamic(Color.black(), Color.white())
 TaskElement.textOpacity = 0.6
 TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let TaskElement2 = taskStack2.addText(`${resin.finished_task_num} / ${resin.total_task_num}`)
 if (resin.finished_task_num != resin.total_task_num) {
-        TaskElement2.textColor = new Color("#FC766A")
+        TaskElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
 } else {
-        TaskElement2.textColor = Color.white()
+        TaskElement2.textColor = Color.dynamic(Color.black(), Color.white())
 }
 TaskElement2.textOpacity = 1
 TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
 let recoverTaskTime = (dayEnd - new Date())/1000
 let TaskTipElement = taskTipStack.addText(`- ${await getTime(recoverTaskTime)} (${await getClock(recoverTaskTime)} )`)
-TaskTipElement.textColor = Color.white()
+TaskTipElement.textColor = Color.dynamic(Color.black(), Color.white())
 TaskTipElement.textOpacity = 0.5
 TaskTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
 taskStack.centerAlignContent()
@@ -240,7 +240,7 @@ AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSi
 AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
 expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
 let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣限制：`)
-expeditionsTitleElement.textColor = Color.white()
+expeditionsTitleElement.textColor = Color.dynamic(Color.black(), Color.white())
 expeditionsTitleElement.textOpacity = 0.6
 expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let expeditionsStack = widget.addStack()
@@ -262,14 +262,14 @@ for(let i = -1;i++ < resin.max_expedition_num;) {
             if (expeditions[i].status !== 'Finished') {
                     let remainedTimeElemnet = expeditionStack.addText(` - ${await getTime(expeditions[i].remained_time)} `)
                     remainedTimeElemnet.centerAlignText()
-                    remainedTimeElemnet.textColor = Color.white()
+                    remainedTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
                     remainedTimeElemnet.textOpacity = 0.5
                     remainedTimeElemnet.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             } else {
                     isHasFinished = true
                     let remainedTimeElemnet = expeditionStack.addText('已完成   ')
                     remainedTimeElemnet.centerAlignText()
-                    remainedTimeElemnet.textColor = new Color("#FC766A")
+                    remainedTimeElemnet.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
                     remainedTimeElemnet.textOpacity = 0.8
                     remainedTimeElemnet.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             }
@@ -278,13 +278,13 @@ for(let i = -1;i++ < resin.max_expedition_num;) {
 }
 if (isHasFinished) {
     let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
-    expeditionsTitleElement2.textColor = new Color("#FC766A")
+    expeditionsTitleElement2.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
     expeditionsTitleElement2.textOpacity = 1
     expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     
 } else {
     let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
-    expeditionsTitleElement2.textColor = Color.white()
+    expeditionsTitleElement2.textColor = Color.dynamic(Color.black(), Color.white())
     expeditionsTitleElement2.textOpacity = 1
     expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     
@@ -297,32 +297,32 @@ transformIcon.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
 stackText.addSpacer(ThemeConfig.iconSpacer)
 var textItem = stackText.addText("参量质变仪: ")
 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
-textItem.textColor = Color.white()
+textItem.textColor = Color.dynamic(Color.black(), Color.white())
 textItem.textOpacity = 0.6
 if (resin.transformer.recovery_time.reached) {
     var textItem = stackText.addText(`可使用`)
     textItem.font = Font.boldRoundedSystemFont(10)
-    textItem.textColor = new Color("#FC766A")
+    textItem.textColor = Color.dynamic(new Color("#3c85ff"), new Color("#FC766A"))
   } else {
     if (resin.transformer.recovery_time.Day != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Day} 天`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.white()
+      textItem.textColor = Color.dynamic(Color.black(), Color.white())
     }
     if (resin.transformer.recovery_time.Hour != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Hour} 小时`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.white()
+      textItem.textColor = Color.dynamic(Color.black(), Color.white())
     }
     if (resin.transformer.recovery_time.Minute != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Minute} 分钟`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.white()
+      textItem.textColor = Color.dynamic(Color.black(), Color.white())
     }
     if (resin.transformer.recovery_time.Second != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Second} 秒`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.white()
+      textItem.textColor = Color.dynamic(Color.black(), Color.white())
     }
   }
 return widget
