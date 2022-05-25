@@ -94,25 +94,31 @@ finalHorizon.layoutHorizontally()
 
 let topLeftStack = topHorizon.addStack()
 topLeftStack.layoutVertically()
-topLeftStack.topAlignContent()
+topLeftStack.size = new Size(120, 40)
+topLeftStack.bottomAlignContent()
 topHorizon.addSpacer(45)
 let topRightStack = topHorizon.addStack()
+topRightStack.size = new Size(120, 40)
 topRightStack.layoutVertically()
 topRightStack.bottomAlignContent()
 
 let bottomLeftStack = bottomHorizon.addStack()
 bottomLeftStack.layoutVertically()
-bottomLeftStack.topAlignContent()
+bottomLeftStack.size = new Size(120, 40)
+bottomLeftStack.bottomAlignContent()
 bottomHorizon.addSpacer(43)
 let bottomRightStack = bottomHorizon.addStack()
 bottomRightStack.layoutVertically()
+bottomRightStack.size = new Size(120, 40)
 bottomRightStack.bottomAlignContent()
 
 let finalLeftStack = finalHorizon.addStack()
 finalLeftStack.layoutVertically()
-finalLeftStack.topAlignContent()
-finalHorizon.addSpacer(35)
+finalLeftStack.size = new Size(120, 15)
+finalLeftStack.bottomAlignContent()
+finalHorizon.addSpacer(43)
 let finalRightStack = finalHorizon.addStack()
+finalRightStack.size = new Size(120, 15)
 finalRightStack.layoutVertically()
 finalRightStack.bottomAlignContent()
 
@@ -138,6 +144,7 @@ ResinElement2.textOpacity = 1
 ResinElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
 let ResinTipElement = resinTipStack.addText(`- ${await getTime(resin.resin_recovery_time)} (${await getClock(resin.resin_recovery_time)} )`)
 ResinTipElement.textColor = Color.white()
+//ResinTipElement.minimumScaleFactor = 0.8
 ResinTipElement.textOpacity = 0.5
 ResinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
 resinStack.centerAlignContent()
@@ -616,7 +623,7 @@ return icon
 
 async function loadJingyanIcon() {
 const url = "data:image/png;base64,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"
-
+          
 let req = new Request(url)
 let icon = await req.loadImage()
 return icon
