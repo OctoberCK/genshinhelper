@@ -270,63 +270,72 @@ if (resin.transformer.recovery_time.reached) {
     }
   }
 
-// 派遣任务获取
-let expeditionsTitleStack = topRightStack.addStack()
-let isHasFinished = false
-let minCoverTime = 0
-let AvatorIconElement = expeditionsTitleStack.addImage(avatorIcon)
-AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
-AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
-expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
-let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
-expeditionsTitleElement.textColor = Color.dynamic(Color.black(), Color.white())
-expeditionsTitleElement.textOpacity = 0.6
-expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
-let expeditionsStack = bottomRightStack.addStack()
-bottomRightStack.addSpacer(6)
-let expeditionsStack2 = bottomRightStack.addStack()
-bottomRightStack.addSpacer(4)
-let expeditionsStack3 = bottomRightStack.addStack()
-const expeditions = resin.expeditions || []
-minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
-for(let i = -1;i++ < resin.max_expedition_num;) {
-    let expeditionStack = expeditionsStack.addStack()  
-    expeditionStack.layoutHorizontally()
-    let isOngoing = !!expeditions[i]
-    if (isOngoing) {
-        let { status, avatar_side_icon, remained_time } = expeditions[i]
-        if (+remained_time < minCoverTime) minCoverTime = +remained_time
-        let req = new Request(avatar_side_icon)
-        let icon = await req.loadImage()
-        let avatarImgElement = expeditionStack.addImage(icon)
-        avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
-        avatarImgElement.cornerRadius = 0
-        expeditionStack.bottomAlignContent()
-}
-}
+                // 派遣任务获取
+                let expeditionsTitleStack = topRightStack.addStack()
+                let isHasFinished = false
+                let minCoverTime = 0
+                let AvatorIconElement = expeditionsTitleStack.addImage(avatorIcon)
+                AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+                AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
+                expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
+                let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
+                expeditionsTitleElement.textColor = Color.dynamic(Color.black(), Color.white())
+                expeditionsTitleElement.textOpacity = 0.6
+                expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
+                let expeditionsStack = bottomRightStack.addStack()
+                bottomRightStack.addSpacer(6)
+                let expeditionsStack2 = bottomRightStack.addStack()
+                bottomRightStack.addSpacer(4)
+                let expeditionsStack3 = bottomRightStack.addStack()
+                const expeditions = resin.expeditions || []
+                minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
+                for (let i = -1; i++ < resin.max_expedition_num;) {
+                        let expeditionStack = expeditionsStack.addStack()
+                        expeditionStack.layoutHorizontally()
+                        let isOngoing = !!expeditions[i]
+                        if (isOngoing) {
+                                let { status, avatar_side_icon, remained_time } = expeditions[i]
+                                if (+remained_time < minCoverTime) minCoverTime = +remained_time
+                                let req = new Request(avatar_side_icon)
+                                let icon = await req.loadImage()
+                                let avatarImgElement = expeditionStack.addImage(icon)
+                                avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
+                                avatarImgElement.cornerRadius = 0
+                                expeditionStack.bottomAlignContent()
+                                if (expeditions[i].status == 'Finished'){
+                                        isHasFinished = true
+                                }
+                        }
+                }
 
-let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
-minCoverTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
-minCoverTimeElemnet.textOpacity = 0.5
-minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
-let minCoverTimeElemnet2 = expeditionsStack3.addText(` - ${await getClock(minCoverTime)} `)
-minCoverTimeElemnet2.textColor = Color.dynamic(Color.black(), Color.white())
-minCoverTimeElemnet2.textOpacity = 0.5
-minCoverTimeElemnet2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+                if (isHasFinished) {
+                        let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
+                        expeditionsTitleElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
+                        expeditionsTitleElement2.textOpacity = 1
+                        expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
+                        minCoverTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
+                        minCoverTimeElemnet.textOpacity = 0.5
+                        minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+                        let minCoverTimeElemnet2 = expeditionsStack3.addText(` -  已有角色完成 `)
+                        minCoverTimeElemnet2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
+                        minCoverTimeElemnet2.textOpacity = 1
+                        minCoverTimeElemnet2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
 
-if (isHasFinished) {
-    let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
-    expeditionsTitleElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
-    expeditionsTitleElement2.textOpacity = 1
-    expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-    
-} else {
-    let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
-    expeditionsTitleElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
-    expeditionsTitleElement2.textOpacity = 1
-    expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-    
-}
+                } else {
+                        let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
+                        expeditionsTitleElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
+                        expeditionsTitleElement2.textOpacity = 1
+                        expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
+                        minCoverTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
+                        minCoverTimeElemnet.textOpacity = 0.5
+                        minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+                        let minCoverTimeElemnet2 = expeditionsStack3.addText(` - ${await getClock(minCoverTime)} `)
+                        minCoverTimeElemnet2.textColor = Color.dynamic(Color.black(), Color.white())
+                        minCoverTimeElemnet2.textOpacity = 0.5
+                        minCoverTimeElemnet2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+                }
 
 return widget
 }
