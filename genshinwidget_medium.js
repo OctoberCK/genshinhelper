@@ -50,7 +50,12 @@
     bottomSpacer: 15,
 }
 
-let resin = await getData()
+ let resin
+ if (config[1].startsWith("os")) {
+        resin = await getDataOs()
+ } else {
+        resin = await getData()
+ }
 
 let widget = await createWidget()
 
@@ -348,6 +353,34 @@ req.headers = {
 "x-rpc-client_type": "5",
 "Referer": "https://webstatic.mihoyo.com/",
 "Cookie": config[2],
+}
+
+ /**
+ * 返回原神便笺信息(国际服)
+ *
+ * @return {Promise<ResinResponse>} 便笺数据
+  */
+ async function getDataOs() {
+        let randomStr = randomStrGen(6)
+        let timestamp = Math.floor(Date.now() / 1000)
+        let sign = md5("salt=6s25p5ox5y14umn1p61aqyyvbvvl3lrt&t=" + timestamp + "&r=" + randomStr)
+      
+        let req = new Request("https://bbs-api-os.hoyolab.com/game_record/genshin/api/dailyNote?server=" + config[1] + "&role_id=" + config[0])
+        req.method = "GET"
+        req.headers = {
+                "DS": timestamp + "," + randomStr + "," + sign,
+                "x-rpc-client_type": "5",
+                "x-rpc-app_version": "2.9.1",
+                "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBSOversea/2.9.1",
+                "Origin": "https://act.hoyolab.com",
+                "Referer": "https://act.hoyolab.com/",
+                "Cookie": config[2]
+        }
+      
+        let resp = await req.loadJSON()
+        let data = resp.data
+      
+        return data
 }
 
 let resp = await req.loadJSON()
