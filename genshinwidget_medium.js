@@ -393,8 +393,13 @@ return Math.floor(Math.random() * (max - min + 1) + min)
 function getWeekEnd() {
     const now = new Date()
     const todayStart = new Date(new Date().setHours(4, 0, 0, 0))
-    const weekEndTime = todayStart.getTime() + (7 - now.getDay()) * 86400000;
+    if (now.getDay() == 1){
+     const weekEndTime = todayStart.getTime() + 7 * 86400000;
+     return weekEndTime
+    } else {
+    const weekEndTime = todayStart.getTime() + (8 - now.getDay()) * 86400000;
     return weekEndTime
+    }
 }
 
 function md5(string){
