@@ -8,5 +8,11 @@ config[0] = "uid"
 config[1] = "cn_gf01"
 config[2] = "cookie"
 ```
-4. 支持国服和B服，B服请将配置中的 `config[1] = "cn_gf01"` 更改成 `config[1] = "cn_qd01"`。  
+4. 支持全服务器  
+B服： `config[1] = "cn_qd01"`   
+亚服： `config[1] = "os_asia"`  
+欧服： `config[1] = "os_euro"`  
+美服： `config[1] = "os_usa"`  
+港澳台服： `config[1] = "os_cht"`  
+
 5. 或者使用iOS快捷指令一键安装对应的配置(需要iOS15)。  
