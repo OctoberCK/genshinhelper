@@ -22,6 +22,7 @@
  * @property {Array<{ status: string, avatar_side_icon: string, remained_time: string }>} expeditions - 派遣人员详情 
  */
 
+//识别iPad or iPhone
  const ThemeConfig = Device.isPad() ? {
     coinSize: 10,
     iconSize: 12,
@@ -81,31 +82,38 @@ Color.dynamic(new Color("#ffebcc"), new Color("141414"))
 ]
 widget.backgroundGradient = gradient
 
-// 布局
+// 页面共分为 2*2 个模块，首先建立横向布局
+// 横向布局 - 第一行
 let topHorizon = widget.addStack()
 topHorizon.layoutHorizontally()
 topHorizon.centerAlignContent()
 widget.addSpacer(8)
+// 横向布局 - 第二行
 let bottomHorizon = widget.addStack()
 bottomHorizon.layoutHorizontally()
 bottomHorizon.centerAlignContent()
 //widget.addSpacer(4)
 
+// 纵向布局 - 第一行左侧
 let topLeftStack = topHorizon.addStack()
 topLeftStack.layoutVertically()
 topLeftStack.size = new Size(150, 55)
 topLeftStack.bottomAlignContent()
+// 左侧与右侧间的间距
 topHorizon.addSpacer(25)
+// 纵向布局 - 第一行右侧
 let topRightStack = topHorizon.addStack()
 topRightStack.size = new Size(100, 55)
 topRightStack.layoutVertically()
 topRightStack.bottomAlignContent()
-
+// 纵向布局 - 第二行左侧
 let bottomLeftStack = bottomHorizon.addStack()
 bottomLeftStack.layoutVertically()
 bottomLeftStack.size = new Size(150, 55)
 bottomLeftStack.bottomAlignContent()
+// 左侧与右侧间的间距
 bottomHorizon.addSpacer(25)
+// 纵向布局 - 第二行左侧
 let bottomRightStack = bottomHorizon.addStack()
 bottomRightStack.layoutVertically()
 bottomRightStack.size = new Size(100, 55)
