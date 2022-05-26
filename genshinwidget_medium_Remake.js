@@ -101,10 +101,10 @@ topLeftStack.layoutVertically()
 topLeftStack.size = new Size(140, 60)
 topLeftStack.bottomAlignContent()
 // 左侧与右侧间的间距
-topHorizon.addSpacer(20)
+topHorizon.addSpacer(15)
 // 纵向布局 - 第一行右侧
 let topRightStack = topHorizon.addStack()
-topRightStack.size = new Size(100, 60)
+topRightStack.size = new Size(105, 60)
 topRightStack.layoutVertically()
 topRightStack.bottomAlignContent()
 
@@ -114,11 +114,11 @@ bottomLeftStack.layoutVertically()
 bottomLeftStack.size = new Size(140, 60)
 bottomLeftStack.bottomAlignContent()
 // 左侧与右侧间的间距
-bottomHorizon.addSpacer(20)
+bottomHorizon.addSpacer(15)
 // 纵向布局 - 第二行左侧
 let bottomRightStack = bottomHorizon.addStack()
 bottomRightStack.layoutVertically()
-bottomRightStack.size = new Size(100, 60)
+bottomRightStack.size = new Size(105, 60)
 bottomRightStack.bottomAlignContent()
 
 
@@ -251,17 +251,17 @@ if (resin.transformer.recovery_time.reached) {
     if (resin.transformer.recovery_time.Hour != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Hour} 小时`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.dynamic(Color.black(), Color.white())
+      textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
     }
     if (resin.transformer.recovery_time.Minute != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Minute} 分钟`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.dynamic(Color.black(), Color.white())
+      textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
     }
     if (resin.transformer.recovery_time.Second != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Second} 秒`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.dynamic(Color.black(), Color.white())
+      textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
     }
   }
 
