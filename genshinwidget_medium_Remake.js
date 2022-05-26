@@ -22,33 +22,34 @@
  * @property {Array<{ status: string, avatar_side_icon: string, remained_time: string }>} expeditions - 派遣人员详情 
  */
 
-//识别iPad or iPhone
  const ThemeConfig = Device.isPad() ? {
-    coinSize: 10,
-    iconSize: 12,
-    iconSize2: 13,
-    iconRadius: 6,
-    coinRadius: 5,
-    iconSpacer: 4,
-    textSize: 11,
-    infoSize: 25,
-    tipSize: 10,
-    avatarSize: 20,
-    topSpacer: 30,
-    bottomSpacer: 15,
+        coinSize: 10,
+        iconSize: 12,
+        iconSize2: 13,
+        iconRadius: 6,
+        coinRadius: 5,
+        iconSpacer: 4,
+        textSize: 11,
+        infoSize: 25,
+        info2Size: 16,
+        tipSize: 10,
+        avatarSize: 20,
+        topSpacer: 30,
+        bottomSpacer: 15,
 } : {
-    coinSize: 10,
-    iconSize: 12,
-    iconSize2: 13,
-    iconRadius: 6,
-    coinRadius: 5,
-    iconSpacer: 4,
-    textSize: 11,
-    infoSize: 25,
-    tipSize: 10,
-    avatarSize: 20,
-    topSpacer: 30,
-    bottomSpacer: 15,
+        coinSize: 10,
+        iconSize: 12,
+        iconSize2: 13,
+        iconRadius: 6,
+        coinRadius: 5,
+        iconSpacer: 4,
+        textSize: 11,
+        infoSize: 25,
+        info2Size: 16,
+        tipSize: 10,
+        avatarSize: 20,
+        topSpacer: 30,
+        bottomSpacer: 15,
 }
 
 let resin = await getData()
@@ -87,7 +88,7 @@ widget.backgroundGradient = gradient
 let topHorizon = widget.addStack()
 topHorizon.layoutHorizontally()
 topHorizon.centerAlignContent()
-widget.addSpacer(8)
+widget.addSpacer(4)
 // 横向布局 - 第二行
 let bottomHorizon = widget.addStack()
 bottomHorizon.layoutHorizontally()
@@ -97,26 +98,27 @@ bottomHorizon.centerAlignContent()
 // 纵向布局 - 第一行左侧
 let topLeftStack = topHorizon.addStack()
 topLeftStack.layoutVertically()
-topLeftStack.size = new Size(150, 55)
+topLeftStack.size = new Size(140, 60)
 topLeftStack.bottomAlignContent()
 // 左侧与右侧间的间距
-topHorizon.addSpacer(25)
+topHorizon.addSpacer(20)
 // 纵向布局 - 第一行右侧
 let topRightStack = topHorizon.addStack()
-topRightStack.size = new Size(100, 55)
+topRightStack.size = new Size(100, 60)
 topRightStack.layoutVertically()
 topRightStack.bottomAlignContent()
+
 // 纵向布局 - 第二行左侧
 let bottomLeftStack = bottomHorizon.addStack()
 bottomLeftStack.layoutVertically()
-bottomLeftStack.size = new Size(150, 55)
+bottomLeftStack.size = new Size(140, 60)
 bottomLeftStack.bottomAlignContent()
 // 左侧与右侧间的间距
-bottomHorizon.addSpacer(25)
+bottomHorizon.addSpacer(20)
 // 纵向布局 - 第二行左侧
 let bottomRightStack = bottomHorizon.addStack()
 bottomRightStack.layoutVertically()
-bottomRightStack.size = new Size(100, 55)
+bottomRightStack.size = new Size(100, 60)
 bottomRightStack.bottomAlignContent()
 
 
@@ -132,14 +134,20 @@ let ResinElement = resinStack.addText(`当前树脂：`)
 ResinElement.textColor = Color.dynamic(Color.black(), Color.white())
 ResinElement.textOpacity = 0.6
 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
-let ResinElement2 = resinStack2.addText(`${resin.current_resin} / ${resin.max_resin}`)
+let ResinElement2 = resinStack2.addText(`${resin.current_resin}`)
+let ResinElement3 = resinStack2.addText(` / ${resin.max_resin}`)
+resinStack2.centerAlignContent()
 if (resin.current_resin >= resin.max_resin * 0.9) {
        ResinElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
+       ResinElement3.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
 } else {
        ResinElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
+       ResinElement3.textColor = Color.dynamic(new Color("#995c00"), Color.white())
 }
 ResinElement2.textOpacity = 1
 ResinElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
+ResinElement3.textOpacity = 1
+ResinElement3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
 let ResinTipElement = resinTipStack.addText(`- ${await getTime(resin.resin_recovery_time)} (${await getClock(resin.resin_recovery_time)} )`)
 ResinTipElement.textColor = Color.dynamic(Color.black(), Color.white())
 //ResinTipElement.minimumScaleFactor = 0.8
@@ -159,15 +167,21 @@ let CoinElement = coinStack.addText(`洞天宝钱：`)
 CoinElement.textColor = Color.dynamic(Color.black(), Color.white())
 CoinElement.textOpacity = 0.6
 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
-let CoinElement2 = coinStack2.addText(`${resin.current_home_coin} / ${resin.max_home_coin}`)
+let CoinElement2 = coinStack2.addText(`${resin.current_home_coin}`)
+let CoinElement3 = coinStack2.addText(` / ${resin.max_home_coin}`)
+coinStack2.centerAlignContent()
 if (resin.current_home_coin >= resin.max_home_coin * 0.9) {
         CoinElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
+        CoinElement3.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
 } else {
         CoinElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
+        CoinElement3.textColor = Color.dynamic(new Color("#995c00"), Color.white())
 }
 CoinElement2.textOpacity = 1
 CoinElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
-coinStack.addSpacer(8)
+CoinElement3.textOpacity = 1
+CoinElement3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
+//coinStack.addSpacer(8)
 let CoinTipElement = coinTipStack.addText(`- ${await getTime(resin.home_coin_recovery_time)} (${await getClock(resin.home_coin_recovery_time)} )`)
 CoinTipElement.textColor = Color.dynamic(Color.black(), Color.white())
 CoinTipElement.textOpacity = 0.5
@@ -264,7 +278,7 @@ expeditionsTitleElement.textColor = Color.dynamic(Color.black(), Color.white())
 expeditionsTitleElement.textOpacity = 0.6
 expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let expeditionsStack = bottomRightStack.addStack()
-bottomRightStack.addSpacer(4)
+bottomRightStack.addSpacer(6)
 let expeditionsStack2 = bottomRightStack.addStack()
 bottomRightStack.addSpacer(4)
 let expeditionsStack3 = bottomRightStack.addStack()
