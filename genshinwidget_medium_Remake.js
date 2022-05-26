@@ -104,7 +104,7 @@ topLeftStack.bottomAlignContent()
 topHorizon.addSpacer(15)
 // 纵向布局 - 第一行右侧
 let topRightStack = topHorizon.addStack()
-topRightStack.size = new Size(105, 60)
+topRightStack.size = new Size(110, 60)
 topRightStack.layoutVertically()
 topRightStack.bottomAlignContent()
 
@@ -118,7 +118,7 @@ bottomHorizon.addSpacer(15)
 // 纵向布局 - 第二行左侧
 let bottomRightStack = bottomHorizon.addStack()
 bottomRightStack.layoutVertically()
-bottomRightStack.size = new Size(105, 60)
+bottomRightStack.size = new Size(110, 60)
 bottomRightStack.bottomAlignContent()
 
 
