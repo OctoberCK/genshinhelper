@@ -7,7 +7,7 @@
 // 添加require，是为了vscode中可以正确引入包，以获得自动补全等功能
 
 // @组件代码开始
-let w = new ListWidget();
+let widget = new ListWidget();
 
 if (typeof require === 'undefined') require = importModule; //
 const { DmYY, Runing } = require('./DmYY');
@@ -34,7 +34,12 @@ const { DmYY, Runing } = require('./DmYY');
  * @property {Array<{ status: string, avatar_side_icon: string, remained_time: string }>} expeditions - 派遣人员详情 
  */
 
- let resin = await getData()
+ let resin
+ if (config[1].startsWith("os")) {
+        resin = await getDataOs()
+ } else {
+        resin = await getData()
+ }
  let dayEnd = new Date(new Date().setHours(4, 0, 0, 0) + 24 * 60 * 60 * 1000)
  let weekEnd = getWeekEnd()
  let resinIcon = await loadResinIcon()
@@ -564,6 +569,34 @@ const { DmYY, Runing } = require('./DmYY');
  
          return data
  }
+
+ /**
+ * 返回原神便笺信息(国际服)
+ *
+ * @return {Promise<ResinResponse>} 便笺数据
+  */
+ async function getDataOs() {
+        let randomStr = randomStrGen(6)
+        let timestamp = Math.floor(Date.now() / 1000)
+        let sign = md5("salt=6s25p5ox5y14umn1p61aqyyvbvvl3lrt&t=" + timestamp + "&r=" + randomStr)
+      
+        let req = new Request("https://bbs-api-os.hoyolab.com/game_record/genshin/api/dailyNote?server=" + config[1] + "&role_id=" + config[0])
+        req.method = "GET"
+        req.headers = {
+                "DS": timestamp + "," + randomStr + "," + sign,
+                "x-rpc-client_type": "5",
+                "x-rpc-app_version": "2.9.1",
+                "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBSOversea/2.9.1",
+                "Origin": "https://act.hoyolab.com",
+                "Referer": "https://act.hoyolab.com/",
+                "Cookie": config[2]
+        }
+      
+        let resp = await req.loadJSON()
+        let data = resp.data
+      
+        return data
+}
  
  async function getTime(time) {
          let hh = ~~(time / 3600)
@@ -598,6 +631,16 @@ const { DmYY, Runing } = require('./DmYY');
  function randomIntFromInterval(min, max) {
          return Math.floor(Math.random() * (max - min + 1) + min)
  }
+
+function randomStrGen(length) {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+}
  
  function getWeekEnd() {
          const now = new Date()
