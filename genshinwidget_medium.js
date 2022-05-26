@@ -1,9 +1,12 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-brown; icon-glyph: magic;
+// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
 
-// ========= ↓将生成的配置粘贴这以下↓=========
-
+config[0] = "107204672"
+config[1] = "cn_gf01"
+config[2] = "_MHYUUID=4b7c6ad3-14a0-4360-a1db-3146e7bc593b; mi18nLang=zh-cn; _ga_6BQ6ZYZ4YR=GS1.1.1633335279.1.1.1633335684.0; _ga_CXN1FSHKS4=GS1.1.1635654446.1.1.1635654577.0; _ga_4PPV2TWM03=GS1.1.1635991714.3.1.1635992012.0; _ga_87WPJV8929=GS1.1.1636789839.1.1.1636789860.0; _ga_HKTGWLY8PN=GS1.1.1637507730.6.1.1637507730.0; _ga_Q3LKDGYS1J=GS1.1.1644213515.1.0.1644213526.0; _ga=GA1.2.1233403174.1602206664; _gid=GA1.2.499822757.1648791055; _gat=1; ltoken=zhcWK10TNrqjhaPXcDj7ECStqqrg3qnkcrWj2PVL; ltuid=179764850; cookie_token=E3eW6tuqweTJzq98dqYP6M6AxPNYk3YnpRSkF2wp; account_id=179764850"
 // ========= ↑将生成的配置粘贴这以上↑ ========
 /**
  * @typedef {Object} ResinResponse
@@ -76,8 +79,8 @@ let widget = new ListWidget()
 let gradient = new LinearGradient()
 gradient.locations = [0, 1]
 gradient.colors = [
-Color.dynamic(new Color("#ffd884"), new Color("2a5398")), 
-Color.dynamic(new Color("#ffae00"), new Color("141414"))
+Color.dynamic(new Color("#fff5e5"), new Color("2a5398")), 
+Color.dynamic(new Color("#ffebcc"), new Color("141414"))
 ]
 widget.backgroundGradient = gradient
 
@@ -136,9 +139,9 @@ ResinElement.textOpacity = 0.6
 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let ResinElement2 = resinStack2.addText(`${resin.current_resin} / ${resin.max_resin}`)
 if (resin.current_resin >= resin.max_resin * 0.9) {
-       ResinElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
+       ResinElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
 } else {
-       ResinElement2.textColor = Color.dynamic(Color.black(), Color.white())
+       ResinElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
 }
 ResinElement2.textOpacity = 1
 ResinElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
@@ -148,6 +151,7 @@ ResinTipElement.textColor = Color.dynamic(Color.black(), Color.white())
 ResinTipElement.textOpacity = 0.5
 ResinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)  
 resinStack.centerAlignContent()
+
 // 宝钱获取
 let coinStack = topRightStack.addStack()
 let coinStack2 = topRightStack.addStack()
@@ -162,9 +166,9 @@ CoinElement.textOpacity = 0.6
 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let CoinElement2 = coinStack2.addText(`${resin.current_home_coin} / ${resin.max_home_coin}`)
 if (resin.current_home_coin >= resin.max_home_coin * 0.9) {
-        CoinElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
+        CoinElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
 } else {
-        CoinElement2.textColor = Color.dynamic(Color.black(), Color.white())
+        CoinElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
 }
 CoinElement2.textOpacity = 1
 CoinElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
@@ -190,9 +194,9 @@ ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let done_resin_discount_num = resin.resin_discount_num_limit - resin.remain_resin_discount_num
 let ResinDiscountTextElement2 = resinDiscountStack2.addText(`${done_resin_discount_num} / ${resin.resin_discount_num_limit}`)
 if (resin.remain_resin_discount_num != 0) {
-        ResinDiscountTextElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
+        ResinDiscountTextElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
 } else {
-        ResinDiscountTextElement2.textColor = Color.dynamic(Color.black(), Color.white())
+        ResinDiscountTextElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
 }
 ResinDiscountTextElement2.textOpacity = 1
 ResinDiscountTextElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
@@ -217,9 +221,9 @@ TaskElement.textOpacity = 0.6
 TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
 let TaskElement2 = taskStack2.addText(`${resin.finished_task_num} / ${resin.total_task_num}`)
 if (resin.finished_task_num != resin.total_task_num) {
-        TaskElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
+        TaskElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
 } else {
-        TaskElement2.textColor = Color.dynamic(Color.black(), Color.white())
+        TaskElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
 }
 TaskElement2.textOpacity = 1
 TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.infoSize)
@@ -269,7 +273,7 @@ for(let i = -1;i++ < resin.max_expedition_num;) {
                     isHasFinished = true
                     let remainedTimeElemnet = expeditionStack.addText('已完成   ')
                     remainedTimeElemnet.centerAlignText()
-                    remainedTimeElemnet.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
+                    remainedTimeElemnet.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
                     remainedTimeElemnet.textOpacity = 0.8
                     remainedTimeElemnet.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             }
@@ -278,13 +282,13 @@ for(let i = -1;i++ < resin.max_expedition_num;) {
 }
 if (isHasFinished) {
     let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
-    expeditionsTitleElement2.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
+    expeditionsTitleElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
     expeditionsTitleElement2.textOpacity = 1
     expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     
 } else {
     let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
-    expeditionsTitleElement2.textColor = Color.dynamic(Color.black(), Color.white())
+    expeditionsTitleElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
     expeditionsTitleElement2.textOpacity = 1
     expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     
@@ -302,12 +306,12 @@ textItem.textOpacity = 0.6
 if (resin.transformer.recovery_time.reached) {
     var textItem = stackText.addText(`可使用`)
     textItem.font = Font.boldRoundedSystemFont(10)
-    textItem.textColor = Color.dynamic(new Color("#ef0000"), new Color("#FC766A"))
+    textItem.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
   } else {
     if (resin.transformer.recovery_time.Day != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Day} 天`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.dynamic(Color.black(), Color.white())
+      textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
     }
     if (resin.transformer.recovery_time.Hour != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Hour} 小时`)
