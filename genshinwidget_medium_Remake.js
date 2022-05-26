@@ -30,9 +30,9 @@
     coinRadius: 5,
     iconSpacer: 4,
     textSize: 11,
-    infoSize: 15,
-    tipSize: 9,
-    avatarSize: 18,
+    infoSize: 25,
+    tipSize: 10,
+    avatarSize: 20,
     topSpacer: 30,
     bottomSpacer: 15,
 } : {
