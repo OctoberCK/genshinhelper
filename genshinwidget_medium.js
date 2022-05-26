@@ -313,17 +313,17 @@ if (resin.transformer.recovery_time.reached) {
     if (resin.transformer.recovery_time.Hour != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Hour} 小时`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.dynamic(Color.black(), Color.white())
+      textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
     }
     if (resin.transformer.recovery_time.Minute != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Minute} 分钟`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.dynamic(Color.black(), Color.white())
+      textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
     }
     if (resin.transformer.recovery_time.Second != 0) {
       var textItem = stackText.addText(`${resin.transformer.recovery_time.Second} 秒`)
       textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-      textItem.textColor = Color.dynamic(Color.black(), Color.white())
+      textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
     }
   }
 return widget
