@@ -129,7 +129,7 @@ class Widget extends DmYY {
         let topHorizon = widget.addStack()
         topHorizon.layoutHorizontally()
         topHorizon.centerAlignContent()
-        widget.addSpacer(1)
+        //widget.addSpacer(1)
         // 横向布局 - 第二行
         let bottomHorizon = widget.addStack()
         bottomHorizon.layoutHorizontally()
@@ -144,7 +144,7 @@ class Widget extends DmYY {
         // 纵向布局 - 第二行右侧
         let bottomRightStack = bottomHorizon.addStack()
         bottomRightStack.layoutVertically()
-        bottomRightStack.size = new Size(105, 60)
+        bottomRightStack.size = new Size(105, 50)
         bottomRightStack.bottomAlignContent()
 
         // 周本获取
