@@ -1,9 +1,6 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-purple; icon-glyph: magic;
-//
-
-
 // 添加require，是为了vscode中可以正确引入包，以获得自动补全等功能
 
 // @组件代码开始
@@ -125,13 +122,14 @@ class Widget extends DmYY {
                 textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                 textItem.rightAlignText()
+                //widget.addSpacer(2)
 
                 // 页面共分为 2*2 个模块，首先建立横向布局
                 // 横向布局 - 第一行
                 let topHorizon = widget.addStack()
                 topHorizon.layoutHorizontally()
                 topHorizon.centerAlignContent()
-                widget.addSpacer(4)
+                widget.addSpacer(1)
                 // 横向布局 - 第二行
                 let bottomHorizon = widget.addStack()
                 bottomHorizon.layoutHorizontally()
@@ -158,7 +156,7 @@ class Widget extends DmYY {
                 ResinIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinStack.addSpacer(ThemeConfig.iconSpacer)
                 let ResinElement = resinStack.addText(`当前树脂：`)
-                ResinElement.textColor = Color.dynamic(Color.black(), Color.white())
+                ResinElement.textColor = this.widgetColor
                 ResinElement.textOpacity = 0.6
                 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 let ResinElement2 = resinStack2.addText(`${resin.current_resin}`)
@@ -176,7 +174,7 @@ class Widget extends DmYY {
                 ResinElement3.textOpacity = 1
                 ResinElement3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
                 let ResinTipElement = resinTipStack.addText(`- ${await getTime(resin.resin_recovery_time)} (${await getClock(resin.resin_recovery_time)} )`)
-                ResinTipElement.textColor = Color.dynamic(Color.black(), Color.white())
+                ResinTipElement.textColor = this.widgetColor
                 //ResinTipElement.minimumScaleFactor = 0.8
                 ResinTipElement.textOpacity = 0.5
                 ResinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -191,7 +189,7 @@ class Widget extends DmYY {
                 CoinIconElement.cornerRadius = ThemeConfig.coinRadius
                 coinStack.addSpacer(5)
                 let CoinElement = coinStack.addText(`洞天宝钱：`)
-                CoinElement.textColor = Color.dynamic(Color.black(), Color.white())
+                CoinElement.textColor = this.widgetColor
                 CoinElement.textOpacity = 0.6
                 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 let CoinElement2 = coinStack2.addText(`${resin.current_home_coin}`)
@@ -210,7 +208,7 @@ class Widget extends DmYY {
                 CoinElement3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
                 //coinStack.addSpacer(8)
                 let CoinTipElement = coinTipStack.addText(`- ${await getTime(resin.home_coin_recovery_time)} (${await getClock(resin.home_coin_recovery_time)} )`)
-                CoinTipElement.textColor = Color.dynamic(Color.black(), Color.white())
+                CoinTipElement.textColor = this.widgetColor
                 CoinTipElement.textOpacity = 0.5
                 CoinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
                 coinStack.centerAlignContent()
@@ -311,7 +309,7 @@ class Widget extends DmYY {
                 bottomLeftStack.bottomAlignContent()
                 // 左侧与右侧间的间距
                 bottomHorizon.addSpacer()
-                // 纵向布局 - 第二行左侧
+                // 纵向布局 - 第二行右侧
                 let bottomRightStack = bottomHorizon.addStack()
                 bottomRightStack.layoutVertically()
                 bottomRightStack.size = new Size(105, 60)
@@ -327,7 +325,7 @@ class Widget extends DmYY {
                 ResinIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinStack.addSpacer(ThemeConfig.iconSpacer)
                 let ResinElement = resinStack.addText(`当前树脂：`)
-                ResinElement.textColor = Color.dynamic(Color.black(), Color.white())
+                ResinElement.textColor = this.widgetColor
                 ResinElement.textOpacity = 0.6
                 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 let ResinElement2 = resinStack2.addText(`${resin.current_resin}`)
@@ -345,7 +343,7 @@ class Widget extends DmYY {
                 ResinElement3.textOpacity = 1
                 ResinElement3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
                 let ResinTipElement = resinTipStack.addText(`- ${await getTime(resin.resin_recovery_time)} (${await getClock(resin.resin_recovery_time)} )`)
-                ResinTipElement.textColor = Color.dynamic(Color.black(), Color.white())
+                ResinTipElement.textColor = this.widgetColor
                 //ResinTipElement.minimumScaleFactor = 0.8
                 ResinTipElement.textOpacity = 0.5
                 ResinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -360,7 +358,7 @@ class Widget extends DmYY {
                 CoinIconElement.cornerRadius = ThemeConfig.coinRadius
                 coinStack.addSpacer(5)
                 let CoinElement = coinStack.addText(`洞天宝钱：`)
-                CoinElement.textColor = Color.dynamic(Color.black(), Color.white())
+                CoinElement.textColor = this.widgetColor
                 CoinElement.textOpacity = 0.6
                 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 let CoinElement2 = coinStack2.addText(`${resin.current_home_coin}`)
@@ -379,7 +377,7 @@ class Widget extends DmYY {
                 CoinElement3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
                 //coinStack.addSpacer(8)
                 let CoinTipElement = coinTipStack.addText(`- ${await getTime(resin.home_coin_recovery_time)} (${await getClock(resin.home_coin_recovery_time)} )`)
-                CoinTipElement.textColor = Color.dynamic(Color.black(), Color.white())
+                CoinTipElement.textColor = this.widgetColor
                 CoinTipElement.textOpacity = 0.5
                 CoinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
                 coinStack.centerAlignContent()
@@ -391,7 +389,7 @@ class Widget extends DmYY {
                 ResinDiscountIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinDiscountStack.addSpacer(ThemeConfig.iconSpacer)
                 let ResinDiscountTextElement = resinDiscountStack.addText(`半价周本：`)
-                ResinDiscountTextElement.textColor = Color.dynamic(Color.black(), Color.white())
+                ResinDiscountTextElement.textColor = this.widgetColor
                 ResinDiscountTextElement.textOpacity = 0.6
                 ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 let done_resin_discount_num = resin.resin_discount_num_limit - resin.remain_resin_discount_num
@@ -412,7 +410,7 @@ class Widget extends DmYY {
                 TaskIconElement.cornerRadius = ThemeConfig.iconRadius
                 taskStack.addSpacer(ThemeConfig.iconSpacer)
                 let TaskElement = taskStack.addText(`每日委托：`)
-                TaskElement.textColor = Color.dynamic(Color.black(), Color.white())
+                TaskElement.textColor = this.widgetColor
                 TaskElement.textOpacity = 0.6
                 TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 let TaskElement2 = taskStack.addText(`${resin.finished_task_num} / ${resin.total_task_num}`)
@@ -432,7 +430,7 @@ class Widget extends DmYY {
                 stackText.addSpacer(ThemeConfig.iconSpacer)
                 var textItem = stackText.addText("参量质变: ")
                 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
-                textItem.textColor = Color.dynamic(Color.black(), Color.white())
+                textItem.textColor = this.widgetColor
                 textItem.textOpacity = 0.6
                 if (resin.transformer.recovery_time.reached) {
                         var textItem = stackText.addText(`可使用`)
@@ -470,7 +468,7 @@ class Widget extends DmYY {
                 AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
                 expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
                 let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
-                expeditionsTitleElement.textColor = Color.dynamic(Color.black(), Color.white())
+                expeditionsTitleElement.textColor = this.widgetColor
                 expeditionsTitleElement.textOpacity = 0.6
                 expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 let expeditionsStack = bottomRightStack.addStack()
@@ -505,13 +503,15 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                         let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
-                        minCoverTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
+                        minCoverTimeElemnet.textColor = this.widgetColor
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+                        // minCoverTimeElemnet.rightAlignText()
                         let minCoverTimeElemnet2 = expeditionsStack3.addText(` -  已有角色完成 `)
                         minCoverTimeElemnet2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
                         minCoverTimeElemnet2.textOpacity = 1
                         minCoverTimeElemnet2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+                        // minCoverTimeElemnet2.rightAlignText()
 
                 } else {
                         let expeditionsTitleElement2 = expeditionsTitleStack.addText(`${resin.current_expedition_num} / ${resin.max_expedition_num}`)
@@ -519,16 +519,16 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                         let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
-                        minCoverTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
+                        minCoverTimeElemnet.textColor = this.widgetColor
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+                        // minCoverTimeElemnet.rightAlignText()
                         let minCoverTimeElemnet2 = expeditionsStack3.addText(` - ${await getClock(minCoverTime)} `)
                         minCoverTimeElemnet2.textColor = Color.dynamic(Color.black(), Color.white())
                         minCoverTimeElemnet2.textOpacity = 0.5
                         minCoverTimeElemnet2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+                        // minCoverTimeElemnet2.rightAlignText()
                 }
-
-                // 添加更新时间
 
 
                 return widget
@@ -542,7 +542,7 @@ class Widget extends DmYY {
          */
         async renderLarge(widget) {
                 //需要补充，目前返回中号
-                return await this.renderMedium(widget);
+                return await this.renderMedium();
         }
 
         /**
