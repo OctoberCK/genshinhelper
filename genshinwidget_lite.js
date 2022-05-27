@@ -121,12 +121,12 @@ async function renderSmall(widget) {
     textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
     textItem.rightAlignText()
 
-    // 页面共分为 2*2 个模块，首先建立横向布局
+    // 页面共分为 1*2 个模块，首先建立横向布局
     // 横向布局 - 第一行
     let topHorizon = widget.addStack()
     topHorizon.layoutHorizontally()
     topHorizon.centerAlignContent()
-    widget.addSpacer(4)
+    widget.addSpacer(1)
     // 横向布局 - 第二行
     let bottomHorizon = widget.addStack()
     bottomHorizon.layoutHorizontally()
@@ -138,7 +138,7 @@ async function renderSmall(widget) {
     topLeftStack.layoutVertically()
     topLeftStack.size = new Size(120, 60)
     topLeftStack.bottomAlignContent()
-    // 纵向布局 - 第二行左侧
+    // 纵向布局 - 第二行右侧
     let bottomLeftStack = bottomHorizon.addStack()
     bottomLeftStack.layoutVertically()
     bottomLeftStack.size = new Size(120, 60)
@@ -304,7 +304,7 @@ async function renderMedium(widget) {
     bottomLeftStack.bottomAlignContent()
     // 左侧与右侧间的间距
     bottomHorizon.addSpacer()
-    // 纵向布局 - 第二行左侧
+    // 纵向布局 - 第二行右侧
     let bottomRightStack = bottomHorizon.addStack()
     bottomRightStack.layoutVertically()
     bottomRightStack.size = new Size(105, 60)
