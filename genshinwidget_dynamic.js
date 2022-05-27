@@ -82,6 +82,7 @@ class Widget extends DmYY {
          */
         async renderSmall() {
                 const ThemeConfig = Device.isPad() ? {
+                        titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
                         iconSize2: 13,
@@ -96,6 +97,7 @@ class Widget extends DmYY {
                         topSpacer: 30,
                         bottomSpacer: 15,
                 } : {
+                        titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
                         iconSize2: 13,
@@ -110,6 +112,22 @@ class Widget extends DmYY {
                         topSpacer: 30,
                         bottomSpacer: 15,
                 }
+
+                //添加标题栏
+                let stackHeader = widget.addStack()
+                stackHeader.centerAlignContent()
+                // 添加UID
+                var textItem = stackHeader.addText(` UID：${config[0]}`)
+                textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
+                textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
+                // 添加更新时间
+                stackHeader.addSpacer()
+                var myDate = new Date();
+                var textItem = stackHeader.addText(`${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}更新`)
+                textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
+                textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
+                textItem.rightAlignText()
+
                 // 页面共分为 2*2 个模块，首先建立横向布局
                 // 横向布局 - 第一行
                 let topHorizon = widget.addStack()
@@ -209,6 +227,7 @@ class Widget extends DmYY {
          */
         async renderMedium() {
                 const ThemeConfig = Device.isPad() ? {
+                        titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
                         iconSize2: 13,
@@ -223,6 +242,7 @@ class Widget extends DmYY {
                         topSpacer: 30,
                         bottomSpacer: 15,
                 } : {
+                        titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
                         iconSize2: 13,
@@ -246,6 +266,21 @@ class Widget extends DmYY {
                 // ]
                 // widget.backgroundGradient = gradient
 
+                //添加标题栏
+                let stackHeader = widget.addStack()
+                stackHeader.centerAlignContent()
+                // 添加UID
+                var textItem = stackHeader.addText(` UID：${config[0]}`)
+                textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
+                textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
+                // 添加更新时间
+                stackHeader.addSpacer()
+                var myDate = new Date();
+                var textItem = stackHeader.addText(`${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}更新      `)
+                textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
+                textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
+                //textItem.rightAlignText()
+
                 // 页面共分为 2*2 个模块，首先建立横向布局
                 // 横向布局 - 第一行
                 let topHorizon = widget.addStack()
@@ -264,10 +299,10 @@ class Widget extends DmYY {
                 topLeftStack.size = new Size(140, 60)
                 topLeftStack.bottomAlignContent()
                 // 左侧与右侧间的间距
-                topHorizon.addSpacer(15)
+                topHorizon.addSpacer()
                 // 纵向布局 - 第一行右侧
                 let topRightStack = topHorizon.addStack()
-                topRightStack.size = new Size(110, 60)
+                topRightStack.size = new Size(105, 60)
                 topRightStack.layoutVertically()
                 topRightStack.bottomAlignContent()
 
@@ -277,11 +312,11 @@ class Widget extends DmYY {
                 bottomLeftStack.size = new Size(140, 60)
                 bottomLeftStack.bottomAlignContent()
                 // 左侧与右侧间的间距
-                bottomHorizon.addSpacer(15)
+                bottomHorizon.addSpacer()
                 // 纵向布局 - 第二行左侧
                 let bottomRightStack = bottomHorizon.addStack()
                 bottomRightStack.layoutVertically()
-                bottomRightStack.size = new Size(110, 60)
+                bottomRightStack.size = new Size(105, 60)
                 bottomRightStack.bottomAlignContent()
 
 
@@ -460,7 +495,7 @@ class Widget extends DmYY {
                                 avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
                                 avatarImgElement.cornerRadius = 0
                                 expeditionStack.bottomAlignContent()
-                                if (expeditions[i].status == 'Finished'){
+                                if (expeditions[i].status == 'Finished') {
                                         isHasFinished = true
                                 }
                         }
@@ -494,6 +529,9 @@ class Widget extends DmYY {
                         minCoverTimeElemnet2.textOpacity = 0.5
                         minCoverTimeElemnet2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
                 }
+
+                // 添加更新时间
+
 
                 return widget
 
@@ -605,16 +643,6 @@ async function getDataOs() {
         let data = resp.data
 
         return data
-}
-
-function randomStrGen(length) {
-        let result = '';
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        const charactersLength = characters.length;
-        for (var i = 0; i < length; i++) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
 }
 
 async function getTime(time) {
