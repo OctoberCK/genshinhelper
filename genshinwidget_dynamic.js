@@ -7,8 +7,6 @@
 // 添加require，是为了vscode中可以正确引入包，以获得自动补全等功能
 
 // @组件代码开始
-let widget = new ListWidget();
-
 if (typeof require === 'undefined') require = importModule; //
 const { DmYY, Runing } = require('./DmYY');
 
@@ -80,7 +78,7 @@ class Widget extends DmYY {
         /**
          * 渲染小尺寸组件
          */
-        async renderSmall() {
+        async renderSmall(widget) {
                 const ThemeConfig = Device.isPad() ? {
                         titleSize: 7,
                         coinSize: 10,
@@ -225,7 +223,7 @@ class Widget extends DmYY {
         /**
          * 渲染中尺寸组件
          */
-        async renderMedium() {
+        async renderMedium(widget) {
                 const ThemeConfig = Device.isPad() ? {
                         titleSize: 7,
                         coinSize: 10,
@@ -542,9 +540,9 @@ class Widget extends DmYY {
         /**
          * 渲染大尺寸组件
          */
-        async renderLarge() {
+        async renderLarge(widget) {
                 //需要补充，目前返回中号
-                return await this.renderMedium();
+                return await this.renderMedium(widget);
         }
 
         /**
@@ -578,13 +576,14 @@ class Widget extends DmYY {
         useBoxJS = false;
 
         async render() {
+                let widget = new ListWidget();
                 await this.getWidgetBackgroundImage(widget);
                 if (this.widgetFamily === 'medium') {
-                        return this.renderMedium();
+                        return this.renderMedium(widget);
                 } else if (this.widgetFamily === 'large') {
-                        return this.renderLarge();
+                        return this.renderLarge(widget);
                 } else {
-                        return this.renderSmall();
+                        return this.renderSmall(widget);
                 }
         }
 
