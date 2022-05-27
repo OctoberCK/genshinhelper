@@ -19,3 +19,5 @@ B服： `config[1] = "cn_qd01"`
 
 6. iOS叠放方法（dynamic与dynamic_stacked）
 ![Alt text](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked1.jpg)
+![Alt text](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked2.PNG)
+![Alt text](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked3.PNG)
