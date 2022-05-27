@@ -813,8 +813,8 @@ class DmYY {
     this.settings = this.getSettings()
     this.settings.lightColor = this.settings.lightColor || '#000000'
     this.settings.darkColor = this.settings.darkColor || '#ffffff'
-    this.settings.lightBgColor = this.settings.lightBgColor || '#fff5e5,#ffebcc'
-    this.settings.darkBgColor = this.settings.darkBgColor || '2a5398,141414'
+    this.settings.lightBgColor = this.settings.lightBgColor || '#fff5e5'
+    this.settings.darkBgColor = this.settings.darkBgColor || '#181e28'
     this.settings.boxjsDomain = this.settings.boxjsDomain || 'boxjs.net'
     this.settings.refreshAfterDate = this.settings.refreshAfterDate || '5'
     this.settings.lightOpacity = this.settings.lightOpacity || '0.4'
