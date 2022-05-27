@@ -188,7 +188,7 @@ async function renderSmall(widget) {
 
     // 参量质变仪
     var stackText = topRightStack.addStack()
-    var transformIcon = stackText.addImage(JingyanIcon)
+    var transformIcon = stackText.addImage(pTransformerIcon)
     transformIcon.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
     stackText.addSpacer(ThemeConfig.iconSpacer)
     var textItem = stackText.addText("参量质变: ")
