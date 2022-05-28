@@ -30,6 +30,7 @@ try {
     } else {
         resin = await getData()
     }
+    resin = resin || {}
 } catch (error) {
     console.error(error)
 }
@@ -195,28 +196,29 @@ async function renderSmall(widget) {
     textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
     textItem.textColor = this.widgetColor
     textItem.textOpacity = 0.6
-    if (resin.transformer.recovery_time.reached) {
+    const transformer_recovery_time = resin.transformer && resin.transformer.recovery_time || {}
+    if (transformer_recovery_time.reached) {
         var textItem = stackText.addText(`可使用`)
         textItem.font = Font.boldRoundedSystemFont(10)
         textItem.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
     } else {
-        if (resin.transformer.recovery_time.Day != 0) {
-            var textItem = stackText.addText(`${resin.transformer.recovery_time.Day} 天`)
+        if (transformer_recovery_time.Day != 0) {
+            var textItem = stackText.addText(`${transformer_recovery_time.Day} 天`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (resin.transformer.recovery_time.Hour != 0) {
-            var textItem = stackText.addText(`${resin.transformer.recovery_time.Hour} 小时`)
+        if (transformer_recovery_time.Hour != 0) {
+            var textItem = stackText.addText(`${transformer_recovery_time.Hour} 小时`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (resin.transformer.recovery_time.Minute != 0) {
-            var textItem = stackText.addText(`${resin.transformer.recovery_time.Minute} 分钟`)
+        if (transformer_recovery_time.Minute != 0) {
+            var textItem = stackText.addText(`${transformer_recovery_time.Minute} 分钟`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (resin.transformer.recovery_time.Second != 0) {
-            var textItem = stackText.addText(`${resin.transformer.recovery_time.Second} 秒`)
+        if (transformer_recovery_time.Second != 0) {
+            var textItem = stackText.addText(`${transformer_recovery_time.Second} 秒`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
@@ -509,28 +511,29 @@ async function renderMedium(widget) {
     textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
     textItem.textColor = Color.dynamic(Color.black(), Color.white())
     textItem.textOpacity = 0.6
-    if (resin.transformer.recovery_time.reached) {
+    const transformer_recovery_time = resin.transformer && resin.transformer.recovery_time || {}
+    if (transformer_recovery_time.reached) {
         var textItem = stackText.addText(`可使用`)
         textItem.font = Font.boldRoundedSystemFont(10)
         textItem.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
     } else {
-        if (resin.transformer.recovery_time.Day != 0) {
-            var textItem = stackText.addText(`${resin.transformer.recovery_time.Day} 天`)
+        if (transformer_recovery_time.Day != 0) {
+            var textItem = stackText.addText(`${transformer_recovery_time.Day} 天`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (resin.transformer.recovery_time.Hour != 0) {
-            var textItem = stackText.addText(`${resin.transformer.recovery_time.Hour} 小时`)
+        if (transformer_recovery_time.Hour != 0) {
+            var textItem = stackText.addText(`${transformer_recovery_time.Hour} 小时`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (resin.transformer.recovery_time.Minute != 0) {
-            var textItem = stackText.addText(`${resin.transformer.recovery_time.Minute} 分钟`)
+        if (transformer_recovery_time.Minute != 0) {
+            var textItem = stackText.addText(`${transformer_recovery_time.Minute} 分钟`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (resin.transformer.recovery_time.Second != 0) {
-            var textItem = stackText.addText(`${resin.transformer.recovery_time.Second} 秒`)
+        if (transformer_recovery_time.Second != 0) {
+            var textItem = stackText.addText(`${transformer_recovery_time.Second} 秒`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
