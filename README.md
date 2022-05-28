@@ -27,11 +27,11 @@ B服： `config[1] = "cn_qd01"`
 
 6. 小组件预览  
 
-![小组件预览](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/preview.jpg)  
+    ![小组件预览](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/preview.jpg)  
 
 7. iOS叠放方法（通过stacked第二布局实现更多信息）  
 
-![iOS叠放方法](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked.jpg)  
+    ![iOS叠放方法](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked.jpg)  
 
 8. 如果你觉得用的还不错，可以支持我一杯咖啡钱，我会继续维护和更新更多的内容。  
 
