@@ -32,4 +32,4 @@ B服： `config[1] = "cn_qd01"`
 ![iOS叠放方法](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked.jpg)  
 
 8. 如果你觉得用的还不错，可以支持我一杯咖啡钱，我会继续维护和更新更多的内容。
-![支付宝收款码](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/alipay.jpg#pic_left =300x)
+![支付宝收款码](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/alipay.jpg)
