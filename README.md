@@ -17,17 +17,19 @@ B服： `config[1] = "cn_qd01"`
 港澳台服： `config[1] = "os_cht"`  
 
 5. 或者使用iOS快捷指令一键安装对应的配置(需要iOS15.0及以上版本)。  
-**请务必检查并开启，否则无法使用**
-**iPhone设置-快捷指令-iCloud同步  
-iPhone设置-Apple ID-iCloud云盘-快捷指令  
-iPhone设置-快捷指令-高级-允许运行脚本**  
+**请务必检查并开启，否则无法使用**  
+**iPhone设置-快捷指令-iCloud同步**  
+**iPhone设置-Apple ID-iCloud云盘-快捷指令**  
+**iPhone设置-快捷指令-高级-允许运行脚本**  
 
 [整合版本（会附带下载DmYY控件，背景界面可控）](https://www.icloud.com/shortcuts/6e33a145c8c8499eafd851b64b3218ba)  
 [精简版本（无须DmYY第三方控件）](https://www.icloud.com/shortcuts/6e33a145c8c8499eafd851b64b3218ba)  
 
 6. 小组件预览
-![Alt text](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/preview.jpg)  
+![小组件预览](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/preview.jpg)  
 
 7. iOS叠放方法（通过stacked第二布局实现更多信息）  
-![Alt text](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked.jpg)  
+![iOS叠放方法](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked.jpg)  
 
+8. 如果你觉得用的还不错，可以支持我一杯咖啡钱，我会继续维护和更新更多的内容。
+![支付宝收款码](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/alipay.jpg#pic_left =300x)
