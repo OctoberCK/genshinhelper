@@ -543,7 +543,7 @@ class Widget extends DmYY {
          */
         async renderLarge(widget) {
                 //需要补充，目前返回中号
-                return await this.renderMedium();
+                return await this.renderMedium(widget);
         }
 
         /**
