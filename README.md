@@ -1,7 +1,7 @@
 # genshinhelper
 
 ## 注意事项
-1. 本Javascipt脚本适用于iOS的 Scriptable APP，使用前请下载。   
+1. 本Javascipt脚本适用于iOS的 `Scriptable` APP，使用前请下载。   
 2. 遇到问题发issue前请检查操作的步骤，特别是注意 `uid` 的填写是否正确。
 3. 使用前请先在js脚本中添加配置(复制后填写对应的 `uid` 和 `cookie` )，必须加入到脚本标示的位置：  
 ```
