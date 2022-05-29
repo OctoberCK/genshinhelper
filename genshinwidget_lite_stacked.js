@@ -99,7 +99,6 @@ async function renderSmall(widget) {
         titleSize: 7,
         coinSize: 10,
         iconSize: 12,
-        iconSize2: 13,
         iconRadius: 6,
         coinRadius: 5,
         iconSpacer: 4,
@@ -114,7 +113,6 @@ async function renderSmall(widget) {
         titleSize: 7,
         coinSize: 10,
         iconSize: 12,
-        iconSize2: 13,
         iconRadius: 6,
         coinRadius: 5,
         iconSpacer: 4,
@@ -210,9 +208,9 @@ async function renderSmall(widget) {
     // 参量质变仪
     var stackText = topRightStack.addStack()
     var transformIcon = stackText.addImage(pTransformerIcon)
-    transformIcon.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+    transformIcon.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     stackText.addSpacer(ThemeConfig.iconSpacer)
-    var textItem = stackText.addText("参量质变: ")
+    var textItem = stackText.addText("参量质变：")
     textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
     textItem.textColor = this.widgetColor
     textItem.textOpacity = 0.6
@@ -249,7 +247,7 @@ async function renderSmall(widget) {
     let isHasFinished = false
     let minCoverTime = 0
     let AvatorIconElement = expeditionsTitleStack.addImage(avatorIcon)
-    AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+    AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
     expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
     let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
@@ -326,7 +324,6 @@ async function renderMedium(widget) {
         titleSize: 7,
         coinSize: 10,
         iconSize: 12,
-        iconSize2: 13,
         iconRadius: 6,
         coinRadius: 5,
         iconSpacer: 4,
@@ -341,7 +338,6 @@ async function renderMedium(widget) {
         titleSize: 7,
         coinSize: 10,
         iconSize: 12,
-        iconSize2: 13,
         iconRadius: 6,
         coinRadius: 5,
         iconSpacer: 4,
@@ -387,7 +383,7 @@ async function renderMedium(widget) {
 
     // 今日素材标题
     let TodayMaterialTitle = finalHorizon.addStack()
-    //finalHorizon.addSpacer()
+    finalHorizon.addSpacer()
     // 添加派蒙图片
     let paimon = finalHorizon.addStack()
     paimon.addSpacer()
@@ -402,7 +398,7 @@ async function renderMedium(widget) {
     AvatorMaterial.centerAlignContent()
     WeaponMaterial.centerAlignContent()
     let TianFuTitle = TodayMaterialTitle.addImage(tianfuIcon)
-    TianFuTitle.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+    TianFuTitle.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     TianFuTitle.cornerRadius = ThemeConfig.iconRadius
     TodayMaterialTitle.addSpacer(ThemeConfig.iconSpacer)
     let MaterialTitle = TodayMaterialTitle.addText(`今日素材：`)
@@ -499,7 +495,6 @@ async function renderLarge(widget) {
         titleSize: 7,
         coinSize: 10,
         iconSize: 12,
-        iconSize2: 13,
         iconRadius: 6,
         coinRadius: 5,
         iconSpacer: 4,
@@ -514,7 +509,6 @@ async function renderLarge(widget) {
         titleSize: 7,
         coinSize: 10,
         iconSize: 12,
-        iconSize2: 13,
         iconRadius: 6,
         coinRadius: 5,
         iconSpacer: 4,
@@ -555,7 +549,7 @@ async function renderLarge(widget) {
     let topHorizon = widget.addStack()
     topHorizon.layoutHorizontally()
     topHorizon.centerAlignContent()
-    widget.addSpacer()
+    widget.addSpacer(4)
     // 横向布局 - 第二行
     let bottomHorizon = widget.addStack()
     bottomHorizon.layoutHorizontally()
@@ -564,7 +558,7 @@ async function renderLarge(widget) {
     widget.addSpacer()
     let finalHorizon = widget.addStack()
     finalHorizon.layoutVertically()
-    finalHorizon.size = new Size(300, 80)
+    finalHorizon.size = new Size(300, 170)
     finalHorizon.centerAlignContent()
 
     // 纵向布局 - 第一行左侧
@@ -703,9 +697,9 @@ async function renderLarge(widget) {
     // 参量质变仪
     var stackText = topRightStack.addStack()
     var transformIcon = stackText.addImage(pTransformerIcon)
-    transformIcon.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+    transformIcon.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     stackText.addSpacer(ThemeConfig.iconSpacer)
-    var textItem = stackText.addText("参量质变: ")
+    var textItem = stackText.addText("参量质变：")
     textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
     textItem.textColor = Color.dynamic(Color.black(), Color.white())
     textItem.textOpacity = 0.6
@@ -742,7 +736,7 @@ async function renderLarge(widget) {
     let isHasFinished = false
     let minCoverTime = 0
     let AvatorIconElement = expeditionsTitleStack.addImage(avatorIcon)
-    AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+    AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
     expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
     let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
@@ -804,18 +798,24 @@ async function renderLarge(widget) {
         minCoverTimeElemnet2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
     }
 
-
-    // 今日素材
+    // 今日素材标题
     let TodayMaterialTitle = finalHorizon.addStack()
     finalHorizon.addSpacer()
+    // 添加派蒙图片
+    let paimon = finalHorizon.addStack()
+    paimon.addSpacer()
+    let PaimonElement = paimon.addImage(paimonIcon)
+    PaimonElement.imageSize = new Size(100, 100)
+    //finalHorizon.addSpacer()
+    // 今日素材
     let AvatorMaterial = finalHorizon.addStack()
-    finalHorizon.addSpacer()
+    finalHorizon.addSpacer(4)
     let WeaponMaterial = finalHorizon.addStack()
     TodayMaterialTitle.centerAlignContent()
     AvatorMaterial.centerAlignContent()
     WeaponMaterial.centerAlignContent()
     let TianFuTitle = TodayMaterialTitle.addImage(tianfuIcon)
-    TianFuTitle.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+    TianFuTitle.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     TianFuTitle.cornerRadius = ThemeConfig.iconRadius
     TodayMaterialTitle.addSpacer(ThemeConfig.iconSpacer)
     let MaterialTitle = TodayMaterialTitle.addText(`今日素材：`)

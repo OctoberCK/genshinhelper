@@ -101,7 +101,6 @@ class Widget extends DmYY {
                         titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
-                        iconSize2: 13,
                         iconRadius: 6,
                         coinRadius: 5,
                         iconSpacer: 4,
@@ -116,7 +115,6 @@ class Widget extends DmYY {
                         titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
-                        iconSize2: 13,
                         iconRadius: 6,
                         coinRadius: 5,
                         iconSpacer: 4,
@@ -247,7 +245,6 @@ class Widget extends DmYY {
                         titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
-                        iconSize2: 13,
                         iconRadius: 6,
                         coinRadius: 5,
                         iconSpacer: 4,
@@ -262,7 +259,6 @@ class Widget extends DmYY {
                         titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
-                        iconSize2: 13,
                         iconRadius: 6,
                         coinRadius: 5,
                         iconSpacer: 4,
@@ -447,9 +443,9 @@ class Widget extends DmYY {
                 // 参量质变仪
                 var stackText = topRightStack.addStack()
                 var transformIcon = stackText.addImage(pTransformerIcon)
-                transformIcon.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+                transformIcon.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 stackText.addSpacer(ThemeConfig.iconSpacer)
-                var textItem = stackText.addText("参量质变: ")
+                var textItem = stackText.addText("参量质变：")
                 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 textItem.textColor = this.widgetColor
                 textItem.textOpacity = 0.6
@@ -486,7 +482,7 @@ class Widget extends DmYY {
                 let isHasFinished = false
                 let minCoverTime = 0
                 let AvatorIconElement = expeditionsTitleStack.addImage(avatorIcon)
-                AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+                AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
                 expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
                 let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
@@ -567,7 +563,6 @@ class Widget extends DmYY {
                         titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
-                        iconSize2: 13,
                         iconRadius: 6,
                         coinRadius: 5,
                         iconSpacer: 4,
@@ -582,7 +577,6 @@ class Widget extends DmYY {
                         titleSize: 7,
                         coinSize: 10,
                         iconSize: 12,
-                        iconSize2: 13,
                         iconRadius: 6,
                         coinRadius: 5,
                         iconSpacer: 4,
@@ -771,9 +765,9 @@ class Widget extends DmYY {
                 // 参量质变仪
                 var stackText = topRightStack.addStack()
                 var transformIcon = stackText.addImage(pTransformerIcon)
-                transformIcon.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+                transformIcon.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 stackText.addSpacer(ThemeConfig.iconSpacer)
-                var textItem = stackText.addText("参量质变: ")
+                var textItem = stackText.addText("参量质变：")
                 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 textItem.textColor = Color.dynamic(Color.black(), Color.white())
                 textItem.textOpacity = 0.6
@@ -810,7 +804,7 @@ class Widget extends DmYY {
                 let isHasFinished = false
                 let minCoverTime = 0
                 let AvatorIconElement = expeditionsTitleStack.addImage(avatorIcon)
-                AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+                AvatorIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 AvatorIconElement.cornerRadius = ThemeConfig.iconRadius
                 expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
                 let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
@@ -874,7 +868,7 @@ class Widget extends DmYY {
 
                 // 今日素材标题
                 let TodayMaterialTitle = finalHorizon.addStack()
-                //finalHorizon.addSpacer()
+                finalHorizon.addSpacer()
                 // 添加派蒙图片
                 let paimon = finalHorizon.addStack()
                 paimon.addSpacer()
@@ -889,7 +883,7 @@ class Widget extends DmYY {
                 AvatorMaterial.centerAlignContent()
                 WeaponMaterial.centerAlignContent()
                 let TianFuTitle = TodayMaterialTitle.addImage(tianfuIcon)
-                TianFuTitle.imageSize = new Size(ThemeConfig.iconSize2, ThemeConfig.iconSize2)
+                TianFuTitle.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 TianFuTitle.cornerRadius = ThemeConfig.iconRadius
                 TodayMaterialTitle.addSpacer(ThemeConfig.iconSpacer)
                 let MaterialTitle = TodayMaterialTitle.addText(`今日素材：`)
