@@ -455,12 +455,12 @@ async function renderMedium(widget) {
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
         if (transformer_recovery_time.Hour != 0) {
-            var textItem = stackText.addText(`${transformer_recovery_time.Hour} 小时`)
+            var textItem = stackText.addText(`${transformer_recovery_time.Hour} 时`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
         if (transformer_recovery_time.Minute != 0) {
-            var textItem = stackText.addText(`${transformer_recovery_time.Minute} 分钟`)
+            var textItem = stackText.addText(`${transformer_recovery_time.Minute} 分`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
@@ -770,12 +770,12 @@ async function renderLarge(widget) {
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
         if (transformer_recovery_time.Hour != 0) {
-            var textItem = stackText.addText(`${transformer_recovery_time.Hour} 小时`)
+            var textItem = stackText.addText(`${transformer_recovery_time.Hour} 时`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
         if (transformer_recovery_time.Minute != 0) {
-            var textItem = stackText.addText(`${transformer_recovery_time.Minute} 分钟`)
+            var textItem = stackText.addText(`${transformer_recovery_time.Minute} 分`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
