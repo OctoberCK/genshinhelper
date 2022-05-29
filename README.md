@@ -1,11 +1,5 @@
 # genshinhelper
 
-## 打包流程（仅 lite）
-0. 准备好 node 环境
-1. `npm i` 安装依赖
-2. `npm run build`
-3. 在 `build` 目录下可以找到打包出来的文件
-
 ## 注意事项
 1. 本Javascipt脚本适用于iOS的 `Scriptable` APP，使用前请下载。   
 2. 遇到问题发issue前请检查操作的步骤，特别是注意 `uid` 的填写是否正确。
