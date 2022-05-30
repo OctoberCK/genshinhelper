@@ -613,7 +613,7 @@ async function renderLarge(widget) {
     widget.addSpacer()
     let finalHorizon = widget.addStack()
     finalHorizon.layoutVertically()
-    finalHorizon.size = new Size(300, 170)
+    finalHorizon.size = new Size(300, 175)
     finalHorizon.centerAlignContent()
 
     // 纵向布局 - 第一行左侧
