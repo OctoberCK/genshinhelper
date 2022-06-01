@@ -21,6 +21,7 @@ import lightyesIconSource from "./Icon/lightyesIcon.png";
 import resinIconSource from "./Icon/resinIcon.png";
 import taskIconSource from "./Icon/taskIcon.png";
 import transformerIconSource from "./Icon/transformerIcon.png";
+import paimonIconSource from "./Icon/paimon.png";
 
 
 /**
@@ -177,6 +178,11 @@ async function loadParametricTransformerIcon() {
     let icon = await req.loadImage();
     return icon;
 }
+async function loadPaiMonIcon() {
+    let req = new Request(paimonIconSource);
+    let icon = await req.loadImage();
+    return icon;
+}
 
 
 async function createWidget() {
@@ -196,7 +202,7 @@ async function createWidget() {
 /**
      * 渲染中尺寸组件
      */
-async function renderMedium(widget) {
+ async function renderMedium(widget) {
     const ThemeConfig = Device.isPad() ? {
         titleSize: 7,
         coinSize: 10,
@@ -227,43 +233,38 @@ async function renderMedium(widget) {
         bottomSpacer: 15,
     }
 
-    // Color
-    const textColor1 = Device.isUsingDarkAppearance()
-        ? new Color("C6BBAD")
-        : new Color("4B5566")
-    const textColor2 = Device.isUsingDarkAppearance()
-        ? new Color("C6BBAD")
-        : new Color("5F6776")
-    const LabelColor = Device.isUsingDarkAppearance()
-        ? new Color("31D154")
-        : new Color("FF794A")
+    const ThemeColor = Device.isUsingDarkAppearance() ? {
+        textColor1: new Color("C6BBAD"),
+        textColor2: new Color("C6BBAD"),
+        LabelColor: new Color("31D154"),
+        titleColor: new Color("283346"),
+        stackColor: new Color("3D4657"),
+    } : {
+        textColor1: new Color("4B5566"),
+        textColor2: new Color("5F6776"),
+        LabelColor: new Color("FF794A"),
+        titleColor: new Color("CEBD98"),
+        stackColor: new Color("E0D6C7"),
+    }
 
-    // background
-    const bgImage1 = Device.isUsingDarkAppearance()
-        ? darkuidbackground
-        : lightuidbackground
-    const bgImage2 = Device.isUsingDarkAppearance()
-        ? darkbackground
-        : lightbackground
-    widget.backgroundImage = bgImage2
-    const bgImage3 = Device.isUsingDarkAppearance()
-        ? darkavatarbackground
-        : lightavatarbackground
-    const noneIcon = Device.isUsingDarkAppearance()
-        ? darknoneIcon
-        : lightnoneIcon
-    const yesIcon = Device.isUsingDarkAppearance()
-        ? darkyesIcon
-        : lightyesIcon
-    const ingIcon = Device.isUsingDarkAppearance()
-        ? darkingIcon
-        : lightingIcon
-    const titleColor = Device.isUsingDarkAppearance()
-        ? new Color("283346")
-        : new Color("CEBD98")
-    const stackColor = Device.isUsingDarkAppearance()
-        ? new Color("3D4657")
-        : new Color("E0D6C7")
+    const ThemeImage = Device.isUsingDarkAppearance() ? {
+        bgImage1: darkuidbackground,
+        bgImage2: darkbackground,
+        bgImage3: darkavatarbackground,
+        noneIcon: darknoneIcon,
+        yesIcon: darkyesIcon,
+        ingIcon: darkingIcon,
+    } : {
+        bgImage1: lightuidbackground,
+        bgImage2: lightbackground,
+        bgImage3: lightavatarbackground,
+        noneIcon: lightnoneIcon,
+        yesIcon: lightyesIcon,
+        ingIcon: lightingIcon,
+    }
+
+    // 背景
+    widget.backgroundImage = ThemeImage.bgImage2
 
     // 布局
     let headerStack = widget.addStack();
@@ -271,40 +272,40 @@ async function renderMedium(widget) {
     headerStack.centerAlignContent();
     // 标题
     let stacktime = headerStack.addStack()
-    stacktime.backgroundColor = titleColor
+    stacktime.backgroundColor = ThemeColor.titleColor
     stacktime.size = new Size(88, 13)
     stacktime.cornerRadius = 7
     stacktime.centerAlignContent()
     headerStack.addSpacer(3)
     let stackHeader = headerStack.addStack()
-    stackHeader.backgroundImage = bgImage1
+    stackHeader.backgroundImage = ThemeImage.bgImage1
     stackHeader.size = new Size(158, 13)
     stackHeader.centerAlignContent()
     headerStack.addSpacer(3)
     let stackServer = headerStack.addStack()
-    stackServer.backgroundColor = titleColor
+    stackServer.backgroundColor = ThemeColor.titleColor
     stackServer.size = new Size(50, 13)
     stackServer.cornerRadius = 7
     stackServer.centerAlignContent()
     // 添加UID
     var textItem = stackHeader.addText(` UID：${config[0]}`)
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
-    textItem.textColor = textColor1
+    textItem.textColor = ThemeColor.textColor1
     // 添加服务器
     if (config[1] == "cn_qd01") {
         let server = stackServer.addText(`世界树`)
-        server.textColor = textColor1
+        server.textColor = ThemeColor.ThemeColor.textColor1
         server.font = Font.boldSystemFont(ThemeConfig.titleSize)
     } else {
         let server = stackServer.addText(`天空岛`)
-        server.textColor = textColor1
+        server.textColor = ThemeColor.textColor1
         server.font = Font.boldSystemFont(ThemeConfig.titleSize)
     }
     // 添加更新时间
     var myDate = new Date();
     var textItem = stacktime.addText(`最近${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}更新`)
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
-    textItem.textColor = textColor1
+    textItem.textColor = ThemeColor.textColor1
 
     const contentStack = widget.addStack();
     contentStack.size = new Size(322, 125);
@@ -321,7 +322,7 @@ async function renderMedium(widget) {
     const LeftRow1 = contentLeftStack.addStack();
     LeftRow1.centerAlignContent()
     LeftRow1.size = new Size(140, 34);
-    LeftRow1.backgroundColor = stackColor
+    LeftRow1.backgroundColor = ThemeColor.stackColor
     LeftRow1.cornerRadius = 5
     LeftRow1.addSpacer(2)
     const LeftStack1 = LeftRow1.addStack()
@@ -340,7 +341,7 @@ async function renderMedium(widget) {
     const LeftRow2 = contentLeftStack.addStack();
     LeftRow2.centerAlignContent()
     LeftRow2.size = new Size(140, 34);
-    LeftRow2.backgroundColor = stackColor
+    LeftRow2.backgroundColor = ThemeColor.stackColor
     LeftRow2.cornerRadius = 5
     LeftRow2.addSpacer(2)
     const LeftStack2 = LeftRow2.addStack()
@@ -359,7 +360,7 @@ async function renderMedium(widget) {
     const LeftRow3 = contentLeftStack.addStack();
     LeftRow3.centerAlignContent()
     LeftRow3.size = new Size(140, 34);
-    LeftRow3.backgroundColor = stackColor
+    LeftRow3.backgroundColor = ThemeColor.stackColor
     LeftRow3.cornerRadius = 5
     LeftRow3.addSpacer(2)
     const LeftStack3 = LeftRow3.addStack()
@@ -384,19 +385,19 @@ async function renderMedium(widget) {
     RightRow1.size = new Size(159, 55);
     const RightStack1 = RightRow1.addStack()
     RightStack1.size = new Size(49, 55)
-    RightStack1.backgroundColor = stackColor
+    RightStack1.backgroundColor = ThemeColor.stackColor
     RightStack1.cornerRadius = 5
     RightStack1.layoutVertically()
     RightRow1.addSpacer(6)
     const RightStack2 = RightRow1.addStack()
     RightStack2.size = new Size(49, 55)
-    RightStack2.backgroundColor = stackColor
+    RightStack2.backgroundColor = ThemeColor.stackColor
     RightStack2.cornerRadius = 5
     RightStack2.layoutVertically()
     RightRow1.addSpacer(6)
     const RightStack3 = RightRow1.addStack()
     RightStack3.size = new Size(49, 55)
-    RightStack3.backgroundColor = stackColor
+    RightStack3.backgroundColor = ThemeColor.stackColor
     RightStack3.cornerRadius = 5
 
     contentRightStack.addSpacer(6);
@@ -405,7 +406,7 @@ async function renderMedium(widget) {
     RightRow2.layoutVertically()
     RightRow2.size = new Size(159, 55);
     RightRow2.cornerRadius = 5
-    RightRow2.backgroundImage = bgImage3
+    RightRow2.backgroundImage = ThemeImage.bgImage3
 
     // 树脂获取
     let ResinIconElement = LeftStack1.addImage(resinIcon)
@@ -413,25 +414,25 @@ async function renderMedium(widget) {
     let resinStack = LeftStack11.addStack()
     let resinTipStack = LeftStack11.addStack()
     let ResinElement = resinStack.addText(`树脂：`)
-    ResinElement.textColor = textColor2
+    ResinElement.textColor = ThemeColor.textColor2
     ResinElement.font = Font.regularSystemFont(ThemeConfig.textSize)
     let ResinElement2 = resinStack.addText(`${resin.current_resin}`)
     let ResinElement3 = resinStack.addText(` / ${resin.max_resin}`)
     resinStack.centerAlignContent()
-    ResinElement2.textColor = textColor1
-    ResinElement3.textColor = textColor1
+    ResinElement2.textColor = ThemeColor.textColor1
+    ResinElement3.textColor = ThemeColor.textColor1
     ResinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     ResinElement3.font = new Font("AvenirNextCondensed-Italic", ThemeConfig.info2Size)
     let ResinTipElement = resinTipStack.addText(`预计满额时间  `)
-    ResinTipElement.textColor = textColor2
+    ResinTipElement.textColor = ThemeColor.textColor2
     ResinTipElement.font = Font.regularSystemFont(ThemeConfig.tipSize)
     if (resin.current_home_coin == resin.max_home_coin) {
         let ResinTipElement2 = resinTipStack.addText(`树脂已满`)
-        ResinTipElement2.textColor = LabelColor
+        ResinTipElement2.textColor = ThemeColor.LabelColor
         ResinTipElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
     } else {
         let ResinTipElement2 = resinTipStack.addText(`${await getClock(resin.resin_recovery_time)}`)
-        ResinTipElement2.textColor = textColor1
+        ResinTipElement2.textColor = ThemeColor.textColor1
         ResinTipElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
     }
     // 树脂指示标记
@@ -451,22 +452,22 @@ async function renderMedium(widget) {
         for (let i = 0; i < starmax; i++) {
             if (i === 0 || i === 1) {
                 starResinline1.addSpacer(1)
-                let starResinElement = starResinline1.addImage(yesIcon)
+                let starResinElement = starResinline1.addImage(ThemeImage.yesIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
             if (i === 2 || i === 3) {
                 starResinline2.addSpacer(1)
-                let starResinElement = starResinline2.addImage(yesIcon)
+                let starResinElement = starResinline2.addImage(ThemeImage.yesIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
             if (i === 4 || i === 5) {
                 starResinline3.addSpacer(1)
-                let starResinElement = starResinline3.addImage(yesIcon)
+                let starResinElement = starResinline3.addImage(ThemeImage.yesIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
             if (i === 6 || i === 7) {
                 starResinline4.addSpacer(1)
-                let starResinElement = starResinline4.addImage(yesIcon)
+                let starResinElement = starResinline4.addImage(ThemeImage.yesIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
         }
@@ -474,44 +475,44 @@ async function renderMedium(widget) {
         for (let i = 0; i < starcurrent; i++) {
             if (i === 0 || i === 1) {
                 starResinline4.addSpacer(1)
-                let starResinElement = starResinline4.addImage(ingIcon)
+                let starResinElement = starResinline4.addImage(ThemeImage.ingIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
             if (i === 2 || i === 3) {
                 starResinline3.addSpacer(1)
-                let starResinElement = starResinline3.addImage(ingIcon)
+                let starResinElement = starResinline3.addImage(ThemeImage.ingIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
             if (i === 4 || i === 5) {
                 starResinline2.addSpacer(1)
-                let starResinElement = starResinline2.addImage(ingIcon)
+                let starResinElement = starResinline2.addImage(ThemeImage.ingIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
             if (i === 6 || i === 7) {
                 starResinline1.addSpacer(1)
-                let starResinElement = starResinline1.addImage(ingIcon)
+                let starResinElement = starResinline1.addImage(ThemeImage.ingIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
         }
         for (let i = starcurrent; i < starmax; i++) {
             if (i === 0 || i === 1) {
                 starResinline4.addSpacer(1)
-                let starResinElement = starResinline4.addImage(noneIcon)
+                let starResinElement = starResinline4.addImage(ThemeImage.noneIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
             if (i === 2 || i === 3) {
                 starResinline3.addSpacer(1)
-                let starResinElement = starResinline3.addImage(noneIcon)
+                let starResinElement = starResinline3.addImage(ThemeImage.noneIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
             if (i === 4 || i === 5) {
                 starResinline2.addSpacer(1)
-                let starResinElement = starResinline2.addImage(noneIcon)
+                let starResinElement = starResinline2.addImage(ThemeImage.noneIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
             if (i === 6 || i === 7) {
                 starResinline1.addSpacer(1)
-                let starResinElement = starResinline1.addImage(noneIcon)
+                let starResinElement = starResinline1.addImage(ThemeImage.noneIcon)
                 starResinElement.imageSize = new Size(4, 4)
             }
         }
@@ -525,25 +526,25 @@ async function renderMedium(widget) {
     let coinStack = LeftStack22.addStack()
     let coinTipStack = LeftStack22.addStack()
     let CoinElement = coinStack.addText(`宝钱：`)
-    CoinElement.textColor = textColor2
+    CoinElement.textColor = ThemeColor.textColor2
     CoinElement.font = Font.regularSystemFont(ThemeConfig.textSize)
     let CoinElement2 = coinStack.addText(`${resin.current_home_coin}`)
     let CoinElement3 = coinStack.addText(` / ${resin.max_home_coin}`)
     coinStack.centerAlignContent()
-    CoinElement2.textColor = textColor1
-    CoinElement3.textColor = textColor1
+    CoinElement2.textColor = ThemeColor.textColor1
+    CoinElement3.textColor = ThemeColor.textColor1
     CoinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     CoinElement3.font = new Font("AvenirNextCondensed-Italic", ThemeConfig.info2Size)
     let CoinTipElement = coinTipStack.addText(`预计满额时间  `)
-    CoinTipElement.textColor = textColor2
+    CoinTipElement.textColor = ThemeColor.textColor2
     CoinTipElement.font = Font.regularSystemFont(ThemeConfig.tipSize)
     if (resin.current_home_coin == resin.max_home_coin) {
         let CoinTipElement2 = coinTipStack.addText(`财瓮已满`)
-        CoinTipElement2.textColor = LabelColor
+        CoinTipElement2.textColor = ThemeColor.LabelColor
         CoinTipElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
     } else {
         let CoinTipElement2 = coinTipStack.addText(`${await getClock(resin.home_coin_recovery_time)}`)
-        CoinTipElement2.textColor = textColor1
+        CoinTipElement2.textColor = ThemeColor.textColor1
         CoinTipElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
     }
     // 宝钱指示标记
@@ -563,22 +564,22 @@ async function renderMedium(widget) {
         for (let i = 0; i < starcoinmax; i++) {
             if (i === 0 || i === 1) {
                 starCoinline1.addSpacer(1)
-                let starCoinElement = starCoinline1.addImage(yesIcon)
+                let starCoinElement = starCoinline1.addImage(ThemeImage.yesIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
             if (i === 2 || i === 3) {
                 starCoinline2.addSpacer(1)
-                let starCoinElement = starCoinline2.addImage(yesIcon)
+                let starCoinElement = starCoinline2.addImage(ThemeImage.yesIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
             if (i === 4 || i === 5) {
                 starCoinline3.addSpacer(1)
-                let starCoinElement = starCoinline3.addImage(yesIcon)
+                let starCoinElement = starCoinline3.addImage(ThemeImage.yesIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
             if (i === 6 || i === 7) {
                 starCoinline4.addSpacer(1)
-                let starCoinElement = starCoinline4.addImage(yesIcon)
+                let starCoinElement = starCoinline4.addImage(ThemeImage.yesIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
         }
@@ -586,44 +587,44 @@ async function renderMedium(widget) {
         for (let i = 0; i < starcoincurrent; i++) {
             if (i === 0 || i === 1) {
                 starCoinline4.addSpacer(1)
-                let starCoinElement = starCoinline4.addImage(ingIcon)
+                let starCoinElement = starCoinline4.addImage(ThemeImage.ingIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
             if (i === 2 || i === 3) {
                 starCoinline3.addSpacer(1)
-                let starCoinElement = starCoinline3.addImage(ingIcon)
+                let starCoinElement = starCoinline3.addImage(ThemeImage.ingIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
             if (i === 4 || i === 5) {
                 starCoinline2.addSpacer(1)
-                let starCoinElement = starCoinline2.addImage(ingIcon)
+                let starCoinElement = starCoinline2.addImage(ThemeImage.ingIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
             if (i === 6 || i === 7) {
                 starCoinline1.addSpacer(1)
-                let starCoinElement = starCoinline1.addImage(ingIcon)
+                let starCoinElement = starCoinline1.addImage(ThemeImage.ingIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
         }
         for (let i = starcoincurrent; i < starcoinmax; i++) {
             if (i === 0 || i === 1) {
                 starCoinline4.addSpacer(1)
-                let starCoinElement = starCoinline4.addImage(noneIcon)
+                let starCoinElement = starCoinline4.addImage(ThemeImage.noneIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
             if (i === 2 || i === 3) {
                 starCoinline3.addSpacer(1)
-                let starCoinElement = starCoinline3.addImage(noneIcon)
+                let starCoinElement = starCoinline3.addImage(ThemeImage.noneIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
             if (i === 4 || i === 5) {
                 starCoinline2.addSpacer(1)
-                let starCoinElement = starCoinline2.addImage(noneIcon)
+                let starCoinElement = starCoinline2.addImage(ThemeImage.noneIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
             if (i === 6 || i === 7) {
                 starCoinline1.addSpacer(1)
-                let starCoinElement = starCoinline1.addImage(noneIcon)
+                let starCoinElement = starCoinline1.addImage(ThemeImage.noneIcon)
                 starCoinElement.imageSize = new Size(4, 4)
             }
         }
@@ -637,67 +638,67 @@ async function renderMedium(widget) {
     let stackTipStack = LeftStack33.addStack()
     var textItem = stackText.addText("参量质变仪：")
     textItem.font = Font.regularSystemFont(ThemeConfig.textSize)
-    textItem.textColor = textColor2
+    textItem.textColor = ThemeColor.textColor2
     stackText.centerAlignContent()
     const transformer_recovery_time = resin.transformer && resin.transformer.recovery_time || {}
     if (transformer_recovery_time.reached) {
         var textItem = stackTipStack.addText(`冷却时间 `)
         var textItem2 = stackTipStack.addText(`冷却完毕`)
         textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
-        textItem.textColor = textColor2
+        textItem.textColor = ThemeColor.textColor2
         textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
-        textItem2.textColor = LabelColor
+        textItem2.textColor = ThemeColor.LabelColor
         var textItem3 = stackText.addText("可使用")
         textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
-        textItem3.textColor = textColor1
+        textItem3.textColor = ThemeColor.textColor1
         textItem3.textOpacity = 1
     } else {
         if (transformer_recovery_time.Day != 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Day}天`)
             textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
-            textItem.textColor = textColor2
+            textItem.textColor = ThemeColor.textColor2
             textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
-            textItem2.textColor = textColor1
+            textItem2.textColor = ThemeColor.textColor1
             var textItem3 = stackText.addText("冷却中")
             textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
-            textItem3.textColor = textColor1
+            textItem3.textColor = ThemeColor.textColor1
             textItem3.textOpacity = 1
         }
         if (transformer_recovery_time.Hour != 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Hour}小时`)
             textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
-            textItem.textColor = textColor2
+            textItem.textColor = ThemeColor.textColor2
             textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
-            textItem2.textColor = textColor1
+            textItem2.textColor = ThemeColor.textColor1
             var textItem3 = stackText.addText("冷却中")
             textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
-            textItem3.textColor = textColor1
+            textItem3.textColor = ThemeColor.textColor1
             textItem3.textOpacity = 1
         }
         if (transformer_recovery_time.Minute != 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Minute}分钟`)
             textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
-            textItem.textColor = textColor2
+            textItem.textColor = ThemeColor.textColor2
             textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
-            textItem2.textColor = textColor1
+            textItem2.textColor = ThemeColor.textColor1
             var textItem3 = stackText.addText("冷却中")
             textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
-            textItem3.textColor = textColor1
+            textItem3.textColor = ThemeColor.textColor1
             textItem3.textOpacity = 1
         }
         if (transformer_recovery_time.Second != 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Second}秒`)
             textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
-            textItem.textColor = textColor2
+            textItem.textColor = ThemeColor.textColor2
             textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
-            textItem2.textColor = textColor1
+            textItem2.textColor = ThemeColor.textColor1
             var textItem3 = stackText.addText("冷却中")
             textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
-            textItem3.textColor = textColor1
+            textItem3.textColor = ThemeColor.textColor1
             textItem3.textOpacity = 1
         }
     }
@@ -718,22 +719,22 @@ async function renderMedium(widget) {
         for (let i = 0; i < startransmax; i++) {
             if (i === 0 || i === 1) {
                 starTransline1.addSpacer(1)
-                let starTransElement = starTransline1.addImage(yesIcon)
+                let starTransElement = starTransline1.addImage(ThemeImage.yesIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
             if (i === 2 || i === 3) {
                 starTransline2.addSpacer(1)
-                let starTransElement = starTransline2.addImage(yesIcon)
+                let starTransElement = starTransline2.addImage(ThemeImage.yesIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
             if (i === 4 || i === 5) {
                 starTransline3.addSpacer(1)
-                let starTransElement = starTransline3.addImage(yesIcon)
+                let starTransElement = starTransline3.addImage(ThemeImage.yesIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
             if (i === 6 || i === 7) {
                 starTransline4.addSpacer(1)
-                let starTransElement = starTransline4.addImage(yesIcon)
+                let starTransElement = starTransline4.addImage(ThemeImage.yesIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
         }
@@ -741,44 +742,44 @@ async function renderMedium(widget) {
         for (let i = 0; i < startranscurrent; i++) {
             if (i === 0 || i === 1) {
                 starTransline4.addSpacer(1)
-                let starTransElement = starTransline4.addImage(ingIcon)
+                let starTransElement = starTransline4.addImage(ThemeImage.ingIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
             if (i === 2 || i === 3) {
                 starTransline3.addSpacer(1)
-                let starTransElement = starTransline3.addImage(ingIcon)
+                let starTransElement = starTransline3.addImage(ThemeImage.ingIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
             if (i === 4 || i === 5) {
                 starTransline2.addSpacer(1)
-                let starTransElement = starTransline2.addImage(ingIcon)
+                let starTransElement = starTransline2.addImage(ThemeImage.ingIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
             if (i === 6 || i === 7) {
                 starTransline1.addSpacer(1)
-                let starTransElement = starTransline1.addImage(ingIcon)
+                let starTransElement = starTransline1.addImage(ThemeImage.ingIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
         }
         for (let i = startranscurrent; i < startransmax; i++) {
             if (i === 0 || i === 1) {
                 starTransline4.addSpacer(1)
-                let starTransElement = starTransline4.addImage(noneIcon)
+                let starTransElement = starTransline4.addImage(ThemeImage.noneIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
             if (i === 2 || i === 3) {
                 starTransline3.addSpacer(1)
-                let starTransElement = starTransline3.addImage(noneIcon)
+                let starTransElement = starTransline3.addImage(ThemeImage.noneIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
             if (i === 4 || i === 5) {
                 starTransline2.addSpacer(1)
-                let starTransElement = starTransline2.addImage(noneIcon)
+                let starTransElement = starTransline2.addImage(ThemeImage.noneIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
             if (i === 6 || i === 7) {
                 starTransline1.addSpacer(1)
-                let starTransElement = starTransline1.addImage(noneIcon)
+                let starTransElement = starTransline1.addImage(ThemeImage.noneIcon)
                 starTransElement.imageSize = new Size(4, 4)
             }
         }
@@ -797,7 +798,7 @@ async function renderMedium(widget) {
     let taskText = RightStack1.addStack()
     taskStack.addSpacer(8)
     let TaskElement = taskStack.addText(`每日委托`)
-    TaskElement.textColor = textColor2
+    TaskElement.textColor = ThemeColor.textColor2
     TaskElement.font = Font.regularSystemFont(ThemeConfig.textSize)
     let remaintasknum = resin.total_task_num - resin.finished_task_num
     taskText.addSpacer()
@@ -808,13 +809,13 @@ async function renderMedium(widget) {
     TaskElement2.centerAlignText()
     TaskElement2.textOpacity = 1
     TaskElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
-    TaskElement2.textColor = textColor1
+    TaskElement2.textColor = ThemeColor.textColor1
     TaskElement3.textOpacity = 1
     TaskElement3.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.info2Size)
-    TaskElement3.textColor = textColor1
+    TaskElement3.textColor = ThemeColor.textColor1
     TaskElement4.textOpacity = 1
     TaskElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
-    TaskElement4.textColor = textColor1
+    TaskElement4.textColor = ThemeColor.textColor1
     taskText.centerAlignContent()
     // 指示标记
     let starTask = RightStack1.addStack()
@@ -822,18 +823,18 @@ async function renderMedium(widget) {
     if (remaintasknum == resin.total_task_num) {
         for (let i = 0; i++ < resin.total_task_num;) {
             starTask.addSpacer(2)
-            let starTaskElement = starTask.addImage(yesIcon)
+            let starTaskElement = starTask.addImage(ThemeImage.yesIcon)
             starTaskElement.imageSize = new Size(4, 4)
         }
     } else {
         for (let i = 0; i++ < remaintasknum;) {
             starTask.addSpacer(2)
-            let starTaskElement = starTask.addImage(ingIcon)
+            let starTaskElement = starTask.addImage(ThemeImage.ingIcon)
             starTaskElement.imageSize = new Size(4, 4)
         }
         for (let i = remaintasknum; i++ < resin.finished_task_num;) {
             starTask.addSpacer(2)
-            let starTaskElement = starTask.addImage(noneIcon)
+            let starTaskElement = starTask.addImage(ThemeImage.noneIcon)
             starTaskElement.imageSize = new Size(4, 4)
         }
     }
@@ -852,7 +853,7 @@ async function renderMedium(widget) {
     let resinDiscountText = RightStack2.addStack()
     resinDiscountStack.addSpacer(8)
     let ResinDiscountTextElement = resinDiscountStack.addText(`半价周本`)
-    ResinDiscountTextElement.textColor = textColor2
+    ResinDiscountTextElement.textColor = ThemeColor.textColor2
     ResinDiscountTextElement.font = Font.regularSystemFont(ThemeConfig.textSize)
     resinDiscountText.addSpacer()
     let ResinDiscountTextElement2 = resinDiscountText.addText(`剩`)
@@ -861,13 +862,13 @@ async function renderMedium(widget) {
     resinDiscountText.addSpacer()
     ResinDiscountTextElement2.textOpacity = 1
     ResinDiscountTextElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
-    ResinDiscountTextElement2.textColor = textColor1
+    ResinDiscountTextElement2.textColor = ThemeColor.textColor1
     ResinDiscountTextElement3.textOpacity = 1
     ResinDiscountTextElement3.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.info2Size)
-    ResinDiscountTextElement3.textColor = textColor1
+    ResinDiscountTextElement3.textColor = ThemeColor.textColor1
     ResinDiscountTextElement4.textOpacity = 1
     ResinDiscountTextElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
-    ResinDiscountTextElement4.textColor = textColor1
+    ResinDiscountTextElement4.textColor = ThemeColor.textColor1
     resinDiscountText.centerAlignContent()
     resinDiscountStack.centerAlignContent()
     // 指示标记
@@ -876,18 +877,18 @@ async function renderMedium(widget) {
     if (resin.remain_resin_discount_num == resin.resin_discount_num_limit) {
         for (let i = 0; i++ < resin.total_task_num;) {
             starDiscount.addSpacer(2)
-            let starDiscountElement = starDiscount.addImage(yesIcon)
+            let starDiscountElement = starDiscount.addImage(ThemeImage.yesIcon)
             starDiscountElement.imageSize = new Size(4, 4)
         }
     } else {
         for (let i = 0; i++ < resin.remain_resin_discount_num;) {
             starDiscount.addSpacer(2)
-            let starDiscountElement = starDiscount.addImage(ingIcon)
+            let starDiscountElement = starDiscount.addImage(ThemeImage.ingIcon)
             starDiscountElement.imageSize = new Size(4, 4)
         }
         for (let i = resin.remain_resin_discount_num; i++ < resin.resin_discount_num_limit;) {
             starDiscount.addSpacer(2)
-            let starDiscountElement = starDiscount.addImage(noneIcon)
+            let starDiscountElement = starDiscount.addImage(ThemeImage.noneIcon)
             starDiscountElement.imageSize = new Size(4, 4)
         }
     }
@@ -911,7 +912,7 @@ async function renderMedium(widget) {
     avatarIconElement.imageSize = new Size(20, 20)
     expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
     let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
-    expeditionsTitleElement.textColor = textColor2
+    expeditionsTitleElement.textColor = ThemeColor.textColor2
     expeditionsTitleElement.font = Font.regularSystemFont(ThemeConfig.textSize)
     let expeditionsStack = RightRow2.addStack()
     RightRow2.addSpacer(4)
@@ -937,37 +938,37 @@ async function renderMedium(widget) {
             expeditionStack.topAlignContent()
             if (expeditions[i].status == 'Finished') {
                 isHasFinished = true
-                let starExpeditionElement = starExpedition.addImage(yesIcon)
+                let starExpeditionElement = starExpedition.addImage(ThemeImage.yesIcon)
                 starExpeditionElement.imageSize = new Size(4, 4)
                 starExpedition.addSpacer(27)
             } else {
-                let starExpeditionElement = starExpedition.addImage(ingIcon)
+                let starExpeditionElement = starExpedition.addImage(ThemeImage.ingIcon)
                 starExpeditionElement.imageSize = new Size(4, 4)
                 starExpedition.addSpacer(27)
             }
         } else {
-            let starExpeditionElement = starExpedition.addImage(noneIcon)
+            let starExpeditionElement = starExpedition.addImage(ThemeImage.noneIcon)
             starExpeditionElement.imageSize = new Size(4, 4)
             starExpedition.addSpacer(27)
         }
     }
     //RightRow2.addSpacer()
     let minCoverTimeElemnet = expeditionsTitleStack.addText(`已派出`)
-    minCoverTimeElemnet.textColor = textColor1
+    minCoverTimeElemnet.textColor = ThemeColor.textColor1
     minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
     let minCoverTimeElemnet2 = expeditionsTitleStack.addText(` ${resin.current_expedition_num} `)
-    minCoverTimeElemnet2.textColor = textColor1
+    minCoverTimeElemnet2.textColor = ThemeColor.textColor1
     minCoverTimeElemnet2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.info2Size)
     let minCoverTimeElemnet3 = expeditionsTitleStack.addText(`人`)
-    minCoverTimeElemnet3.textColor = textColor1
+    minCoverTimeElemnet3.textColor = ThemeColor.textColor1
     minCoverTimeElemnet3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
     // if (isHasFinished) {
     //     let minCoverTimeElemnet = expeditionsTitleStack.addText(`已派出${resin.current_expedition_num}人`)
-    //     minCoverTimeElemnet.textColor = textColor1
+    //     minCoverTimeElemnet.textColor = ThemeColor.textColor1
     //     minCoverTimeElemnet.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     // } else {
     //     let minCoverTimeElemnet = expeditionsTitleStack.addText(`已派出${resin.current_expedition_num}人`)
-    //     minCoverTimeElemnet.textColor = textColor1
+    //     minCoverTimeElemnet.textColor = ThemeColor.textColor1
     //     minCoverTimeElemnet.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     // }
     return widget
