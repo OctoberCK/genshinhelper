@@ -23,7 +23,6 @@ import taskIconSource from "./Icon/taskIcon.png";
 import transformerIconSource from "./Icon/transformerIcon.png";
 import paimonIconSource from "./Icon/paimon.png";
 
-
 /**
  * @typedef {Object} ResinResponse
  * @property {number} total_task_num - 每日委托任务
@@ -66,7 +65,7 @@ const coinIcon = await loadCoinIcon()
 const discountIcon = await loadDiscountIcon()
 const taskIcon = await loadTaskIcon()
 const avatarIcon = await loadAvatarIcon()
-const pTransformerIcon = await loadParametricTransformerIcon()
+const transformerIcon = await loadTransformerIcon()
 const paimonIcon = await loadPaiMonIcon()
 
 // 指示符号
@@ -76,7 +75,6 @@ const darkyesIcon = await loaddarkYesIcon()
 const lightnoneIcon = await loadlightNoneIcon()
 const lightingIcon = await loadlightIngIcon()
 const lightyesIcon = await loadlightYesIcon()
-
 
 let widget = await createWidget()
 if (config.runsInWidget) {
@@ -173,7 +171,7 @@ async function loadTaskIcon() {
     let icon = await req.loadImage();
     return icon;
 }
-async function loadParametricTransformerIcon() {
+async function loadTransformerIcon() {
     let req = new Request(transformerIconSource);
     let icon = await req.loadImage();
     return icon;
@@ -183,7 +181,6 @@ async function loadPaiMonIcon() {
     let icon = await req.loadImage();
     return icon;
 }
-
 
 async function createWidget() {
     let widget = new ListWidget()
@@ -197,7 +194,6 @@ async function createWidget() {
         return await renderMedium(widget);
     }
 }
-
 
 /**
      * 渲染中尺寸组件
@@ -632,7 +628,7 @@ async function createWidget() {
     coinStack.centerAlignContent()
 
     // 参量质变仪
-    var transformIcon = LeftStack3.addImage(pTransformerIcon)
+    var transformIcon = LeftStack3.addImage(transformerIcon)
     transformIcon.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     let stackText = LeftStack33.addStack()
     let stackTipStack = LeftStack33.addStack()
@@ -921,22 +917,24 @@ async function createWidget() {
     expeditionsStack.addSpacer(7)
     starExpedition.addSpacer(16)
     const expeditions = resin.expeditions || []
+    await Promise.all(expeditions.map(async (expedition) => {
+        let req = new Request(expedition.avatar_side_icon)
+        expedition.icon = await req.loadImage()
+    }));
     minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
     for (let i = -1; i++ < resin.max_expedition_num;) {
         let expeditionStack = expeditionsStack.addStack()
         expeditionStack.layoutHorizontally()
         let isOngoing = !!expeditions[i]
         if (isOngoing) {
-            let { status, avatar_side_icon, remained_time } = expeditions[i]
+            const { status, icon, remained_time } = expeditions[i]
             if (+remained_time < minCoverTime) minCoverTime = +remained_time
-            let req = new Request(avatar_side_icon)
-            let icon = await req.loadImage()
             let avatarImgElement = expeditionStack.addImage(icon)
             avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
             avatarImgElement.cornerRadius = 0
             expeditionStack.addSpacer(6)
             expeditionStack.topAlignContent()
-            if (expeditions[i].status == 'Finished') {
+            if (status === 'Finished') {
                 isHasFinished = true
                 let starExpeditionElement = starExpedition.addImage(ThemeImage.yesIcon)
                 starExpeditionElement.imageSize = new Size(4, 4)
@@ -1108,7 +1106,6 @@ async function getWeeklyMaterialData() {
     return [AvatarMaterial, WeaponsMaterial]
 
 }
-
 
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
