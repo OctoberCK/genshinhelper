@@ -950,25 +950,15 @@ async function createWidget() {
             starExpedition.addSpacer(27)
         }
     }
-    //RightRow2.addSpacer()
-    let minCoverTimeElemnet = expeditionsTitleStack.addText(`已派出`)
-    minCoverTimeElemnet.textColor = ThemeColor.textColor1
-    minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
-    let minCoverTimeElemnet2 = expeditionsTitleStack.addText(` ${resin.current_expedition_num} `)
-    minCoverTimeElemnet2.textColor = ThemeColor.textColor1
-    minCoverTimeElemnet2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.info2Size)
-    let minCoverTimeElemnet3 = expeditionsTitleStack.addText(`人`)
-    minCoverTimeElemnet3.textColor = ThemeColor.textColor1
-    minCoverTimeElemnet3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
-    // if (isHasFinished) {
-    //     let minCoverTimeElemnet = expeditionsTitleStack.addText(`已派出${resin.current_expedition_num}人`)
-    //     minCoverTimeElemnet.textColor = ThemeColor.textColor1
-    //     minCoverTimeElemnet.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-    // } else {
-    //     let minCoverTimeElemnet = expeditionsTitleStack.addText(`已派出${resin.current_expedition_num}人`)
-    //     minCoverTimeElemnet.textColor = ThemeColor.textColor1
-    //     minCoverTimeElemnet.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-    // }
+    let minCoverTimeElement = expeditionsTitleStack.addText(`已派出`)
+    minCoverTimeElement.textColor = ThemeColor.textColor1
+    minCoverTimeElement.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+    let minCoverTimeElement2 = expeditionsTitleStack.addText(` ${resin.current_expedition_num} `)
+    minCoverTimeElement2.textColor = ThemeColor.textColor1
+    minCoverTimeElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.info2Size)
+    let minCoverTimeElement3 = expeditionsTitleStack.addText(`人`)
+    minCoverTimeElement3.textColor = ThemeColor.textColor1
+    minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
     return widget
 }
 
