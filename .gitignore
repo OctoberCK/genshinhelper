@@ -131,3 +131,6 @@ dist
 
 # VSCode directory
 .vscode
+
+# Mac
+.DS_Store
