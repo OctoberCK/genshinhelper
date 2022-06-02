@@ -653,7 +653,7 @@ async function createWidget() {
         textItem3.textColor = ThemeColor.textColor1
         textItem3.textOpacity = 1
     } else {
-        if (transformer_recovery_time.Day != 0) {
+        if (+transformer_recovery_time.Day > 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Day}天`)
             textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
@@ -665,7 +665,7 @@ async function createWidget() {
             textItem3.textColor = ThemeColor.textColor1
             textItem3.textOpacity = 1
         }
-        if (transformer_recovery_time.Hour != 0) {
+        if (+transformer_recovery_time.Hour > 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Hour}小时`)
             textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
@@ -677,7 +677,7 @@ async function createWidget() {
             textItem3.textColor = ThemeColor.textColor1
             textItem3.textOpacity = 1
         }
-        if (transformer_recovery_time.Minute != 0) {
+        if (+transformer_recovery_time.Minute > 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Minute}分钟`)
             textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
@@ -689,7 +689,7 @@ async function createWidget() {
             textItem3.textColor = ThemeColor.textColor1
             textItem3.textOpacity = 1
         }
-        if (transformer_recovery_time.Second != 0) {
+        if (+transformer_recovery_time.Second > 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Second}秒`)
             textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
@@ -1046,6 +1046,8 @@ async function getTime(time) {
 }
 
 async function getClock(time) {
+    if (+time <= 0) return "已满"
+    
     let timeNow = Date.now()
     let now = new Date(timeNow)
     let hoursNow = now.getHours()

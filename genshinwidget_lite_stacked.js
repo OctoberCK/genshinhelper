@@ -219,22 +219,22 @@ async function renderSmall(widget) {
         textItem.font = Font.boldRoundedSystemFont(10)
         textItem.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
     } else {
-        if (transformer_recovery_time.Day != 0) {
+        if (+transformer_recovery_time.Day > 0) {
             var textItem = stackText.addText(`${transformer_recovery_time.Day} 天`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (transformer_recovery_time.Hour != 0) {
+        if (+transformer_recovery_time.Hour > 0) {
             var textItem = stackText.addText(`${transformer_recovery_time.Hour} 时`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (transformer_recovery_time.Minute != 0) {
+        if (+transformer_recovery_time.Minute > 0) {
             var textItem = stackText.addText(`${transformer_recovery_time.Minute} 分`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (transformer_recovery_time.Second != 0) {
+        if (+transformer_recovery_time.Second > 0) {
             var textItem = stackText.addText(`${transformer_recovery_time.Second} 秒`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
@@ -710,22 +710,22 @@ async function renderLarge(widget) {
         textItem.font = Font.boldRoundedSystemFont(10)
         textItem.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
     } else {
-        if (transformer_recovery_time.Day != 0) {
+        if (+transformer_recovery_time.Day > 0) {
             var textItem = stackText.addText(`${transformer_recovery_time.Day} 天`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (transformer_recovery_time.Hour != 0) {
+        if (+transformer_recovery_time.Hour > 0) {
             var textItem = stackText.addText(`${transformer_recovery_time.Hour} 时`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (transformer_recovery_time.Minute != 0) {
+        if (+transformer_recovery_time.Minute > 0) {
             var textItem = stackText.addText(`${transformer_recovery_time.Minute} 分`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
         }
-        if (transformer_recovery_time.Second != 0) {
+        if (+transformer_recovery_time.Second > 0) {
             var textItem = stackText.addText(`${transformer_recovery_time.Second} 秒`)
             textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
             textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
@@ -978,6 +978,8 @@ async function getTime(time) {
 }
 
 async function getClock(time) {
+    if (+time <= 0) return "已满"
+    
     let timeNow = Date.now()
     let now = new Date(timeNow)
     let hoursNow = now.getHours()
