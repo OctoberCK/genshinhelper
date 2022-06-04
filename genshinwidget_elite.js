@@ -311,7 +311,7 @@ async function renderMedium(widget) {
     let ResinTipElement = resinTipStack.addText(`预计满额时间  `)
     ResinTipElement.textColor = ThemeColor.textColor2
     ResinTipElement.font = Font.regularSystemFont(ThemeConfig.tipSize)
-    if (resin.current_home_coin == resin.max_home_coin) {
+    if (resin.current_resin == resin.max_resin) {
         let ResinTipElement2 = resinTipStack.addText(`树脂已满`)
         ResinTipElement2.textColor = ThemeColor.LabelColor
         ResinTipElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
