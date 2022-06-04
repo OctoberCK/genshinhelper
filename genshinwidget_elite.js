@@ -599,6 +599,9 @@ async function renderMedium(widget) {
     let starTransline4 = starTrans.addStack()
     starTrans.size = new Size(11, 21)
     let startranscurrent = 7 - transformer_recovery_time.Day
+    if (startranscurrent = 7){
+      startranscurrent = 6
+    }
     let startransmax = 7
     if (transformer_recovery_time.reached) {
         for (let i = 0; i < startransmax; i++) {
