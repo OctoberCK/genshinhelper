@@ -120,7 +120,7 @@ async function renderMedium(widget) {
 
     const ThemeColor = Device.isUsingDarkAppearance() ? {
         textColor1: new Color("C6BBAD"),
-        textColor2: new Color("C6BBAD"),
+        textColor2: new Color("AEA080"),
         LabelColor: new Color("31D154"),
         titleColor: new Color("283346"),
         stackColor: new Color("3D4657"),
@@ -177,7 +177,7 @@ async function renderMedium(widget) {
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
     textItem.textColor = ThemeColor.textColor1
     // 添加服务器
-    if (config[1] == "cn_qd01") {
+    if (config[1] === "cn_qd01") {
         let server = stackServer.addText(`世界树`)
         server.textColor = ThemeColor.ThemeColor.textColor1
         server.font = Font.boldSystemFont(ThemeConfig.titleSize)
@@ -300,25 +300,25 @@ async function renderMedium(widget) {
     let resinTipStack = LeftStack11.addStack()
     let ResinElement = resinStack.addText(`树脂：`)
     ResinElement.textColor = ThemeColor.textColor2
-    ResinElement.font = Font.regularSystemFont(ThemeConfig.textSize)
+    ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let ResinElement2 = resinStack.addText(`${resin.current_resin}`)
     let ResinElement3 = resinStack.addText(` / ${resin.max_resin}`)
     resinStack.centerAlignContent()
     ResinElement2.textColor = ThemeColor.textColor1
     ResinElement3.textColor = ThemeColor.textColor1
     ResinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
-    ResinElement3.font = new Font("AvenirNextCondensed-Italic", ThemeConfig.info2Size)
+    ResinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.info2Size)
     let ResinTipElement = resinTipStack.addText(`预计满额时间  `)
     ResinTipElement.textColor = ThemeColor.textColor2
-    ResinTipElement.font = Font.regularSystemFont(ThemeConfig.tipSize)
-    if (resin.current_resin == resin.max_resin) {
+    ResinTipElement.font = Font.mediumSystemFont(ThemeConfig.tipSize)
+    if (resin.current_resin === resin.max_resin) {
         let ResinTipElement2 = resinTipStack.addText(`树脂已满`)
         ResinTipElement2.textColor = ThemeColor.LabelColor
-        ResinTipElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+        ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     } else {
         let ResinTipElement2 = resinTipStack.addText(`${await getClock(resin.resin_recovery_time)}`)
         ResinTipElement2.textColor = ThemeColor.textColor1
-        ResinTipElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+        ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     }
     // 树脂指示标记
     let starResin = LeftStack111.addStack()
@@ -333,7 +333,7 @@ async function renderMedium(widget) {
     starResin.size = new Size(11, 21)
     let starcurrent = Math.floor(resin.current_resin / 20)
     let starmax = Math.ceil(resin.max_resin / 20)
-    if (starcurrent == starmax) {
+    if (starcurrent === starmax) {
         for (let i = 0; i < starmax; i++) {
             if (i === 0 || i === 1) {
                 starResinline1.addSpacer(1)
@@ -412,25 +412,25 @@ async function renderMedium(widget) {
     let coinTipStack = LeftStack22.addStack()
     let CoinElement = coinStack.addText(`宝钱：`)
     CoinElement.textColor = ThemeColor.textColor2
-    CoinElement.font = Font.regularSystemFont(ThemeConfig.textSize)
+    CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let CoinElement2 = coinStack.addText(`${resin.current_home_coin}`)
     let CoinElement3 = coinStack.addText(` / ${resin.max_home_coin}`)
     coinStack.centerAlignContent()
     CoinElement2.textColor = ThemeColor.textColor1
     CoinElement3.textColor = ThemeColor.textColor1
     CoinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
-    CoinElement3.font = new Font("AvenirNextCondensed-Italic", ThemeConfig.info2Size)
+    CoinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.info2Size)
     let CoinTipElement = coinTipStack.addText(`预计满额时间  `)
     CoinTipElement.textColor = ThemeColor.textColor2
-    CoinTipElement.font = Font.regularSystemFont(ThemeConfig.tipSize)
-    if (resin.current_home_coin == resin.max_home_coin) {
+    CoinTipElement.font = Font.mediumSystemFont(ThemeConfig.tipSize)
+    if (resin.current_home_coin === resin.max_home_coin) {
         let CoinTipElement2 = coinTipStack.addText(`财瓮已满`)
         CoinTipElement2.textColor = ThemeColor.LabelColor
-        CoinTipElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+        CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     } else {
         let CoinTipElement2 = coinTipStack.addText(`${await getClock(resin.home_coin_recovery_time)}`)
         CoinTipElement2.textColor = ThemeColor.textColor1
-        CoinTipElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+        CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     }
     // 宝钱指示标记
     let starCoin = LeftStack222.addStack()
@@ -445,7 +445,7 @@ async function renderMedium(widget) {
     starCoin.size = new Size(11, 21)
     let starcoincurrent = Math.floor(resin.current_home_coin / 300)
     let starcoinmax = Math.ceil(resin.max_home_coin / 300)
-    if (resin.current_home_coin == resin.max_home_coin) {
+    if (resin.current_home_coin === resin.max_home_coin) {
         for (let i = 0; i < starcoinmax; i++) {
             if (i === 0 || i === 1) {
                 starCoinline1.addSpacer(1)
@@ -522,16 +522,16 @@ async function renderMedium(widget) {
     let stackText = LeftStack33.addStack()
     let stackTipStack = LeftStack33.addStack()
     var textItem = stackText.addText("参量质变仪：")
-    textItem.font = Font.regularSystemFont(ThemeConfig.textSize)
+    textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
     textItem.textColor = ThemeColor.textColor2
     stackText.centerAlignContent()
     const transformer_recovery_time = resin.transformer && resin.transformer.recovery_time || {}
     if (transformer_recovery_time.reached) {
         var textItem = stackTipStack.addText(`冷却时间 `)
         var textItem2 = stackTipStack.addText(`冷却完毕`)
-        textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
+        textItem.font = Font.mediumSystemFont(ThemeConfig.tipSize)
         textItem.textColor = ThemeColor.textColor2
-        textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+        textItem2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
         textItem2.textColor = ThemeColor.LabelColor
         var textItem3 = stackText.addText("可使用")
         textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
@@ -541,9 +541,9 @@ async function renderMedium(widget) {
         if (transformer_recovery_time.Day != 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Day}天`)
-            textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
+            textItem.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             textItem.textColor = ThemeColor.textColor2
-            textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+            textItem2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
             textItem2.textColor = ThemeColor.textColor1
             var textItem3 = stackText.addText("冷却中")
             textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
@@ -553,9 +553,9 @@ async function renderMedium(widget) {
         if (transformer_recovery_time.Hour != 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Hour}小时`)
-            textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
+            textItem.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             textItem.textColor = ThemeColor.textColor2
-            textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+            textItem2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
             textItem2.textColor = ThemeColor.textColor1
             var textItem3 = stackText.addText("冷却中")
             textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
@@ -565,9 +565,9 @@ async function renderMedium(widget) {
         if (transformer_recovery_time.Minute != 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Minute}分钟`)
-            textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
+            textItem.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             textItem.textColor = ThemeColor.textColor2
-            textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+            textItem2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
             textItem2.textColor = ThemeColor.textColor1
             var textItem3 = stackText.addText("冷却中")
             textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
@@ -577,9 +577,9 @@ async function renderMedium(widget) {
         if (transformer_recovery_time.Second != 0) {
             var textItem = stackTipStack.addText(`冷却时间  `)
             var textItem2 = stackTipStack.addText(`${transformer_recovery_time.Second}秒`)
-            textItem.font = Font.regularSystemFont(ThemeConfig.tipSize)
+            textItem.font = Font.mediumSystemFont(ThemeConfig.tipSize)
             textItem.textColor = ThemeColor.textColor2
-            textItem2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
+            textItem2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
             textItem2.textColor = ThemeColor.textColor1
             var textItem3 = stackText.addText("冷却中")
             textItem3.font = Font.boldRoundedSystemFont(ThemeConfig.info2Size)
@@ -599,7 +599,7 @@ async function renderMedium(widget) {
     let starTransline4 = starTrans.addStack()
     starTrans.size = new Size(11, 21)
     let startranscurrent = 7 - transformer_recovery_time.Day
-    if (startranscurrent == 7){
+    if (startranscurrent === 7){
       startranscurrent = 6
     }
     let startransmax = 7
@@ -687,7 +687,7 @@ async function renderMedium(widget) {
     taskStack.addSpacer(8)
     let TaskElement = taskStack.addText(`每日委托`)
     TaskElement.textColor = ThemeColor.textColor2
-    TaskElement.font = Font.regularSystemFont(ThemeConfig.textSize)
+    TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let remaintasknum = resin.total_task_num - resin.finished_task_num
     taskText.addSpacer()
     let TaskElement2 = taskText.addText(`剩`)
@@ -708,7 +708,7 @@ async function renderMedium(widget) {
     // 指示标记
     let starTask = RightStack1.addStack()
     starTask.addSpacer()
-    if (remaintasknum == resin.total_task_num) {
+    if (remaintasknum === resin.total_task_num) {
         for (let i = 0; i++ < resin.total_task_num;) {
             starTask.addSpacer(2)
             let starTaskElement = starTask.addImage(ThemeImage.yesIcon)
@@ -742,7 +742,7 @@ async function renderMedium(widget) {
     resinDiscountStack.addSpacer(8)
     let ResinDiscountTextElement = resinDiscountStack.addText(`半价周本`)
     ResinDiscountTextElement.textColor = ThemeColor.textColor2
-    ResinDiscountTextElement.font = Font.regularSystemFont(ThemeConfig.textSize)
+    ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     resinDiscountText.addSpacer()
     let ResinDiscountTextElement2 = resinDiscountText.addText(`剩`)
     let ResinDiscountTextElement3 = resinDiscountText.addText(` ${resin.remain_resin_discount_num} `)
@@ -762,8 +762,8 @@ async function renderMedium(widget) {
     // 指示标记
     let starDiscount = RightStack2.addStack()
     starDiscount.addSpacer()
-    if (resin.remain_resin_discount_num == resin.resin_discount_num_limit) {
-        for (let i = 0; i++ < resin.total_task_num;) {
+    if (resin.remain_resin_discount_num === resin.resin_discount_num_limit) {
+        for (let i = 0; i++ < resin.resin_discount_num_limit;) {
             starDiscount.addSpacer(2)
             let starDiscountElement = starDiscount.addImage(ThemeImage.yesIcon)
             starDiscountElement.imageSize = new Size(4, 4)
@@ -801,7 +801,7 @@ async function renderMedium(widget) {
     expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
     let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
     expeditionsTitleElement.textColor = ThemeColor.textColor2
-    expeditionsTitleElement.font = Font.regularSystemFont(ThemeConfig.textSize)
+    expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let expeditionsStack = RightRow2.addStack()
     RightRow2.addSpacer(4)
     let starExpedition = RightRow2.addStack()
