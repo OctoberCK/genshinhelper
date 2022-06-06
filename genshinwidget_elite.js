@@ -639,7 +639,7 @@ async function renderMedium(widget) {
     expeditionsTitleStack.centerAlignContent()
     let isHasFinished = false
     let minCoverTime = 0
-    expeditionsTitleStack.addSpacer(3)
+    expeditionsTitleStack.addSpacer(5)
     let avatarIconElement = expeditionsTitleStack.addImage(avatarIcon)
     avatarIconElement.imageSize = new Size(20, 20)
     expeditionsTitleStack.addSpacer(2)
@@ -686,7 +686,7 @@ async function renderMedium(widget) {
             starExpedition.addSpacer(27)
         }
     }
-    let minCoverTimeElement = expeditionsTitleStack.addText(`当前`)
+    let minCoverTimeElement = expeditionsTitleStack.addText(`共`)
     minCoverTimeElement.textColor = ThemeColor.textColor1
     minCoverTimeElement.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
     let minCoverTimeElement2 = expeditionsTitleStack.addText(` ${resin.current_expedition_num} `)
