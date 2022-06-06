@@ -325,8 +325,8 @@ async function renderMedium(widget) {
     // 树脂指示标记
     let starResin = LeftStack111.addStack()
     starResin.layoutVertically()
-    let starcurrent = Math.floor(resin.current_resin / 40)
-    let starmax = Math.ceil(resin.max_resin / 40)
+    let starcurrent = Math.floor(resin.current_resin / 32)
+    let starmax = Math.ceil(resin.max_resin / 32)
     let starremain = starmax - starcurrent
     if (starcurrent === starmax) {
         for (let i = 0; i < starmax; i++) {
@@ -378,8 +378,8 @@ async function renderMedium(widget) {
     // 宝钱指示标记
     let starCoin = LeftStack222.addStack()
     starCoin.layoutVertically()
-    let starcoincurrent = Math.floor(resin.current_home_coin / 600)
-    let starcoinmax = Math.ceil(resin.max_home_coin / 600)
+    let starcoincurrent = Math.floor(resin.current_home_coin / 480)
+    let starcoinmax = Math.ceil(resin.max_home_coin / 480)
     let starcoinremain = starcoinmax - starcoincurrent
     if (resin.current_home_coin === resin.max_home_coin) {
         for (let i = 0; i < starcoinmax; i++) {
