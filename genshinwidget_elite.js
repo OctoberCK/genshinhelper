@@ -91,12 +91,12 @@ async function renderMedium(widget) {
     const ThemeConfig = Device.isPad() ? {
         titleSize: 7,
         coinSize: 10,
-        iconSize: 24,
+        iconSize: 22,
         iconRadius: 6,
         coinRadius: 5,
         iconSpacer: 2,
         textSize: 8,
-        infoSize: 22,
+        infoSize: 23,
         info2Size: 11,
         tipSize: 6,
         avatarSize: 24,
@@ -105,12 +105,12 @@ async function renderMedium(widget) {
     } : {
         titleSize: 7,
         coinSize: 10,
-        iconSize: 24,
+        iconSize: 22,
         iconRadius: 6,
         coinRadius: 5,
         iconSpacer: 2,
         textSize: 8,
-        infoSize: 22,
+        infoSize: 23,
         info2Size: 11,
         tipSize: 6,
         avatarSize: 24,
@@ -405,7 +405,7 @@ async function renderMedium(widget) {
     TaskIcon.layoutHorizontally()
     TaskIcon.addSpacer()
     let TaskIconElement = TaskIcon.addImage(taskIcon)
-    TaskIconElement.imageSize = new Size(22, 22)
+    TaskIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     TaskIcon.addSpacer()
     let taskStack = RightStack1.addStack()
     let taskText = RightStack1.addStack()
@@ -460,7 +460,7 @@ async function renderMedium(widget) {
     DiscountIcon.layoutHorizontally()
     DiscountIcon.addSpacer()
     let DiscountIconElement = DiscountIcon.addImage(discountIcon)
-    DiscountIconElement.imageSize = new Size(22, 22)
+    DiscountIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     DiscountIcon.addSpacer()
     let resinDiscountStack = RightStack2.addStack()
     let resinDiscountText = RightStack2.addStack()
@@ -513,7 +513,7 @@ async function renderMedium(widget) {
     transformIcon.layoutHorizontally()
     transformIcon.addSpacer()
     let transformIconElement = transformIcon.addImage(transformerIcon)
-    transformIconElement.imageSize = new Size(22, 22)
+    transformIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     transformIcon.addSpacer()
     let stackText = RightStack3.addStack()
     let stackTipStack = RightStack3.addStack()
@@ -712,7 +712,7 @@ async function renderMedium(widget) {
     minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
 
     if (isHasFinished) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(`  可领取`)
+        let minCoverTimeElement4 = expeditionsTitleStack.addText(`  可领取奖励`)
         minCoverTimeElement4.textColor = ThemeColor.LabelColor
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
 
