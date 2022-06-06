@@ -90,32 +90,20 @@ async function createWidget() {
 async function renderMedium(widget) {
     const ThemeConfig = Device.isPad() ? {
         titleSize: 7,
-        coinSize: 10,
         iconSize: 22,
-        iconRadius: 6,
-        coinRadius: 5,
-        iconSpacer: 2,
         textSize: 8,
-        infoSize: 23,
+        infoSize: 26,
         info2Size: 11,
-        tipSize: 6,
+        tipSize: 7,
         avatarSize: 24,
-        topSpacer: 30,
-        bottomSpacer: 15,
     } : {
         titleSize: 7,
-        coinSize: 10,
         iconSize: 22,
-        iconRadius: 6,
-        coinRadius: 5,
-        iconSpacer: 2,
         textSize: 8,
-        infoSize: 23,
+        infoSize: 26,
         info2Size: 11,
-        tipSize: 6,
+        tipSize: 7,
         avatarSize: 24,
-        topSpacer: 30,
-        bottomSpacer: 15,
     }
 
     const ThemeColor = Device.isUsingDarkAppearance() ? {
@@ -209,9 +197,9 @@ async function renderMedium(widget) {
     LeftRow1.size = new Size(140, 55);
     LeftRow1.backgroundColor = ThemeColor.stackColor
     LeftRow1.cornerRadius = 5
-    LeftRow1.addSpacer(1)
+    LeftRow1.addSpacer(2)
     const LeftStack1 = LeftRow1.addStack()
-    LeftRow1.addSpacer(1)
+    LeftRow1.addSpacer(2)
     const LeftStack11 = LeftRow1.addStack()
     LeftRow1.addSpacer()
     const LeftStack111 = LeftRow1.addStack()
@@ -228,9 +216,9 @@ async function renderMedium(widget) {
     LeftRow2.size = new Size(140, 55);
     LeftRow2.backgroundColor = ThemeColor.stackColor
     LeftRow2.cornerRadius = 5
-    LeftRow2.addSpacer(1)
+    LeftRow2.addSpacer(2)
     const LeftStack2 = LeftRow2.addStack()
-    LeftRow2.addSpacer(1)
+    LeftRow2.addSpacer(2)
     const LeftStack22 = LeftRow2.addStack()
     LeftRow2.addSpacer()
     const LeftStack222 = LeftRow2.addStack()
@@ -297,31 +285,30 @@ async function renderMedium(widget) {
     // 树脂获取
     let ResinIconElement = LeftStack1.addImage(resinIcon)
     ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
-    let resinStack = LeftStack11.addStack()
+    LeftStack11.addSpacer()
     let resinTipStack = LeftStack11.addStack()
-    LeftStack11.addSpacer(5)
-    let ResinElement = resinStack.addText(`树脂：`)
+    let resinStack = LeftStack11.addStack()
+    let ResinElement = resinTipStack.addText(`原粹树脂：`)
     ResinElement.textColor = ThemeColor.textColor2
     ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let ResinElement2 = resinStack.addText(`${resin.current_resin}`)
-    let ResinElement3 = resinStack.addText(` / ${resin.max_resin}`)
+    let ResinElement3 = resinStack.addText(`  / ${resin.max_resin}`)
     resinStack.centerAlignContent()
+    resinTipStack.centerAlignContent()
     ResinElement2.textColor = ThemeColor.textColor1
     ResinElement3.textColor = ThemeColor.textColor1
     ResinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     ResinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.info2Size)
-    let ResinTipElement = resinTipStack.addText(`预计满额时间  `)
-    ResinTipElement.textColor = ThemeColor.textColor2
-    ResinTipElement.font = Font.mediumSystemFont(ThemeConfig.tipSize)
     if (resin.current_resin === resin.max_resin) {
-        let ResinTipElement2 = resinTipStack.addText(`树脂已满`)
+        let ResinTipElement2 = resinTipStack.addText(`已完全充满`)
         ResinTipElement2.textColor = ThemeColor.LabelColor
-        ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     } else {
         let ResinTipElement2 = resinTipStack.addText(`${await getClock(resin.resin_recovery_time)}`)
         ResinTipElement2.textColor = ThemeColor.textColor1
         ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     }
+
     // 树脂指示标记
     let starResin = LeftStack111.addStack()
     starResin.layoutVertically()
@@ -350,26 +337,24 @@ async function renderMedium(widget) {
     // 宝钱获取
     let CoinIconElement = LeftStack2.addImage(coinIcon)
     CoinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
-    let coinStack = LeftStack22.addStack()
+    LeftStack22.addSpacer()
     let coinTipStack = LeftStack22.addStack()
-    LeftStack22.addSpacer(5)
-    let CoinElement = coinStack.addText(`宝钱：`)
+    let coinStack = LeftStack22.addStack()
+    let CoinElement = coinTipStack.addText(`洞天宝钱：`)
     CoinElement.textColor = ThemeColor.textColor2
     CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let CoinElement2 = coinStack.addText(`${resin.current_home_coin}`)
-    let CoinElement3 = coinStack.addText(` / ${resin.max_home_coin}`)
+    let CoinElement3 = coinStack.addText(`  / ${resin.max_home_coin}`)
     coinStack.centerAlignContent()
+    coinTipStack.centerAlignContent()
     CoinElement2.textColor = ThemeColor.textColor1
     CoinElement3.textColor = ThemeColor.textColor1
     CoinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     CoinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.info2Size)
-    let CoinTipElement = coinTipStack.addText(`预计满额时间  `)
-    CoinTipElement.textColor = ThemeColor.textColor2
-    CoinTipElement.font = Font.mediumSystemFont(ThemeConfig.tipSize)
     if (resin.current_home_coin === resin.max_home_coin) {
-        let CoinTipElement2 = coinTipStack.addText(`财瓮已满`)
+        let CoinTipElement2 = coinTipStack.addText(`已完全充满`)
         CoinTipElement2.textColor = ThemeColor.LabelColor
-        CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     } else {
         let CoinTipElement2 = coinTipStack.addText(`${await getClock(resin.home_coin_recovery_time)}`)
         CoinTipElement2.textColor = ThemeColor.textColor1
@@ -654,10 +639,10 @@ async function renderMedium(widget) {
     expeditionsTitleStack.centerAlignContent()
     let isHasFinished = false
     let minCoverTime = 0
-    expeditionsTitleStack.addSpacer(5)
+    expeditionsTitleStack.addSpacer(3)
     let avatarIconElement = expeditionsTitleStack.addImage(avatarIcon)
     avatarIconElement.imageSize = new Size(20, 20)
-    expeditionsTitleStack.addSpacer(ThemeConfig.iconSpacer)
+    expeditionsTitleStack.addSpacer(2)
     let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
     expeditionsTitleElement.textColor = ThemeColor.textColor2
     expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -712,12 +697,12 @@ async function renderMedium(widget) {
     minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
 
     if (isHasFinished) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(`  可领取奖励`)
+        let minCoverTimeElement4 = expeditionsTitleStack.addText(` 可领取奖励`)
         minCoverTimeElement4.textColor = ThemeColor.LabelColor
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
 
     } else {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(`  ${await getClock(minCoverTime)}`)
+        let minCoverTimeElement4 = expeditionsTitleStack.addText(` ${await getClock(minCoverTime)}`)
         minCoverTimeElement4.textColor = ThemeColor.textColor1
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     }
