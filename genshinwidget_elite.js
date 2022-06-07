@@ -300,7 +300,7 @@ async function renderMedium(widget) {
     ResinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     ResinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.info2Size)
     if (resin.current_resin === resin.max_resin) {
-        let ResinTipElement2 = resinTipStack.addText(`已完全充满`)
+        let ResinTipElement2 = resinTipStack.addText(`  已完全充满`)
         ResinTipElement2.textColor = ThemeColor.LabelColor
         ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     } else {
@@ -352,7 +352,7 @@ async function renderMedium(widget) {
     CoinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     CoinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.info2Size)
     if (resin.current_home_coin === resin.max_home_coin) {
-        let CoinTipElement2 = coinTipStack.addText(`已完全充满`)
+        let CoinTipElement2 = coinTipStack.addText(`  已完全充满`)
         CoinTipElement2.textColor = ThemeColor.LabelColor
         CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     } else {
@@ -697,7 +697,7 @@ async function renderMedium(widget) {
     minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
 
     if (isHasFinished) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(` 可领取奖励`)
+        let minCoverTimeElement4 = expeditionsTitleStack.addText(`   可领取奖励`)
         minCoverTimeElement4.textColor = ThemeColor.LabelColor
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
 
