@@ -165,15 +165,29 @@ async function renderMedium(widget) {
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
     textItem.textColor = ThemeColor.textColor1
     // 添加服务器
-    if (config[1] === "cn_qd01") {
-        let server = stackServer.addText(`世界树`)
-        server.textColor = ThemeColor.ThemeColor.textColor1
-        server.font = Font.boldSystemFont(ThemeConfig.titleSize)
-    } else {
-        let server = stackServer.addText(`天空岛`)
-        server.textColor = ThemeColor.textColor1
-        server.font = Font.boldSystemFont(ThemeConfig.titleSize)
+    let server
+    switch (config[1]) {
+        case "cn_qd01":
+            server = stackServer.addText(`世界树`)
+            break;
+        case "os_asia":
+            server = stackServer.addText(`亚服`)
+            break;
+        case "os_euro":
+            server = stackServer.addText(`欧服`)
+            break;
+        case "os_usa":
+            server = stackServer.addText(`美服`)
+            break;
+        case "os_cht":
+            server = stackServer.addText(`港澳台服`)
+            break;
+        default:
+            server = stackServer.addText(`天空岛`)
+            break;
     }
+    server.textColor = ThemeColor.textColor1
+    server.font = Font.boldSystemFont(ThemeConfig.titleSize)
     // 添加更新时间
     var myDate = new Date();
     var textItem = stacktime.addText(`最近${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}更新`)
@@ -508,14 +522,14 @@ async function renderMedium(widget) {
     var textItem = stackText.addText("参量质变")
     textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
     textItem.textColor = ThemeColor.textColor2
+    stackTipStack.addSpacer()
     const transformer_recovery_time = resin.transformer && resin.transformer.recovery_time || {}
     if (transformer_recovery_time.reached) {
         var textItem = stackTipStack.addText("可使用")
         textItem.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
         textItem.textColor = ThemeColor.textColor1
     } else {
-        if (transformer_recovery_time.Day != 0) {
-            stackTipStack.addSpacer()
+        if (+transformer_recovery_time.Day > 0) {
             var textItem = stackTipStack.addText(`剩`)
             var textItem2 = stackTipStack.addText(` ${transformer_recovery_time.Day} `)
             textItem.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
@@ -525,10 +539,8 @@ async function renderMedium(widget) {
             var textItem3 = stackTipStack.addText("天")
             textItem3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
             textItem3.textColor = ThemeColor.textColor1
-            stackTipStack.addSpacer()
         }
-        if (transformer_recovery_time.Hour != 0) {
-            stackTipStack.addSpacer()
+        if (+transformer_recovery_time.Hour > 0) {
             var textItem = stackTipStack.addText(`剩`)
             var textItem2 = stackTipStack.addText(` ${transformer_recovery_time.Hour} `)
             textItem.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
@@ -538,10 +550,8 @@ async function renderMedium(widget) {
             var textItem3 = stackTipStack.addText("时")
             textItem3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
             textItem3.textColor = ThemeColor.textColor1
-            stackTipStack.addSpacer()
         }
-        if (transformer_recovery_time.Minute != 0) {
-            stackTipStack.addSpacer()
+        if (+transformer_recovery_time.Minute > 0) {
             var textItem = stackTipStack.addText(`剩`)
             var textItem2 = stackTipStack.addText(` ${transformer_recovery_time.Minute} `)
             textItem.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
@@ -551,10 +561,8 @@ async function renderMedium(widget) {
             var textItem3 = stackTipStack.addText("分")
             textItem3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
             textItem3.textColor = ThemeColor.textColor1
-            stackTipStack.addSpacer()
         }
-        if (transformer_recovery_time.Second != 0) {
-            stackTipStack.addSpacer()
+        if (+transformer_recovery_time.Second > 0) {
             var textItem = stackTipStack.addText(`剩`)
             var textItem2 = stackTipStack.addText(` ${transformer_recovery_time.Second} `)
             textItem.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
@@ -564,9 +572,9 @@ async function renderMedium(widget) {
             var textItem3 = stackTipStack.addText("秒")
             textItem3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
             textItem3.textColor = ThemeColor.textColor1
-            stackTipStack.addSpacer()
         }
     }
+    stackTipStack.addSpacer()
     // 质变仪指示标记
     let starTrans = RightStack3.addStack()
     starTrans.addSpacer()
