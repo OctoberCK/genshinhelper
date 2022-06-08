@@ -515,20 +515,25 @@ async function renderMedium(widget) {
     transformIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     transformIcon.addSpacer()
     let stackText = RightStack3.addStack()
-    let stackTipStack = RightStack3.addStack()
     stackText.centerAlignContent()
-    stackTipStack.centerAlignContent()
     stackText.addSpacer(8)
     var textItem = stackText.addText("参量质变")
     textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
     textItem.textColor = ThemeColor.textColor2
-    stackTipStack.addSpacer()
     const transformer_recovery_time = resin.transformer && resin.transformer.recovery_time || {}
     if (transformer_recovery_time.reached) {
+        RightStack3.addSpacer(2)
+        let stackTipStack = RightStack3.addStack()
+        RightStack3.addSpacer(3)
+        stackTipStack.addSpacer()
         var textItem = stackTipStack.addText("可使用")
-        textItem.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+        textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
         textItem.textColor = ThemeColor.textColor1
+        stackTipStack.addSpacer()
+        stackTipStack.centerAlignContent()
     } else {
+        let stackTipStack = RightStack3.addStack()
+        stackTipStack.addSpacer()
         if (+transformer_recovery_time.Day > 0) {
             var textItem = stackTipStack.addText(`剩`)
             var textItem2 = stackTipStack.addText(` ${transformer_recovery_time.Day} `)
@@ -573,8 +578,10 @@ async function renderMedium(widget) {
             textItem3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
             textItem3.textColor = ThemeColor.textColor1
         }
+        stackTipStack.addSpacer()
+        stackTipStack.centerAlignContent()
     }
-    stackTipStack.addSpacer()
+    
     // 质变仪指示标记
     let starTrans = RightStack3.addStack()
     starTrans.addSpacer()
