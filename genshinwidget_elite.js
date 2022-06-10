@@ -673,7 +673,11 @@ async function renderMedium(widget) {
         expedition.icon = await req.loadImage()
     }));
     minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
-    for (let i = -1; i++ < resin.max_expedition_num;) {
+    if (!resin.max_expedition_num) {
+        expeditionsStack.setPadding(ThemeConfig.avatarSize, ThemeConfig.avatarSize, 0, 0)
+        starExpedition.setPadding(4, 4, 0, 0)
+    }
+    for (let i = 0; i < resin.max_expedition_num; i++) {
         let expeditionStack = expeditionsStack.addStack()
         expeditionStack.layoutHorizontally()
         let isOngoing = !!expeditions[i]
@@ -696,6 +700,7 @@ async function renderMedium(widget) {
                 starExpedition.addSpacer(27)
             }
         } else {
+            expeditionStack.setPadding(ThemeConfig.avatarSize, ThemeConfig.avatarSize, 0, 0)
             let starExpeditionElement = starExpedition.addImage(ThemeImage.noneIcon)
             starExpeditionElement.imageSize = new Size(4, 4)
             starExpedition.addSpacer(27)
@@ -715,8 +720,7 @@ async function renderMedium(widget) {
         let minCoverTimeElement4 = expeditionsTitleStack.addText(`   可领取奖励`)
         minCoverTimeElement4.textColor = ThemeColor.LabelColor
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-
-    } else {
+    } else if (minCoverTime > 0) {
         let minCoverTimeElement4 = expeditionsTitleStack.addText(` ${await getClock(minCoverTime)}`)
         minCoverTimeElement4.textColor = ThemeColor.textColor1
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
