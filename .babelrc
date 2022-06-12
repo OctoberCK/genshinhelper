@@ -1,0 +1,23 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": ["chrome >= 80"]
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "runtime": "automatic", // defaults to classic
+        "importSource": "scriptable-jsx" // defaults to react
+      }
+    ],
+    "@babel/plugin-syntax-top-level-await"
+  ]
+}
