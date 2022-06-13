@@ -23,7 +23,7 @@ B服： `config[1] = "cn_qd01"`
 **iPhone设置-快捷指令-高级-允许运行脚本**  
 
    [整合版本（会附带下载DmYY控件，背景界面可控）](https://www.icloud.com/shortcuts/6e33a145c8c8499eafd851b64b3218ba)  
-   [精简版本（无须DmYY第三方控件）](https://www.icloud.com/shortcuts/6e33a145c8c8499eafd851b64b3218ba)  
+   [精简版本（无须DmYY第三方控件）](https://www.icloud.com/shortcuts/8393584a2c6a4d6bb01e46a1dc3b1d2b)  
 
 6. 小组件预览  
 
