@@ -433,18 +433,18 @@ async function renderMedium(widget) {
     let starTask = RightStack1.addStack()
     starTask.addSpacer()
     if (remaintasknum === resin.total_task_num) {
-        for (let i = 0; i++ < resin.total_task_num;) {
+        for (let i = 0; i < resin.total_task_num; i++) {
             starTask.addSpacer(2)
             let starTaskElement = starTask.addImage(ThemeImage.yesIcon)
             starTaskElement.imageSize = new Size(4, 4)
         }
     } else {
-        for (let i = 0; i++ < remaintasknum;) {
+        for (let i = 0; i < remaintasknum; i++) {
             starTask.addSpacer(2)
             let starTaskElement = starTask.addImage(ThemeImage.ingIcon)
             starTaskElement.imageSize = new Size(4, 4)
         }
-        for (let i = remaintasknum; i++ < resin.finished_task_num;) {
+        for (let i = remaintasknum; i < resin.finished_task_num; i++) {
             starTask.addSpacer(2)
             let starTaskElement = starTask.addImage(ThemeImage.noneIcon)
             starTaskElement.imageSize = new Size(4, 4)
@@ -487,18 +487,18 @@ async function renderMedium(widget) {
     let starDiscount = RightStack2.addStack()
     starDiscount.addSpacer()
     if (resin.remain_resin_discount_num === resin.resin_discount_num_limit) {
-        for (let i = 0; i++ < resin.resin_discount_num_limit;) {
+        for (let i = 0; i < resin.resin_discount_num_limit; i++) {
             starDiscount.addSpacer(2)
             let starDiscountElement = starDiscount.addImage(ThemeImage.yesIcon)
             starDiscountElement.imageSize = new Size(4, 4)
         }
     } else {
-        for (let i = 0; i++ < resin.remain_resin_discount_num;) {
+        for (let i = 0; i < resin.remain_resin_discount_num; i++) {
             starDiscount.addSpacer(2)
             let starDiscountElement = starDiscount.addImage(ThemeImage.ingIcon)
             starDiscountElement.imageSize = new Size(4, 4)
         }
-        for (let i = resin.remain_resin_discount_num; i++ < resin.resin_discount_num_limit;) {
+        for (let i = resin.remain_resin_discount_num; i < resin.resin_discount_num_limit; i++) {
             starDiscount.addSpacer(2)
             let starDiscountElement = starDiscount.addImage(ThemeImage.noneIcon)
             starDiscountElement.imageSize = new Size(4, 4)
