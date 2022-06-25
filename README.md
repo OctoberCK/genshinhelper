@@ -21,17 +21,16 @@ B服： `config[1] = "cn_qd01"`
 **iPhone设置-快捷指令-iCloud同步**  
 **iPhone设置-Apple ID-iCloud云盘-快捷指令**  
 **iPhone设置-快捷指令-高级-允许运行脚本**  
-
-   [整合版本（会附带下载DmYY控件，背景界面可控）](https://www.icloud.com/shortcuts/6e33a145c8c8499eafd851b64b3218ba)  
-   [精简版本（无须DmYY第三方控件）](https://www.icloud.com/shortcuts/8393584a2c6a4d6bb01e46a1dc3b1d2b)  
+[整合版本（会附带下载DmYY控件，背景界面可控）](https://www.icloud.com/shortcuts/6e33a145c8c8499eafd851b64b3218ba)  
+[精简版本（无须DmYY第三方控件）](https://www.icloud.com/shortcuts/8393584a2c6a4d6bb01e46a1dc3b1d2b)  
+[测试版本（当前仅支持中号小组件）](https://www.icloud.com/shortcuts/1278018a0e674a54b49c92f44a644a13)
 
 6. 小组件预览  
-
-    ![小组件预览](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/preview.jpg)  
+![测试版预览](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/test.jpg)  
+![小组件预览](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/preview.jpg)  
 
 7. iOS叠放方法（通过stacked第二布局实现更多信息）  
-
-    ![iOS叠放方法](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked.jpg)  
+![iOS叠放方法](https://github.com/OctoberCK/genshinhelper/blob/main/screenshots/stacked.jpg)  
 
 8. 如果你觉得用的还不错，可以支持我一杯咖啡钱，我会继续维护和更新更多的内容。  
 
