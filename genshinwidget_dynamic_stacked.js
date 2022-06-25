@@ -97,7 +97,7 @@ class Widget extends DmYY {
     async renderSmall(widget) {
         const ThemeConfig = Device.isPad() ? {
             titleSize: 7,
-            coinSize: 10,
+            coinSize: 12,
             iconSize: 12,
             iconRadius: 6,
             coinRadius: 5,
@@ -111,7 +111,7 @@ class Widget extends DmYY {
             bottomSpacer: 15,
         } : {
             titleSize: 7,
-            coinSize: 10,
+            coinSize: 12,
             iconSize: 12,
             iconRadius: 6,
             coinRadius: 5,
@@ -326,7 +326,7 @@ class Widget extends DmYY {
     async renderMedium(widget) {
         const ThemeConfig = Device.isPad() ? {
             titleSize: 7,
-            coinSize: 10,
+            coinSize: 12,
             iconSize: 12,
             iconRadius: 6,
             coinRadius: 5,
@@ -340,7 +340,7 @@ class Widget extends DmYY {
             bottomSpacer: 15,
         } : {
             titleSize: 7,
-            coinSize: 10,
+            coinSize: 12,
             iconSize: 12,
             iconRadius: 6,
             coinRadius: 5,
@@ -500,7 +500,7 @@ class Widget extends DmYY {
     async renderLarge(widget) {
         const ThemeConfig = Device.isPad() ? {
             titleSize: 7,
-            coinSize: 10,
+            coinSize: 12,
             iconSize: 12,
             iconRadius: 6,
             coinRadius: 5,
@@ -514,7 +514,7 @@ class Widget extends DmYY {
             bottomSpacer: 15,
         } : {
             titleSize: 7,
-            coinSize: 10,
+            coinSize: 12,
             iconSize: 12,
             iconRadius: 6,
             coinRadius: 5,

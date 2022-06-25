@@ -74,7 +74,7 @@ async function createWidget() {
 async function renderSmall(widget) {
     const ThemeConfig = Device.isPad() ? {
         titleSize: 7,
-        coinSize: 10,
+        coinSize: 12,
         iconSize: 12,
         iconRadius: 6,
         coinRadius: 5,
@@ -88,7 +88,7 @@ async function renderSmall(widget) {
         bottomSpacer: 15,
     } : {
         titleSize: 7,
-        coinSize: 10,
+        coinSize: 12,
         iconSize: 12,
         iconRadius: 6,
         coinRadius: 5,
@@ -212,7 +212,7 @@ async function renderSmall(widget) {
 async function renderMedium(widget) {
     const ThemeConfig = Device.isPad() ? {
         titleSize: 7,
-        coinSize: 10,
+        coinSize: 12,
         iconSize: 12,
         iconRadius: 6,
         coinRadius: 5,
@@ -226,7 +226,7 @@ async function renderMedium(widget) {
         bottomSpacer: 15,
     } : {
         titleSize: 7,
-        coinSize: 10,
+        coinSize: 12,
         iconSize: 12,
         iconRadius: 6,
         coinRadius: 5,
