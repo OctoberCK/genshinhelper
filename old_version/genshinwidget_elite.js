@@ -58,31 +58,7 @@ const darkyesIcon = await loaddarkYesIcon()
 const lightnoneIcon = await loadlightNoneIcon()
 const lightingIcon = await loadlightIngIcon()
 const lightyesIcon = await loadlightYesIcon()
-const dlineIcon = await loaddLineIcon()
 
-// 定义画布
-const canvas = new DrawContext()
-const canvSize = 140
-const canvRadius = 80
-const canvWidth = 10
-// 定义画布图绘制的透明属性
-canvas.opaque = false
-
-// 进度条长度
-const width = 45
-const width2 = 28
-// 进度条高度
-const h = 2
-// 进度条颜色
-const ThemeColor = Device.isUsingDarkAppearance() ? {
-    LabelColor: new Color("31D154"),
-    jdColor1: new Color("313542"),
-    jdColor2: new Color("C6BBAD"),
-} : {
-    LabelColor: new Color("FF794A"),
-    jdColor1: new Color("AEA080"),
-    jdColor2: new Color("6DAE60"),
-}
 
 let widget = await createWidget()
 if (config.runsInWidget) {
@@ -114,42 +90,34 @@ async function createWidget() {
 async function renderMedium(widget) {
     const ThemeConfig = Device.isPad() ? {
         titleSize: 7,
-        canvSize: 170,
         iconSize: 22,
         textSize: 8,
-        infoSize: 23,
+        infoSize: 26,
         info2Size: 11,
-        tipSize: 6,
+        tipSize: 7,
         avatarSize: 24,
     } : {
         titleSize: 7,
-        canvSize: 170,
         iconSize: 22,
         textSize: 8,
-        infoSize: 23,
+        infoSize: 26,
         info2Size: 11,
-        tipSize: 6,
-        avatarSize: 30,
+        tipSize: 7,
+        avatarSize: 24,
     }
 
-    canvas.size = new Size(ThemeConfig.canvSize, ThemeConfig.canvSize)
-
     const ThemeColor = Device.isUsingDarkAppearance() ? {
-        textColor1: new Color("DACDBA"),
+        textColor1: new Color("C6BBAD"),
         textColor2: new Color("AEA080"),
         LabelColor: new Color("31D154"),
         titleColor: new Color("283346"),
         stackColor: new Color("3D4657"),
-        jdColor1: new Color("313542"),
-        jdColor2: new Color("C6BBAD"),
     } : {
         textColor1: new Color("4B5566"),
         textColor2: new Color("5F6776"),
         LabelColor: new Color("FF794A"),
         titleColor: new Color("CEBD98"),
         stackColor: new Color("E0D6C7"),
-        jdColor1: new Color("AEA080"),
-        jdColor2: new Color("6DAE60"),
     }
 
     const ThemeImage = Device.isUsingDarkAppearance() ? {
@@ -232,73 +200,76 @@ async function renderMedium(widget) {
 
     //contentStack.addSpacer();
 
-    const contentLeftStack = contentStack.addStack()
-    contentLeftStack.size = new Size(140, 118)
-    contentLeftStack.centerAlignContent()
+    const contentLeftStack = contentStack.addStack();
+    contentLeftStack.size = new Size(140, 118);
+    contentLeftStack.centerAlignContent();
+    contentLeftStack.layoutVertically();
 
 
-    const LeftRow1 = contentLeftStack.addStack()
+    const LeftRow1 = contentLeftStack.addStack();
     LeftRow1.centerAlignContent()
-    LeftRow1.layoutVertically()
-    LeftRow1.size = new Size(67, 116)
+    LeftRow1.size = new Size(140, 55);
     LeftRow1.backgroundColor = ThemeColor.stackColor
     LeftRow1.cornerRadius = 5
+    LeftRow1.addSpacer(2)
+    const LeftStack1 = LeftRow1.addStack()
+    LeftRow1.addSpacer(2)
     const LeftStack11 = LeftRow1.addStack()
-    const LeftStack12 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
-    const LeftStack13 = LeftRow1.addStack()
-    const LeftStack14 = LeftRow1.addStack()
-    const LeftStack15 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
-    const LeftStack16 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
-    const LeftStack17 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
-    LeftStack11.centerAlignContent()
-    LeftStack12.centerAlignContent()
-    LeftStack13.centerAlignContent()
-    LeftStack14.centerAlignContent()
-    LeftStack15.centerAlignContent()
-    LeftStack16.centerAlignContent()
-    LeftStack17.centerAlignContent()
+    LeftRow1.addSpacer()
+    const LeftStack111 = LeftRow1.addStack()
+    LeftRow1.addSpacer(5)
+    LeftStack1.layoutVertically()
+    LeftStack11.layoutVertically()
+    LeftStack111.layoutVertically()
+
 
     contentLeftStack.addSpacer(6);
 
-    const LeftRow2 = contentLeftStack.addStack()
+    const LeftRow2 = contentLeftStack.addStack();
     LeftRow2.centerAlignContent()
-    LeftRow2.layoutVertically()
-    LeftRow2.size = new Size(67, 116)
+    LeftRow2.size = new Size(140, 55);
     LeftRow2.backgroundColor = ThemeColor.stackColor
     LeftRow2.cornerRadius = 5
-    const LeftStack21 = LeftRow2.addStack()
+    LeftRow2.addSpacer(2)
+    const LeftStack2 = LeftRow2.addStack()
+    LeftRow2.addSpacer(2)
     const LeftStack22 = LeftRow2.addStack()
-    LeftRow2.addSpacer(4)
-    const LeftStack23 = LeftRow2.addStack()
-    const LeftStack24 = LeftRow2.addStack()
-    const LeftStack25 = LeftRow2.addStack()
-    LeftRow2.addSpacer(4)
-    const LeftStack26 = LeftRow2.addStack()
-    LeftRow2.addSpacer(4)
-    const LeftStack27 = LeftRow2.addStack()
-    LeftRow2.addSpacer(4)
-    LeftStack21.centerAlignContent()
-    LeftStack22.centerAlignContent()
-    LeftStack23.centerAlignContent()
-    LeftStack24.centerAlignContent()
-    LeftStack25.centerAlignContent()
-    LeftStack26.centerAlignContent()
-    LeftStack27.centerAlignContent()
+    LeftRow2.addSpacer()
+    const LeftStack222 = LeftRow2.addStack()
+    LeftRow2.addSpacer(5)
+    LeftStack2.layoutVertically()
+    LeftStack22.layoutVertically()
+    LeftStack222.layoutVertically()
+
+
+    // contentLeftStack.addSpacer(6);
+
+    // const LeftRow3 = contentLeftStack.addStack();
+    // LeftRow3.centerAlignContent()
+    // LeftRow3.size = new Size(140, 18);
+    // LeftRow3.backgroundColor = ThemeColor.stackColor
+    // LeftRow3.cornerRadius = 5
+    // LeftRow3.addSpacer(1)
+    // const LeftStack3 = LeftRow3.addStack()
+    // LeftRow3.addSpacer(1)
+    // const LeftStack33 = LeftRow3.addStack()
+    // LeftRow3.addSpacer()
+    // const LeftStack333 = LeftRow3.addStack()
+    // LeftRow3.addSpacer(5)
+    // LeftStack3.layoutVertically()
+    // LeftStack33.layoutVertically()
+    // LeftStack333.layoutVertically()
 
     contentStack.addSpacer(6);
 
-    const contentRightStack = contentStack.addStack()
-    contentRightStack.size = new Size(159, 118)
-    contentRightStack.layoutVertically()
-    contentRightStack.centerAlignContent()
+    const contentRightStack = contentStack.addStack();
+    contentRightStack.size = new Size(159, 118);
+    contentRightStack.layoutVertically();
+    contentRightStack.centerAlignContent();
 
 
-    const RightRow1 = contentRightStack.addStack()
-    RightRow1.size = new Size(159, 55)
+    const RightRow1 = contentRightStack.addStack();
+    RightRow1.size = new Size(159, 55);
     const RightStack1 = RightRow1.addStack()
     RightStack1.size = new Size(49, 55)
     RightStack1.backgroundColor = ThemeColor.stackColor
@@ -321,97 +292,111 @@ async function renderMedium(widget) {
 
     const RightRow2 = contentRightStack.addStack();
     RightRow2.layoutVertically()
-    RightRow2.size = new Size(159, 55)
+    RightRow2.size = new Size(159, 55);
     RightRow2.cornerRadius = 5
-    RightRow2.backgroundColor = ThemeColor.stackColor
+    RightRow2.backgroundImage = ThemeImage.bgImage3
 
     // 树脂获取
-    LeftStack11.addSpacer()
-    let ResinIconElement = LeftStack11.addImage(resinIcon)
+    let ResinIconElement = LeftStack1.addImage(resinIcon)
     ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     LeftStack11.addSpacer()
-    LeftStack12.addSpacer()
-    let resinTipStack = LeftStack12.addStack()
-    LeftStack12.addSpacer()
-    LeftStack13.addSpacer()
-    let resinStack = LeftStack13.addStack()
-    LeftStack13.addSpacer()
-    LeftStack14.addSpacer()
-    let dLine1 = LeftStack14.addImage(dlineIcon)
-    dLine1.imageSize = new Size(28, 5)
-    LeftStack14.addSpacer()
-    LeftStack15.addSpacer()
-    let resinStack2 = LeftStack15.addStack()
-    LeftStack15.addSpacer()
-    LeftStack16.addSpacer()
-    let resinTime = LeftStack16.addStack()
-    LeftStack16.addSpacer()
-    LeftStack17.addSpacer()
-    let Progress1 = LeftStack17.addImage(creatProgress(resin.max_resin, resin.current_resin))
-    Progress1.imageSize = new Size(width, h)
-    LeftStack17.addSpacer()
-    let ResinElement = resinTipStack.addText(`原粹树脂`)
+    let resinTipStack = LeftStack11.addStack()
+    let resinStack = LeftStack11.addStack()
+    let ResinElement = resinTipStack.addText(`原粹树脂：`)
     ResinElement.textColor = ThemeColor.textColor2
     ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let ResinElement2 = resinStack.addText(`${resin.current_resin}`)
-    let ResinElement3 = resinStack2.addText(`${resin.max_resin}`)
+    let ResinElement3 = resinStack.addText(`  / ${resin.max_resin}`)
+    resinStack.centerAlignContent()
+    resinTipStack.centerAlignContent()
     ResinElement2.textColor = ThemeColor.textColor1
     ResinElement3.textColor = ThemeColor.textColor1
     ResinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     ResinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.info2Size)
     if (resin.current_resin === resin.max_resin) {
-        let ResinTipElement2 = resinTime.addText(`原粹树脂已满`)
+        let ResinTipElement2 = resinTipStack.addText(`  已完全充满`)
         ResinTipElement2.textColor = ThemeColor.LabelColor
-        ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     } else {
-        let ResinTipElement2 = resinTime.addText(`${await getClock(resin.resin_recovery_time)}`)
+        let ResinTipElement2 = resinTipStack.addText(`${await getClock(resin.resin_recovery_time)}`)
         ResinTipElement2.textColor = ThemeColor.textColor1
         ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     }
 
+    // 树脂指示标记
+    let starResin = LeftStack111.addStack()
+    starResin.layoutVertically()
+    let starcurrent = Math.floor(resin.current_resin / 32)
+    let starmax = Math.ceil(resin.max_resin / 32)
+    let starremain = starmax - starcurrent
+    if (starcurrent === starmax) {
+        for (let i = 0; i < starmax; i++) {
+            starResin.addSpacer(2)
+            let starResinElement = starResin.addImage(ThemeImage.yesIcon)
+            starResinElement.imageSize = new Size(4, 4)
+        }
+    } else {
+        for (let i = 0; i < starremain; i++) {
+            starResin.addSpacer(2)
+            let starResinElement = starResin.addImage(ThemeImage.noneIcon)
+            starResinElement.imageSize = new Size(4, 4)
+        }
+        for (let i = starremain; i < starmax; i++) {
+            starResin.addSpacer(2)
+            let starResinElement = starResin.addImage(ThemeImage.ingIcon)
+            starResinElement.imageSize = new Size(4, 4)
+        }
+    }
 
     // 宝钱获取
-    LeftStack21.addSpacer()
-    let CoinIconElement = LeftStack21.addImage(coinIcon)
+    let CoinIconElement = LeftStack2.addImage(coinIcon)
     CoinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
-    LeftStack21.addSpacer()
     LeftStack22.addSpacer()
     let coinTipStack = LeftStack22.addStack()
-    LeftStack22.addSpacer()
-    LeftStack23.addSpacer()
-    let coinStack = LeftStack23.addStack()
-    LeftStack23.addSpacer()
-    LeftStack24.addSpacer()
-    let dLine2 = LeftStack24.addImage(dlineIcon)
-    dLine2.imageSize = new Size(28, 5)
-    LeftStack24.addSpacer()
-    LeftStack25.addSpacer()
-    let coinStack2 = LeftStack25.addStack()
-    LeftStack25.addSpacer()
-    LeftStack26.addSpacer()
-    let coinTime = LeftStack26.addStack()
-    LeftStack26.addSpacer()
-    LeftStack27.addSpacer()
-    let Progress2 = LeftStack27.addImage(creatProgress(resin.max_home_coin, resin.current_home_coin))
-    Progress2.imageSize = new Size(width, h)
-    LeftStack27.addSpacer()
-    let CoinElement = coinTipStack.addText(`洞天宝钱`)
+    let coinStack = LeftStack22.addStack()
+    let CoinElement = coinTipStack.addText(`洞天宝钱：`)
     CoinElement.textColor = ThemeColor.textColor2
     CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let CoinElement2 = coinStack.addText(`${resin.current_home_coin}`)
-    let CoinElement3 = coinStack2.addText(`${resin.max_home_coin}`)
+    let CoinElement3 = coinStack.addText(`  / ${resin.max_home_coin}`)
+    coinStack.centerAlignContent()
+    coinTipStack.centerAlignContent()
     CoinElement2.textColor = ThemeColor.textColor1
     CoinElement3.textColor = ThemeColor.textColor1
     CoinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     CoinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.info2Size)
     if (resin.current_home_coin === resin.max_home_coin) {
-        let CoinTipElement2 = coinTime.addText(`洞天财瓮已满`)
+        let CoinTipElement2 = coinTipStack.addText(`  已完全充满`)
         CoinTipElement2.textColor = ThemeColor.LabelColor
-        CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     } else {
-        let CoinTipElement2 = coinTime.addText(`${await getClock(resin.home_coin_recovery_time)}`)
+        let CoinTipElement2 = coinTipStack.addText(`${await getClock(resin.home_coin_recovery_time)}`)
         CoinTipElement2.textColor = ThemeColor.textColor1
         CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+    }
+    // 宝钱指示标记
+    let starCoin = LeftStack222.addStack()
+    starCoin.layoutVertically()
+    let starcoincurrent = Math.floor(resin.current_home_coin / 480)
+    let starcoinmax = Math.ceil(resin.max_home_coin / 480)
+    let starcoinremain = starcoinmax - starcoincurrent
+    if (resin.current_home_coin === resin.max_home_coin) {
+        for (let i = 0; i < starcoinmax; i++) {
+            starCoin.addSpacer(2)
+            let starCoinElement = starCoin.addImage(ThemeImage.yesIcon)
+            starCoinElement.imageSize = new Size(4, 4)
+        }
+    } else {
+        for (let i = 0; i < starcoinremain; i++) {
+            starCoin.addSpacer(2)
+            let starCoinElement = starCoin.addImage(ThemeImage.noneIcon)
+            starCoinElement.imageSize = new Size(4, 4)
+        }
+        for (let i = starcoinremain; i < starcoinmax; i++) {
+            starCoin.addSpacer(2)
+            let starCoinElement = starCoin.addImage(ThemeImage.ingIcon)
+            starCoinElement.imageSize = new Size(4, 4)
+        }
     }
 
     // 每日委托获取
@@ -521,12 +506,6 @@ async function renderMedium(widget) {
     }
     starDiscount.addSpacer()
     RightStack2.addSpacer(4)
-    //通知提醒
-    // if (resin.remain_resin_discount_num != resin.resin_discount_num_limit) {
-    //     let discountnotice = await notify('原神周本提醒', `半价还剩${resin.remain_resin_discount_num}次`)
-    //     discountnotice.setWeeklyTrigger(1, 17, 4, true)
-    //     discountnotice.schedule()
-    // }
 
     // 参量质变仪
     let transformIcon = RightStack3.addStack()
@@ -602,19 +581,69 @@ async function renderMedium(widget) {
         stackTipStack.addSpacer()
         stackTipStack.centerAlignContent()
     }
-
+    
     // 质变仪指示标记
     let starTrans = RightStack3.addStack()
     starTrans.addSpacer()
     let startranscurrent = 6 - transformer_recovery_time.Day
-    if (transformer_recovery_time.reached) {
-        startranscurrent = 6
-    } else if (startranscurrent === 6) {
+    if (startranscurrent === 6) {
         startranscurrent = 5
     }
     let startransmax = 6
-    let Progress3 = starTrans.addImage(creatProgress2(startransmax, startranscurrent))
-    Progress3.imageSize = new Size(width2, h)
+    if (transformer_recovery_time.reached) {
+        for (let i = 0; i < startransmax; i++) {
+            if (i === 1) {
+                starTrans.addSpacer(2)
+                let starTransElement = starTrans.addImage(ThemeImage.yesIcon)
+                starTransElement.imageSize = new Size(4, 4)
+            }
+            if (i === 3) {
+                starTrans.addSpacer(2)
+                let starTransElement = starTrans.addImage(ThemeImage.yesIcon)
+                starTransElement.imageSize = new Size(4, 4)
+            }
+            if (i === 5) {
+                starTrans.addSpacer(2)
+                let starTransElement = starTrans.addImage(ThemeImage.yesIcon)
+                starTransElement.imageSize = new Size(4, 4)
+            }
+        }
+    } else {
+        for (let i = 0; i < startranscurrent; i++) {
+            if (i === 1) {
+                starTrans.addSpacer(2)
+                let starTransElement = starTrans.addImage(ThemeImage.ingIcon)
+                starTransElement.imageSize = new Size(4, 4)
+            }
+            if (i === 3) {
+                starTrans.addSpacer(2)
+                let starTransElement = starTrans.addImage(ThemeImage.ingIcon)
+                starTransElement.imageSize = new Size(4, 4)
+            }
+            if (i === 5) {
+                starTrans.addSpacer(2)
+                let starTransElement = starTrans.addImage(ThemeImage.ingIcon)
+                starTransElement.imageSize = new Size(4, 4)
+            }
+        }
+        for (let i = startranscurrent; i < startransmax; i++) {
+            if (i === 1) {
+                starTrans.addSpacer(2)
+                let starTransElement = starTrans.addImage(ThemeImage.noneIcon)
+                starTransElement.imageSize = new Size(4, 4)
+            }
+            if (i === 3) {
+                starTrans.addSpacer(2)
+                let starTransElement = starTrans.addImage(ThemeImage.noneIcon)
+                starTransElement.imageSize = new Size(4, 4)
+            }
+            if (i === 5) {
+                starTrans.addSpacer(2)
+                let starTransElement = starTrans.addImage(ThemeImage.noneIcon)
+                starTransElement.imageSize = new Size(4, 4)
+            }
+        }
+    }
     starTrans.addSpacer()
     RightStack3.addSpacer(4)
 
@@ -633,7 +662,11 @@ async function renderMedium(widget) {
     expeditionsTitleElement.textColor = ThemeColor.textColor2
     expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let expeditionsStack = RightRow2.addStack()
+    RightRow2.addSpacer(4)
+    let starExpedition = RightRow2.addStack()
+    RightRow2.addSpacer(3)
     expeditionsStack.addSpacer(7)
+    starExpedition.addSpacer(16)
     const expeditions = resin.expeditions || []
     await Promise.all(expeditions.map(async (expedition) => {
         let req = new Request(expedition.avatar_side_icon)
@@ -650,33 +683,27 @@ async function renderMedium(widget) {
         let isOngoing = !!expeditions[i]
         if (isOngoing) {
             const { status, icon, remained_time } = expeditions[i]
-            let char = expeditions[i]
-            let remainTime = formatExpRemainTime(parseInt(char["remained_time"]))
-            // 获取时间属性并加工
-            var ssh = remainTime[0] * 60
-            var ssm = remainTime[1]
-            var sss = (100 - (ssh + ssm) / 1200)
-            let minsRemainingCircle = Math.floor((sss / 1) * 3.6)
-            let dayRadiusOffset = 20;
-            // 绘制圆环进图条文字及头像
-            if (sss >= 100) { var circleColor = ThemeColor.LabelColor }
-            else { var circleColor = ThemeColor.jdColor2 }
-            makeCircle(
-                dayRadiusOffset,
-                ThemeColor.jdColor1,
-                circleColor,
-                Math.floor(minsRemainingCircle)
-            )
-            //绘制人物头像属性
-            canvas.drawImageInRect(
-                icon, new Rect(-5, -5, 140, 140)
-            )
             if (+remained_time < minCoverTime) minCoverTime = +remained_time
-            let avatarImgElement = expeditionStack.addImage(canvas.getImage())
+            let avatarImgElement = expeditionStack.addImage(icon)
             avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
             avatarImgElement.cornerRadius = 0
-            //expeditionStack.addSpacer(0.6)
+            expeditionStack.addSpacer(6)
             expeditionStack.topAlignContent()
+            if (status === 'Finished') {
+                isHasFinished = true
+                let starExpeditionElement = starExpedition.addImage(ThemeImage.yesIcon)
+                starExpeditionElement.imageSize = new Size(4, 4)
+                starExpedition.addSpacer(27)
+            } else {
+                let starExpeditionElement = starExpedition.addImage(ThemeImage.ingIcon)
+                starExpeditionElement.imageSize = new Size(4, 4)
+                starExpedition.addSpacer(27)
+            }
+        } else {
+            expeditionStack.setPadding(ThemeConfig.avatarSize, ThemeConfig.avatarSize, 0, 0)
+            let starExpeditionElement = starExpedition.addImage(ThemeImage.noneIcon)
+            starExpeditionElement.imageSize = new Size(4, 4)
+            starExpedition.addSpacer(27)
         }
     }
     let minCoverTimeElement = expeditionsTitleStack.addText(`共`)
@@ -690,31 +717,16 @@ async function renderMedium(widget) {
     minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
 
     if (isHasFinished) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(`     可领取奖励`)
+        let minCoverTimeElement4 = expeditionsTitleStack.addText(`   可领取奖励`)
         minCoverTimeElement4.textColor = ThemeColor.LabelColor
-        minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     } else if (minCoverTime > 0) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(`     ${await getClock(minCoverTime)}`)
+        let minCoverTimeElement4 = expeditionsTitleStack.addText(` ${await getClock(minCoverTime)}`)
         minCoverTimeElement4.textColor = ThemeColor.textColor1
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     }
 
     return widget
-}
-
-/**
- * 弹出一个通知
- * @param {string} title 通知标题
- * @param {string} body 通知内容
- * @param {string} url 点击后打开的URL
- */
-async function notify(title, body, url, opts = {}) {
-    let n = new Notification()
-    n = Object.assign(n, opts)
-    n.title = title
-    n.body = body
-    if (url) n.openURL = url
-    return n
 }
 
 /**
@@ -752,6 +764,7 @@ async function getDataOs() {
     let randomStr = randomStrGen(6)
     let timestamp = Math.floor(Date.now() / 1000)
     let sign = md5("salt=6s25p5ox5y14umn1p61aqyyvbvvl3lrt&t=" + timestamp + "&r=" + randomStr)
+
     let req = new Request("https://bbs-api-os.hoyolab.com/game_record/genshin/api/dailyNote?server=" + config[1] + "&role_id=" + config[0])
     req.method = "GET"
     req.headers = {
@@ -768,111 +781,6 @@ async function getDataOs() {
     let data = resp.data
 
     return data
-}
-
-// 进度条方法
-function creatProgress(total, havegone) {
-    const context = new DrawContext()
-    context.size = new Size(width, h)
-    context.opaque = false
-    context.respectScreenScale = true
-    context.setFillColor(ThemeColor.jdColor1)
-    const path = new Path()
-    path.addRoundedRect(new Rect(0, 0, width, h), 1, 1)
-    context.addPath(path)
-    context.fillPath()
-    const jdut = width * havegone / total
-
-    if (jdut / width >= 1) {
-        context.setFillColor(ThemeColor.LabelColor)
-    } else {
-        context.setFillColor(ThemeColor.jdColor2)
-    }
-    const path1 = new Path()
-
-    path1.addRoundedRect(new Rect(0, 0, width * havegone / total, h), 1, 1)
-
-    context.addPath(path1)
-    context.fillPath()
-
-    return context.getImage()
-}
-
-// 进度条2方法
-function creatProgress2(total, havegone) {
-    const context = new DrawContext()
-    context.size = new Size(width2, h)
-    context.opaque = false
-    context.respectScreenScale = true
-    context.setFillColor(ThemeColor.jdColor1)
-    const path = new Path()
-    path.addRoundedRect(new Rect(0, 0, width2, h), 1, 1)
-    context.addPath(path)
-    context.fillPath()
-    const jdut = width2 * havegone / total
-
-    if (jdut / width2 >= 1) {
-        context.setFillColor(ThemeColor.LabelColor)
-    } else {
-        context.setFillColor(ThemeColor.jdColor2)
-    }
-    const path1 = new Path()
-
-    path1.addRoundedRect(new Rect(0, 0, width2 * havegone / total, h), 1, 1)
-
-    context.addPath(path1)
-    context.fillPath()
-
-    return context.getImage()
-}
-
-// 圆环进度条方法
-function makeCircle(radiusOffset, bgCircleColor, fgCircleColor, degree) {
-    let ctr = new Point(canvSize / 2, canvSize / 2)
-    CoordOffset = 0
-    bgx = ctr.x - (canvRadius - radiusOffset);
-    bgy = ctr.y - (canvRadius - radiusOffset);
-    bgd = 2 * (canvRadius - radiusOffset);
-    bgr = new Rect(
-        bgx + CoordOffset,
-        bgy + CoordOffset + 20,
-        bgd,
-        bgd
-    )
-
-    canvas.setStrokeColor(bgCircleColor)
-    canvas.setLineWidth(canvWidth)
-    canvas.strokeEllipse(bgr)
-
-    // Inner circle
-    canvas.setFillColor(fgCircleColor)
-    for (t = 0; t < degree; t++) {
-        rect_x = ctr.x + (canvRadius - radiusOffset) * sinDeg(t) - canvWidth / 2;
-        rect_y = ctr.y - (canvRadius - radiusOffset) * cosDeg(t) - canvWidth / 2;
-        rect_r = new Rect(
-            rect_x,
-            rect_y + 20,
-            canvWidth,
-            canvWidth
-        )
-        canvas.fillEllipse(rect_r)
-    }
-}
-
-function formatExpRemainTime(timeRemain) {
-    let processTimeTmp = parseInt(timeRemain / 60)
-    let hour = parseInt(processTimeTmp / 60)
-    let minute = parseInt(processTimeTmp % 60)
-    let second = parseInt(timeRemain % 60)
-    return [hour.toString().padStart(2, '0'), minute.toString().padStart(2, '0'), second.toString().padStart(2, '0')]
-}
-
-function sinDeg(deg) {
-    return Math.sin((deg * Math.PI) / 180)
-}
-
-function cosDeg(deg) {
-    return Math.cos((deg * Math.PI) / 180)
 }
 
 function randomStrGen(length) {
@@ -1289,14 +1197,6 @@ async function loaddarkYesIcon() {
 
 async function loadlightYesIcon() {
     const url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAUpJREFUKFOVkr9LQlEUx7/nSir9gCgIogIhKoKGmoKswckliicRQhFELf4Nzf4NTUGtYlrgUg4FqUtQixC0CIEUYRCY8Hz27jeuvSKhxbNc+N77Oed87zkCL66y2cFAP9cAWgSWjSxAgeSp06jnItbuu6cBxYvMnPLhgGT8J8GfsylEVrOVDEfjZTGZgwM8pNabEFH/AACpRUnKrquElPKZHYAn5qHfbmCicoeh2hOU28Lr6DSqoXk4gV5z3STVvhTz6TOBrBtl8uEGI8+PHUVexmZRmVlqawTPpZRP1wAZNsLi9TGUdjuAz54gble2PAC1rgCAb923VLzMbgvcI4j4A/YHxiv3f0xPoRpa+DZNOoRvr4tvVSm7Lgkxbn4Hp3XMVOpwTTqiVEa7SIajsXIbMGEG6O/DKsTdEG81CBRAX9ppIBexrPZqfAGHpaZkGunkRwAAAABJRU5ErkJggg=="
-
-    let req = new Request(url)
-    let icon = await req.loadImage()
-    return icon
-}
-
-async function loaddLineIcon() {
-    const url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAAAPCAYAAAB6Iuj1AAAAAXNSR0IArs4c6QAAA6BJREFUWEftlkFvG0Ucxd+bXW92k1SYVErjRQjSQ9N6QUgIIZRbOPQQqdfckbjyHfwZ+BgVLTdXtJRyoRUIJJDqpQWUKKjY4VCFljTrtT3z0DiQNlGlRMQQl+LL+rA7u/PT/zfvEf//DiQgiT9duRJtJWXye+mSCVZia7rTBuFpUZksMhjVKX7LA1d7Dm/44pPLs06ohbSphUmDkHMQUyf7EsUagBTUKYCVXTySE/Dpcw1UFy8GX1bNadDUJWUiMhALEKoAYkgJSH+NQZo98Mg1A7QE5VLQYtD/wbp44z8L9Mdmc+JeUiZTiGL1HiXWYJoK5mWQEaxLLoO4AGLyCQkloEeigNAlUAh4BGKNQO4cWoFM7k6cyhcXF4unyfvMA200Gubdt+sno8jUHEwK61Ia1ACmDkoJ1gSkBGYBTOyDd59AW0DHAG0ndAi1EbDtHDpCpT2z2d3IVlZ6hz35nimgN240wsi98YqxLpOQKVCdDmdBVgElAGMACYQYxGNFAStgnVBOsSUyF/U9B3azdEF3MmIRVCvF6mpRrqys2MPCG+cJZbPZjJKyTKaq/bjoIUlkJi2xc75RGYBMwBkC0/s2UgLqAhxqCmILwLqElqS8QrSCciJ/68KF7aOAOuyz//qESg3zzednZra7URqGqAlKvZ7kjqZwSuH/C3Mgo782QsCn6CbAtuQ6/gqvK9UJoDZh2tag0zMPf11aeq97WACjvu8fBer729fXL88PrDJHUyf/DAJohoaxNNQzAfalKDCAcA/DFEXLSHkQMB8E4WZZDIaK/ma3uufPrxZkw40aylHW+7tA2Wx+GM1W5mIXIrGoxIHslCxfHRAZBa9oHdI5kFO7U0b6ttYHUfgklYOfpILAmqXyQGw5g1bQS+6+s7z88CgbO65nDwTqp+yr6x/PWA1SYyo1WZfKp6gwVNUrS3hdMbcnRQUHekWxo6dcR+AvDNRRH50wNO3tftkp9EJneXm5PC4Ao37vHqD+fLv52esvw+E1I2RWyEicI/QijC+4SAjE8qUXCJ6sIAB+5m7RZSuoVO6g37uPCotiq+z2okExjoqOHOita5c+cMSb8PCAswBOPH4JBak/1BPDBC0gbVNYF3GbYu4Vrdbsd1l2+K426k2M03q8ee2jOwAX/EdJQ0WH6Ul6VX167pRcwrUZhe05VDfml5aOLUXHCd5Te+itq5feHzZZ4nYo7So6E50s7j540D1q0R13AKP+vj8AAdLGHn/QP38AAAAASUVORK5CYII="
 
     let req = new Request(url)
     let icon = await req.loadImage()
