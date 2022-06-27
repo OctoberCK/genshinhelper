@@ -1313,4 +1313,8 @@ async function loadlightdLineIcon() {
     let req = new Request(url)
     let icon = await req.loadImage()
     return icon
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 03d44e0de4b889904ac5eac35d4a4ace94888607
