@@ -81,7 +81,7 @@ const ThemeColor = Device.isUsingDarkAppearance() ? {
     jdColor2: new Color("C6BBAD"),
 } : {
     LabelColor: new Color("FF794A"),
-    jdColor1: new Color("AEA080"),
+    jdColor1: new Color("C6BBAD"),
     jdColor2: new Color("4B5566"),
 }
 
@@ -149,7 +149,7 @@ async function renderMedium(widget) {
         LabelColor: new Color("FF794A"),
         titleColor: new Color("CEBD98"),
         stackColor: new Color("E0D6C7"),
-        jdColor1: new Color("AEA080"),
+        jdColor1: new Color("C6BBAD"),
         jdColor2: new Color("4B5566"),
     }
 
