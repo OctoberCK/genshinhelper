@@ -462,7 +462,7 @@ async function renderMedium(widget) {
             let starTaskElement = starTask.addImage(ThemeImage.ingIcon)
             starTaskElement.imageSize = new Size(4, 4)
         }
-        for (let i = remaintasknum; i < resin.finished_task_num; i++) {
+        for (let i = remaintasknum; i < resin.total_task_num; i++) {
             starTask.addSpacer(2)
             let starTaskElement = starTask.addImage(ThemeImage.noneIcon)
             starTaskElement.imageSize = new Size(4, 4)
