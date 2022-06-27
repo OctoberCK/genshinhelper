@@ -58,7 +58,8 @@ const darkyesIcon = await loaddarkYesIcon()
 const lightnoneIcon = await loadlightNoneIcon()
 const lightingIcon = await loadlightIngIcon()
 const lightyesIcon = await loadlightYesIcon()
-const dlineIcon = await loaddLineIcon()
+const lightdlineIcon = await loadlightdLineIcon()
+const darkdlineIcon = await loaddarkdLineIcon()
 
 // 定义画布
 const canvas = new DrawContext()
@@ -159,6 +160,7 @@ async function renderMedium(widget) {
         noneIcon: darknoneIcon,
         yesIcon: darkyesIcon,
         ingIcon: darkingIcon,
+        dlineIcon: darkdlineIcon,
     } : {
         bgImage1: lightuidbackground,
         bgImage2: lightbackground,
@@ -166,6 +168,7 @@ async function renderMedium(widget) {
         noneIcon: lightnoneIcon,
         yesIcon: lightyesIcon,
         ingIcon: lightingIcon,
+        dlineIcon: lightdlineIcon,
     }
 
     // 背景
@@ -251,7 +254,7 @@ async function renderMedium(widget) {
     const LeftStack15 = LeftRow1.addStack()
     LeftRow1.addSpacer(4)
     const LeftStack16 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
+    LeftRow1.addSpacer(3)
     const LeftStack17 = LeftRow1.addStack()
     LeftRow1.addSpacer(4)
     LeftStack11.centerAlignContent()
@@ -278,7 +281,7 @@ async function renderMedium(widget) {
     const LeftStack25 = LeftRow2.addStack()
     LeftRow2.addSpacer(4)
     const LeftStack26 = LeftRow2.addStack()
-    LeftRow2.addSpacer(4)
+    LeftRow2.addSpacer(3)
     const LeftStack27 = LeftRow2.addStack()
     LeftRow2.addSpacer(4)
     LeftStack21.centerAlignContent()
@@ -337,7 +340,7 @@ async function renderMedium(widget) {
     let resinStack = LeftStack13.addStack()
     LeftStack13.addSpacer()
     LeftStack14.addSpacer()
-    let dLine1 = LeftStack14.addImage(dlineIcon)
+    let dLine1 = LeftStack14.addImage(ThemeImage.dlineIcon)
     dLine1.imageSize = new Size(28, 5)
     LeftStack14.addSpacer()
     LeftStack15.addSpacer()
@@ -382,7 +385,7 @@ async function renderMedium(widget) {
     let coinStack = LeftStack23.addStack()
     LeftStack23.addSpacer()
     LeftStack24.addSpacer()
-    let dLine2 = LeftStack24.addImage(dlineIcon)
+    let dLine2 = LeftStack24.addImage(ThemeImage.dlineIcon)
     dLine2.imageSize = new Size(28, 5)
     LeftStack24.addSpacer()
     LeftStack25.addSpacer()
@@ -603,16 +606,15 @@ async function renderMedium(widget) {
         stackTipStack.centerAlignContent()
     }
 
-    // 质变仪指示标记
+    // 质变仪进度条
     let starTrans = RightStack3.addStack()
     starTrans.addSpacer()
-    let startranscurrent = 6 - transformer_recovery_time.Day
+    let startransmax = 7 * 86400
+    let startranscurrent = startransmax - transformer_recovery_time.Day * 86400 - transformer_recovery_time.Hour * 3600 - transformer_recovery_time.Minute * 60 - transformer_recovery_time.Second
+    // console.log(startranscurrent)
     if (transformer_recovery_time.reached) {
-        startranscurrent = 6
-    } else if (startranscurrent === 6) {
-        startranscurrent = 5
+        startranscurrent = startransmax
     }
-    let startransmax = 6
     let Progress3 = starTrans.addImage(creatProgress2(startransmax, startranscurrent))
     Progress3.imageSize = new Size(width2, h)
     starTrans.addSpacer()
@@ -675,7 +677,9 @@ async function renderMedium(widget) {
             let avatarImgElement = expeditionStack.addImage(canvas.getImage())
             avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
             avatarImgElement.cornerRadius = 0
-            //expeditionStack.addSpacer(0.6)
+            if (status === 'Finished') {
+                isHasFinished = true
+            }
             expeditionStack.topAlignContent()
         }
     }
@@ -690,13 +694,13 @@ async function renderMedium(widget) {
     minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
 
     if (isHasFinished) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(`     可领取奖励`)
+        let minCoverTimeElement4 = expeditionsTitleStack.addText(`    可领取奖励`)
         minCoverTimeElement4.textColor = ThemeColor.LabelColor
-        minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     } else if (minCoverTime > 0) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(`     ${await getClock(minCoverTime)}`)
+        let minCoverTimeElement4 = expeditionsTitleStack.addText(` ${await getClock(minCoverTime)}`)
         minCoverTimeElement4.textColor = ThemeColor.textColor1
-        minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        minCoverTimeElement4.font = Font.boldRoundedSystemFont(7)
     }
 
     return widget
@@ -1295,8 +1299,16 @@ async function loadlightYesIcon() {
     return icon
 }
 
-async function loaddLineIcon() {
+async function loaddarkdLineIcon() {
     const url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAAAPCAYAAAB6Iuj1AAAAAXNSR0IArs4c6QAAA6BJREFUWEftlkFvG0Ucxd+bXW92k1SYVErjRQjSQ9N6QUgIIZRbOPQQqdfckbjyHfwZ+BgVLTdXtJRyoRUIJJDqpQWUKKjY4VCFljTrtT3z0DiQNlGlRMQQl+LL+rA7u/PT/zfvEf//DiQgiT9duRJtJWXye+mSCVZia7rTBuFpUZksMhjVKX7LA1d7Dm/44pPLs06ohbSphUmDkHMQUyf7EsUagBTUKYCVXTySE/Dpcw1UFy8GX1bNadDUJWUiMhALEKoAYkgJSH+NQZo98Mg1A7QE5VLQYtD/wbp44z8L9Mdmc+JeUiZTiGL1HiXWYJoK5mWQEaxLLoO4AGLyCQkloEeigNAlUAh4BGKNQO4cWoFM7k6cyhcXF4unyfvMA200Gubdt+sno8jUHEwK61Ia1ACmDkoJ1gSkBGYBTOyDd59AW0DHAG0ndAi1EbDtHDpCpT2z2d3IVlZ6hz35nimgN240wsi98YqxLpOQKVCdDmdBVgElAGMACYQYxGNFAStgnVBOsSUyF/U9B3azdEF3MmIRVCvF6mpRrqys2MPCG+cJZbPZjJKyTKaq/bjoIUlkJi2xc75RGYBMwBkC0/s2UgLqAhxqCmILwLqElqS8QrSCciJ/68KF7aOAOuyz//qESg3zzednZra7URqGqAlKvZ7kjqZwSuH/C3Mgo782QsCn6CbAtuQ6/gqvK9UJoDZh2tag0zMPf11aeq97WACjvu8fBer729fXL88PrDJHUyf/DAJohoaxNNQzAfalKDCAcA/DFEXLSHkQMB8E4WZZDIaK/ma3uufPrxZkw40aylHW+7tA2Wx+GM1W5mIXIrGoxIHslCxfHRAZBa9oHdI5kFO7U0b6ttYHUfgklYOfpILAmqXyQGw5g1bQS+6+s7z88CgbO65nDwTqp+yr6x/PWA1SYyo1WZfKp6gwVNUrS3hdMbcnRQUHekWxo6dcR+AvDNRRH50wNO3tftkp9EJneXm5PC4Ao37vHqD+fLv52esvw+E1I2RWyEicI/QijC+4SAjE8qUXCJ6sIAB+5m7RZSuoVO6g37uPCotiq+z2okExjoqOHOita5c+cMSb8PCAswBOPH4JBak/1BPDBC0gbVNYF3GbYu4Vrdbsd1l2+K426k2M03q8ee2jOwAX/EdJQ0WH6Ul6VX167pRcwrUZhe05VDfml5aOLUXHCd5Te+itq5feHzZZ4nYo7So6E50s7j540D1q0R13AKP+vj8AAdLGHn/QP38AAAAASUVORK5CYII="
+
+    let req = new Request(url)
+    let icon = await req.loadImage()
+    return icon
+}
+
+async function loadlightdLineIcon() {
+    const url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAAAPCAYAAAB6Iuj1AAAAAXNSR0IArs4c6QAAAyJJREFUWEftl8FOE1EUhv9zbju0pZIWA1KMUViIgCvfhTdwR5oQwgPMG7DojhX7voIPoYlFdGNqtIMhExJRZ6ad3mPOZIaMDYuCKAW8yeTeTKaTma/nu/8Zwv8xDgFqNpuOMaYMoFwoFEphGFaLxeIygHVr7ToRrYnIaxrnbnftmp2dnfkoihrGmEURWSSihXR+CKChawAPiKiYY2MBvLrTQDc2Nkyj0Vg2xqxplWm1AVgBUCOiklYjAJ314Dw8EflIRB0ROTDGdAaDwQciOrq1QJvN5pQqWiwWSyJSVkWNMUtElOiZAlwhokoOlADoAwhEJGRmnX8AUHgHItKx1irAg93d3eA8c288UNd12ff9+8ycqMjMqmOyJqJkDUDneQBTI/B8AD0R8Zi5Z631iKinRxzHydrzvKN2u62Qxxo3CqjrugXf9x8zs1ZZFgTPVNGcnpmmeUWHALqqJzMnVQbgHTOfxHEcWmuDubm5oNPpRO12W6+99JgUoGcpqooGQaCqqorL1to1hSciur89JaLqyNtGAEIRCYgoBPBd4QFIwFlrO/1+/2Bvb+/npSld4If/HKgqenp6OhvH8ZmaeU1VTyJSTRcAOCNBcKIaAvBSVZO1nhsOhz3HcTzf97/u7+8r2GsZfxWoiND29vZS2qsllZam6GyanGUNjDRR84rGAD5rlWWVpqGQV7RcLofVajVwXVfblYkZlwWaKFqpVErW2vJgMCgR0bSIPEmb3GR/A7AKYHokCAaaokSUJKmqqima7W9pkr5vtVrfJobSBR5kHKC0ubk56zjOmaL5FE3TNFM0n6JaOSeZnjqLyBdm9rI01XPD4dBrtVq6D96K8RtQ3d+Oj48fMfPzNEVV0VUiqquiOT210TUZAVG3iT5pdamaqikzH8Zx7GsFRlEUzszMBJOo6FX/i7S1tdUE8CL9StAW5N55imqSpg2vpqWm6Nus2a3X629c1x27V7vql5ik+ynQwzQoICJZiibpKSJJk6tra21Pm99arXbkuu61pegkwTvvWRToS2utwtSKSxR1HCfU0Oh2u+GfNrqTDuCqn+8XnXy4fHeUKp0AAAAASUVORK5CYII="
 
     let req = new Request(url)
     let icon = await req.loadImage()
