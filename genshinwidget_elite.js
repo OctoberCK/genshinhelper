@@ -627,7 +627,7 @@ async function renderMedium(widget) {
     expeditionsTitleStack.centerAlignContent()
     let isHasFinished = false
     let minCoverTime = 0
-    expeditionsTitleStack.addSpacer(5)
+    expeditionsTitleStack.addSpacer()
     let avatarIconElement = expeditionsTitleStack.addImage(avatarIcon)
     avatarIconElement.imageSize = new Size(20, 20)
     expeditionsTitleStack.addSpacer(2)
@@ -635,7 +635,7 @@ async function renderMedium(widget) {
     expeditionsTitleElement.textColor = ThemeColor.textColor2
     expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let expeditionsStack = RightRow2.addStack()
-    expeditionsStack.addSpacer(7)
+    expeditionsStack.addSpacer()
     const expeditions = resin.expeditions || []
     await Promise.all(expeditions.map(async (expedition) => {
         let req = new Request(expedition.avatar_side_icon)
@@ -644,7 +644,6 @@ async function renderMedium(widget) {
     minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
     if (!resin.max_expedition_num) {
         expeditionsStack.setPadding(ThemeConfig.avatarSize, ThemeConfig.avatarSize, 0, 0)
-        starExpedition.setPadding(4, 4, 0, 0)
     }
     for (let i = 0; i < resin.max_expedition_num; i++) {
         let expeditionStack = expeditionsStack.addStack()
@@ -655,11 +654,11 @@ async function renderMedium(widget) {
             let char = expeditions[i]
             let remainTime = formatExpRemainTime(parseInt(char["remained_time"]))
             // 获取时间属性并加工
-            var ssh = remainTime[0] * 60
-            var ssm = remainTime[1]
-            var sss = (100 - (ssh + ssm) / 1200)
+            let ssh = remainTime[0] * 60
+            let ssm = remainTime[1]
+            let sss = (100 - (ssh + ssm) / 1200)
             let minsRemainingCircle = Math.floor((sss / 1) * 3.6)
-            let dayRadiusOffset = 20;
+            let dayRadiusOffset = 20
             // 绘制圆环进图条文字及头像
             if (sss >= 100) { var circleColor = ThemeColor.LabelColor }
             else { var circleColor = ThemeColor.jdColor2 }
@@ -680,9 +679,22 @@ async function renderMedium(widget) {
             if (status === 'Finished') {
                 isHasFinished = true
             }
-            expeditionStack.topAlignContent()
+            expeditionStack.centerAlignContent()
+        } else {
+            let dayRadiusOffset = 20
+            makeCircle(
+                dayRadiusOffset,
+                ThemeColor.jdColor1,
+                ThemeColor.jdColor2,
+                Math.floor(0)
+            )
+            let avatarImgElement = expeditionStack.addImage(canvas.getImage())
+            avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
+            avatarImgElement.cornerRadius = 0
+            expeditionStack.centerAlignContent()
         }
     }
+    expeditionsStack.addSpacer()
     let minCoverTimeElement = expeditionsTitleStack.addText(`共`)
     minCoverTimeElement.textColor = ThemeColor.textColor1
     minCoverTimeElement.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
@@ -702,6 +714,7 @@ async function renderMedium(widget) {
         minCoverTimeElement4.textColor = ThemeColor.textColor1
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(7)
     }
+    expeditionsTitleStack.addSpacer()
 
     return widget
 }
