@@ -143,28 +143,27 @@ async function createWidget() {
      */
 async function renderSmall(widget) {
     const ThemeConfig = Device.isPad() ? {
-        titleSize: 7,
-        canvSize: 170,
+        titleSize: 6,
         iconSize: 22,
-        iconSmallSize: 18,
-        textSize: 8,
+        iconSmallSize: 20,
+        textSize: 9,
+        text2Size: 8,
         infoSize: 23,
         info2Size: 11,
+        info3Size: 15,
         tipSize: 6,
         avatarSize: 24,
     } : {
-        titleSize: 7,
-        canvSize: 170,
+        titleSize: 6,
         iconSize: 22,
-        iconSmallSize: 18,
-        textSize: 8,
+        iconSmallSize: 20,
+        textSize: 9,
+        text2Size: 8,
         infoSize: 23,
         info2Size: 11,
+        info3Size: 15,
         tipSize: 6,
-        avatarSize: 30,
     }
-
-    canvas.size = new Size(ThemeConfig.canvSize, ThemeConfig.canvSize)
 
     // 背景
     widget.backgroundImage = ThemeImage.bgsmall
@@ -179,10 +178,10 @@ async function renderSmall(widget) {
     stacktime.size = new Size(50, 13)
     stacktime.cornerRadius = 7
     stacktime.centerAlignContent()
-    headerStack.addSpacer(3)
+    headerStack.addSpacer(6)
     let stackHeader = headerStack.addStack()
     stackHeader.backgroundColor = ThemeColor.titleColor
-    stackHeader.size = new Size(78, 13)
+    stackHeader.size = new Size(75, 13)
     stackHeader.cornerRadius = 7
     stackHeader.centerAlignContent()
 
@@ -212,11 +211,11 @@ async function renderSmall(widget) {
     LeftRow1.cornerRadius = 5
     const LeftStack11 = LeftRow1.addStack()
     const LeftStack12 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
+    LeftRow1.addSpacer(3)
     const LeftStack13 = LeftRow1.addStack()
     const LeftStack14 = LeftRow1.addStack()
     const LeftStack15 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
+    LeftRow1.addSpacer(7)
     const LeftStack16 = LeftRow1.addStack()
     LeftRow1.addSpacer(3)
     const LeftStack17 = LeftRow1.addStack()
@@ -297,18 +296,15 @@ async function renderSmall(widget) {
     // 每日委托获取
     let TaskIcon = RightRow1.addStack()
     TaskIcon.layoutHorizontally()
-    TaskIcon.addSpacer()
+    TaskIcon.centerAlignContent()
+    TaskIcon.addSpacer(2)
     let TaskIconElement = TaskIcon.addImage(taskIcon)
-    TaskIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
-    TaskIcon.addSpacer()
-    let taskStack = RightRow1.addStack()
-    let taskText = RightRow1.addStack()
-    taskStack.addSpacer()
-    let TaskElement = taskStack.addText(`每日委托`)
+    TaskIconElement.imageSize = new Size(ThemeConfig.iconSmallSize, ThemeConfig.iconSmallSize)
+    let TaskElement = TaskIcon.addText(`每日委托`)
     TaskElement.textColor = ThemeColor.textColor2
     TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
-    taskStack.addSpacer()
     let remaintasknum = resin.total_task_num - resin.finished_task_num
+    let taskText = RightRow1.addStack()
     taskText.addSpacer()
     let TaskElement2 = taskText.addText(`剩`)
     let TaskElement3 = taskText.addText(` ${remaintasknum} `)
@@ -316,16 +312,17 @@ async function renderSmall(widget) {
     taskText.addSpacer()
     TaskElement2.centerAlignText()
     TaskElement2.textOpacity = 1
-    TaskElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+    TaskElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.info2Size)
     TaskElement2.textColor = ThemeColor.textColor1
     TaskElement3.textOpacity = 1
-    TaskElement3.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.info2Size)
+    TaskElement3.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.info3Size)
     TaskElement3.textColor = ThemeColor.textColor1
     TaskElement4.textOpacity = 1
-    TaskElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+    TaskElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.info2Size)
     TaskElement4.textColor = ThemeColor.textColor1
     taskText.centerAlignContent()
     // 指示标记
+    RightRow1.addSpacer(3)
     let starTask = RightRow1.addStack()
     starTask.addSpacer()
     if (remaintasknum === resin.total_task_num) {
@@ -348,33 +345,50 @@ async function renderSmall(widget) {
     }
     starTask.addSpacer()
     RightRow1.addSpacer(4)
-    taskStack.centerAlignContent()
 
     // 派遣任务获取
     let expeditionsIconStack = RightRow2.addStack()
-    let expeditionsTitleStack = RightRow2.addStack()
+    expeditionsIconStack.centerAlignContent()
     let isHasFinished = false
     let minCoverTime = 0
-    expeditionsIconStack.addSpacer()
+    expeditionsIconStack.addSpacer(2)
     let avatarIconElement = expeditionsIconStack.addImage(avatarIcon)
-    avatarIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
-    expeditionsIconStack.addSpacer()
-    expeditionsTitleStack.addSpacer()
-    let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣`)
+    avatarIconElement.imageSize = new Size(ThemeConfig.iconSmallSize, ThemeConfig.iconSmallSize)
+    let expeditionsTitleElement = expeditionsIconStack.addText(`探索派遣`)
     expeditionsTitleElement.textColor = ThemeColor.textColor2
     expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
-    expeditionsTitleStack.addSpacer()
     const expeditions = resin.expeditions || []
     minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
     if (!resin.max_expedition_num) {
-        RightRow2.addSpacer(3)
+        let expeditionsTitleStack = RightRow2.addStack()
+        expeditionsTitleStack.centerAlignContent()
+        expeditionsTitleStack.addSpacer()
+        let errorElement = expeditionsTitleStack.addText(`未派遣`)
+        errorElement.textColor = ThemeColor.LabelColor
+        errorElement.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+        expeditionsTitleStack.addSpacer()
+        RightRow2.addSpacer(1)
         let expeditionsTextStack = RightRow2.addStack()
         RightRow2.addSpacer(3)
         expeditionsTextStack.addSpacer()
-        let minCoverTimeElement = expeditionsTextStack.addText(`未派遣`)
+        let minCoverTimeElement = expeditionsTextStack.addText(`请添加派遣角色`)
         minCoverTimeElement.textColor = ThemeColor.LabelColor
-        minCoverTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+        minCoverTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
         expeditionsTextStack.addSpacer()
+    } else {
+        let expeditionsTitleStack = RightRow2.addStack()
+        expeditionsTitleStack.centerAlignContent()
+        expeditionsTitleStack.addSpacer()
+        let minCoverTimeElement = expeditionsTitleStack.addText(`共`)
+        minCoverTimeElement.textColor = ThemeColor.textColor1
+        minCoverTimeElement.font = Font.mediumRoundedSystemFont(ThemeConfig.text2Size)
+        let minCoverTimeElement2 = expeditionsTitleStack.addText(` ${resin.current_expedition_num} `)
+        minCoverTimeElement2.textColor = ThemeColor.textColor1
+        minCoverTimeElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.textSize)
+        let minCoverTimeElement3 = expeditionsTitleStack.addText(`人`)
+        minCoverTimeElement3.textColor = ThemeColor.textColor1
+        minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.text2Size)
+        expeditionsTitleStack.addSpacer()
     }
     for (let i = 0; i < resin.max_expedition_num; i++) {
         let isOngoing = !!expeditions[i]
@@ -387,18 +401,18 @@ async function renderSmall(widget) {
         }
     }
     if (isHasFinished) {
-        RightRow2.addSpacer(3)
+        RightRow2.addSpacer(1)
         let expeditionsTextStack = RightRow2.addStack()
         RightRow2.addSpacer(3)
         expeditionsTextStack.addSpacer()
-        let minCoverTimeElement = expeditionsTextStack.addText(`可领取`)
+        let minCoverTimeElement = expeditionsTextStack.addText(`派遣奖励可领取`)
         minCoverTimeElement.textColor = ThemeColor.LabelColor
-        minCoverTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+        minCoverTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
         expeditionsTextStack.addSpacer()
     } else if (minCoverTime > 0) {
-        RightRow2.addSpacer(4)
+        RightRow2.addSpacer(1)
         let expeditionsTextStack = RightRow2.addStack()
-        RightRow2.addSpacer(4)
+        RightRow2.addSpacer(3)
         expeditionsTextStack.addSpacer()
         let minCoverTimeElement = expeditionsTextStack.addText(`${await getClock(minCoverTime)}`)
         minCoverTimeElement.textColor = ThemeColor.textColor1
@@ -408,8 +422,8 @@ async function renderSmall(widget) {
     let expeditionsProgStack = RightRow2.addStack()
     expeditionsProgStack.addSpacer()
     let minGoneTime = 72000 - minCoverTime
-    let Progress2 = expeditionsProgStack.addImage(creatProgress2(72000, minGoneTime))
-    Progress2.imageSize = new Size(width2, h)
+    let Progress2 = expeditionsProgStack.addImage(creatProgress(72000, minGoneTime))
+    Progress2.imageSize = new Size(width, h)
     expeditionsProgStack.addSpacer()
     expeditionsProgStack.centerAlignContent()
     RightRow2.addSpacer(4)
