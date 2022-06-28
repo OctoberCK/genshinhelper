@@ -117,6 +117,7 @@ async function renderMedium(widget) {
         titleSize: 7,
         canvSize: 170,
         iconSize: 22,
+        iconSmallSize: 18,
         textSize: 8,
         infoSize: 23,
         info2Size: 11,
@@ -126,6 +127,7 @@ async function renderMedium(widget) {
         titleSize: 7,
         canvSize: 170,
         iconSize: 22,
+        iconSmallSize: 18,
         textSize: 8,
         infoSize: 23,
         info2Size: 11,
@@ -629,7 +631,7 @@ async function renderMedium(widget) {
     let minCoverTime = 0
     expeditionsTitleStack.addSpacer()
     let avatarIconElement = expeditionsTitleStack.addImage(avatarIcon)
-    avatarIconElement.imageSize = new Size(20, 20)
+    avatarIconElement.imageSize = new Size(ThemeConfig.iconSmallSize, ThemeConfig.iconSmallSize)
     expeditionsTitleStack.addSpacer(2)
     let expeditionsTitleElement = expeditionsTitleStack.addText(`探索派遣：`)
     expeditionsTitleElement.textColor = ThemeColor.textColor2
