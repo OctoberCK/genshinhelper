@@ -148,7 +148,7 @@ async function renderSmall(widget) {
         iconSmallSize: 20,
         textSize: 9,
         text2Size: 8,
-        infoSize: 23,
+        infoSize: 24,
         info2Size: 11,
         info3Size: 15,
         tipSize: 6,
@@ -159,7 +159,7 @@ async function renderSmall(widget) {
         iconSmallSize: 20,
         textSize: 9,
         text2Size: 8,
-        infoSize: 23,
+        infoSize: 24,
         info2Size: 11,
         info3Size: 15,
         tipSize: 6,
@@ -208,18 +208,18 @@ async function renderSmall(widget) {
     LeftRow1.layoutVertically()
     LeftRow1.size = new Size(64, 116)
     LeftRow1.backgroundColor = ThemeColor.stackColor
-    LeftRow1.cornerRadius = 5
+    LeftRow1.cornerRadius = 10
     const LeftStack11 = LeftRow1.addStack()
     const LeftStack12 = LeftRow1.addStack()
-    LeftRow1.addSpacer(3)
+    LeftRow1.addSpacer(5)
     const LeftStack13 = LeftRow1.addStack()
     const LeftStack14 = LeftRow1.addStack()
     const LeftStack15 = LeftRow1.addStack()
-    LeftRow1.addSpacer(7)
+    LeftRow1.addSpacer(5)
     const LeftStack16 = LeftRow1.addStack()
     LeftRow1.addSpacer(3)
     const LeftStack17 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
+    LeftRow1.addSpacer(6)
     LeftStack11.centerAlignContent()
     LeftStack12.centerAlignContent()
     LeftStack13.centerAlignContent()
@@ -238,7 +238,7 @@ async function renderSmall(widget) {
     const RightRow1 = contentRightStack.addStack()
     RightRow1.layoutVertically()
     RightRow1.size = new Size(64, 55)
-    RightRow1.cornerRadius = 5
+    RightRow1.cornerRadius = 10
     RightRow1.backgroundColor = ThemeColor.stackColor
 
     contentRightStack.addSpacer(6)
@@ -246,7 +246,7 @@ async function renderSmall(widget) {
     const RightRow2 = contentRightStack.addStack()
     RightRow2.layoutVertically()
     RightRow2.size = new Size(64, 55)
-    RightRow2.cornerRadius = 5
+    RightRow2.cornerRadius = 10
     RightRow2.backgroundColor = ThemeColor.stackColor
 
     // 树脂获取
@@ -439,9 +439,10 @@ async function renderMedium(widget) {
         titleSize: 7,
         canvSize: 170,
         iconSize: 22,
+        iconBigSize: 24,
         iconSmallSize: 18,
         textSize: 8,
-        infoSize: 23,
+        infoSize: 24,
         info2Size: 11,
         tipSize: 6,
         avatarSize: 24,
@@ -449,9 +450,10 @@ async function renderMedium(widget) {
         titleSize: 7,
         canvSize: 170,
         iconSize: 22,
+        iconBigSize: 24,
         iconSmallSize: 18,
         textSize: 8,
-        infoSize: 23,
+        infoSize: 24,
         info2Size: 11,
         tipSize: 6,
         avatarSize: 30,
@@ -533,18 +535,18 @@ async function renderMedium(widget) {
     LeftRow1.layoutVertically()
     LeftRow1.size = new Size(67, 116)
     LeftRow1.backgroundColor = ThemeColor.stackColor
-    LeftRow1.cornerRadius = 5
+    LeftRow1.cornerRadius = 10
     const LeftStack11 = LeftRow1.addStack()
     const LeftStack12 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
+    LeftRow1.addSpacer(5)
     const LeftStack13 = LeftRow1.addStack()
     const LeftStack14 = LeftRow1.addStack()
     const LeftStack15 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
+    LeftRow1.addSpacer(5)
     const LeftStack16 = LeftRow1.addStack()
     LeftRow1.addSpacer(3)
     const LeftStack17 = LeftRow1.addStack()
-    LeftRow1.addSpacer(4)
+    LeftRow1.addSpacer(6)
     LeftStack11.centerAlignContent()
     LeftStack12.centerAlignContent()
     LeftStack13.centerAlignContent()
@@ -560,18 +562,18 @@ async function renderMedium(widget) {
     LeftRow2.layoutVertically()
     LeftRow2.size = new Size(67, 116)
     LeftRow2.backgroundColor = ThemeColor.stackColor
-    LeftRow2.cornerRadius = 5
+    LeftRow2.cornerRadius = 10
     const LeftStack21 = LeftRow2.addStack()
     const LeftStack22 = LeftRow2.addStack()
-    LeftRow2.addSpacer(4)
+    LeftRow2.addSpacer(5)
     const LeftStack23 = LeftRow2.addStack()
     const LeftStack24 = LeftRow2.addStack()
     const LeftStack25 = LeftRow2.addStack()
-    LeftRow2.addSpacer(4)
+    LeftRow2.addSpacer(5)
     const LeftStack26 = LeftRow2.addStack()
     LeftRow2.addSpacer(3)
     const LeftStack27 = LeftRow2.addStack()
-    LeftRow2.addSpacer(4)
+    LeftRow2.addSpacer(6)
     LeftStack21.centerAlignContent()
     LeftStack22.centerAlignContent()
     LeftStack23.centerAlignContent()
@@ -593,19 +595,19 @@ async function renderMedium(widget) {
     const RightStack1 = RightRow1.addStack()
     RightStack1.size = new Size(49, 55)
     RightStack1.backgroundColor = ThemeColor.stackColor
-    RightStack1.cornerRadius = 5
+    RightStack1.cornerRadius = 10
     RightStack1.layoutVertically()
     RightRow1.addSpacer(6)
     const RightStack2 = RightRow1.addStack()
     RightStack2.size = new Size(49, 55)
     RightStack2.backgroundColor = ThemeColor.stackColor
-    RightStack2.cornerRadius = 5
+    RightStack2.cornerRadius = 10
     RightStack2.layoutVertically()
     RightRow1.addSpacer(6)
     const RightStack3 = RightRow1.addStack()
     RightStack3.size = new Size(49, 55)
     RightStack3.backgroundColor = ThemeColor.stackColor
-    RightStack3.cornerRadius = 5
+    RightStack3.cornerRadius = 10
     RightStack3.layoutVertically()
 
     contentRightStack.addSpacer(6)
@@ -613,13 +615,13 @@ async function renderMedium(widget) {
     const RightRow2 = contentRightStack.addStack()
     RightRow2.layoutVertically()
     RightRow2.size = new Size(159, 55)
-    RightRow2.cornerRadius = 5
+    RightRow2.cornerRadius = 10
     RightRow2.backgroundColor = ThemeColor.stackColor
 
     // 树脂获取
     LeftStack11.addSpacer()
     let ResinIconElement = LeftStack11.addImage(resinIcon)
-    ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
+    ResinIconElement.imageSize = new Size(ThemeConfig.iconBigSize, ThemeConfig.iconBigSize)
     LeftStack11.addSpacer()
     LeftStack12.addSpacer()
     let resinTipStack = LeftStack12.addStack()
@@ -664,7 +666,7 @@ async function renderMedium(widget) {
     // 宝钱获取
     LeftStack21.addSpacer()
     let CoinIconElement = LeftStack21.addImage(coinIcon)
-    CoinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
+    CoinIconElement.imageSize = new Size(ThemeConfig.iconBigSize, ThemeConfig.iconBigSize)
     LeftStack21.addSpacer()
     LeftStack22.addSpacer()
     let coinTipStack = LeftStack22.addStack()
