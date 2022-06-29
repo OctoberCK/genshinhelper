@@ -72,8 +72,8 @@ const canvWidth = 10
 canvas.opaque = false
 
 // 进度条长度
-const width = 45
-const width2 = 28
+const primaryProgressWidth = 45
+const transformerProgressWidth = 28
 // 进度条高度
 const h = 2
 // 定义颜色和图片切换
@@ -271,8 +271,8 @@ async function renderSmall(widget) {
     let resinTime = LeftStack16.addStack()
     LeftStack16.addSpacer()
     LeftStack17.addSpacer()
-    let Progress1 = LeftStack17.addImage(creatProgress(resin.max_resin, resin.current_resin))
-    Progress1.imageSize = new Size(width, h)
+    let Progress1 = LeftStack17.addImage(createProgress(resin.max_resin, resin.current_resin, primaryProgressWidth))
+    Progress1.imageSize = new Size(primaryProgressWidth, h)
     LeftStack17.addSpacer()
     let ResinElement = resinTipStack.addText(`原粹树脂`)
     ResinElement.textColor = ThemeColor.textColor2
@@ -422,8 +422,8 @@ async function renderSmall(widget) {
     let expeditionsProgStack = RightRow2.addStack()
     expeditionsProgStack.addSpacer()
     let minGoneTime = 72000 - minCoverTime
-    let Progress2 = expeditionsProgStack.addImage(creatProgress(72000, minGoneTime))
-    Progress2.imageSize = new Size(width, h)
+    let Progress2 = expeditionsProgStack.addImage(createProgress(72000, minGoneTime, primaryProgressWidth))
+    Progress2.imageSize = new Size(primaryProgressWidth, h)
     expeditionsProgStack.addSpacer()
     expeditionsProgStack.centerAlignContent()
     RightRow2.addSpacer(4)
@@ -640,8 +640,8 @@ async function renderMedium(widget) {
     let resinTime = LeftStack16.addStack()
     LeftStack16.addSpacer()
     LeftStack17.addSpacer()
-    let Progress1 = LeftStack17.addImage(creatProgress(resin.max_resin, resin.current_resin))
-    Progress1.imageSize = new Size(width, h)
+    let Progress1 = LeftStack17.addImage(createProgress(resin.max_resin, resin.current_resin, primaryProgressWidth))
+    Progress1.imageSize = new Size(primaryProgressWidth, h)
     LeftStack17.addSpacer()
     let ResinElement = resinTipStack.addText(`原粹树脂`)
     ResinElement.textColor = ThemeColor.textColor2
@@ -685,8 +685,8 @@ async function renderMedium(widget) {
     let coinTime = LeftStack26.addStack()
     LeftStack26.addSpacer()
     LeftStack27.addSpacer()
-    let Progress2 = LeftStack27.addImage(creatProgress(resin.max_home_coin, resin.current_home_coin))
-    Progress2.imageSize = new Size(width, h)
+    let Progress2 = LeftStack27.addImage(createProgress(resin.max_home_coin, resin.current_home_coin, primaryProgressWidth))
+    Progress2.imageSize = new Size(primaryProgressWidth, h)
     LeftStack27.addSpacer()
     let CoinElement = coinTipStack.addText(`洞天宝钱`)
     CoinElement.textColor = ThemeColor.textColor2
@@ -905,8 +905,8 @@ async function renderMedium(widget) {
     if (transformer_recovery_time.reached) {
         startranscurrent = startransmax
     }
-    let Progress3 = starTrans.addImage(creatProgress2(startransmax, startranscurrent))
-    Progress3.imageSize = new Size(width2, h)
+    let Progress3 = starTrans.addImage(createProgress(startransmax, startranscurrent, transformerProgressWidth))
+    Progress3.imageSize = new Size(transformerProgressWidth, h)
     starTrans.addSpacer()
     RightStack3.addSpacer(4)
 
@@ -1078,7 +1078,7 @@ async function getDataOs() {
 }
 
 // 进度条方法
-function creatProgress(total, havegone) {
+function createProgress(total, completed, width) {
     const context = new DrawContext()
     context.size = new Size(width, h)
     context.opaque = false
@@ -1088,7 +1088,7 @@ function creatProgress(total, havegone) {
     path.addRoundedRect(new Rect(0, 0, width, h), 1, 1)
     context.addPath(path)
     context.fillPath()
-    const jdut = width * havegone / total
+    const jdut = width * completed / total
 
     if (jdut / width >= 1) {
         context.setFillColor(ThemeColor.LabelColor)
@@ -1097,35 +1097,7 @@ function creatProgress(total, havegone) {
     }
     const path1 = new Path()
 
-    path1.addRoundedRect(new Rect(0, 0, width * havegone / total, h), 1, 1)
-
-    context.addPath(path1)
-    context.fillPath()
-
-    return context.getImage()
-}
-
-// 进度条2方法
-function creatProgress2(total, havegone) {
-    const context = new DrawContext()
-    context.size = new Size(width2, h)
-    context.opaque = false
-    context.respectScreenScale = true
-    context.setFillColor(ThemeColor.jdbgColor)
-    const path = new Path()
-    path.addRoundedRect(new Rect(0, 0, width2, h), 1, 1)
-    context.addPath(path)
-    context.fillPath()
-    const jdut = width2 * havegone / total
-
-    if (jdut / width2 >= 1) {
-        context.setFillColor(ThemeColor.LabelColor)
-    } else {
-        context.setFillColor(ThemeColor.jdyhColor)
-    }
-    const path1 = new Path()
-
-    path1.addRoundedRect(new Rect(0, 0, width2 * havegone / total, h), 1, 1)
+    path1.addRoundedRect(new Rect(0, 0, width * completed / total, h), 1, 1)
 
     context.addPath(path1)
     context.fillPath()
@@ -1264,6 +1236,7 @@ async function getWeeklyMaterialData() {
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
+
 function md5(string) {
     function md5_RotateLeft(lValue, iShiftBits) {
         return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
