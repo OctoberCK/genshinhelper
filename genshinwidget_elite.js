@@ -303,17 +303,29 @@ async function renderSmall(widget) {
     TaskElement.textColor = ThemeColor.textColor
     TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let remaintasknum = resin.total_task_num - resin.finished_task_num
-    let taskText = RightRow1.addStack()
-    taskText.addSpacer()
     if (resin.is_extra_task_reward_received) {
+        RightRow1.addSpacer(2)
+        let taskText = RightRow1.addStack()
+        RightRow1.addSpacer(3)
+        taskText.addSpacer()
         let TaskElement2 = taskText.addText(`已领取`)
         TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
         TaskElement2.textColor = ThemeColor.infoColor
+        taskText.addSpacer()
+        taskText.centerAlignContent()
     } else if (remaintasknum === 0) {
+        RightRow1.addSpacer(2)
+        let taskText = RightRow1.addStack()
+        RightRow1.addSpacer(3)
+        taskText.addSpacer()
         let TaskElement2 = taskText.addText(`未领取`)
         TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-        TaskElement2.textColor = ThemeColor.infoColor
+        TaskElement2.textColor = ThemeColor.labelColor
+        taskText.addSpacer()
+        taskText.centerAlignContent()
     } else {
+        let taskText = RightRow1.addStack()
+        taskText.addSpacer()
         let TaskElement2 = taskText.addText(`剩`)
         let TaskElement3 = taskText.addText(` ${remaintasknum} `)
         let TaskElement4 = taskText.addText(`个`)
@@ -327,9 +339,9 @@ async function renderSmall(widget) {
         TaskElement4.textOpacity = 1
         TaskElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
         TaskElement4.textColor = ThemeColor.infoColor
+        taskText.addSpacer()
+        taskText.centerAlignContent()
     }
-    taskText.addSpacer()
-    taskText.centerAlignContent()
     // 指示标记
     RightRow1.addSpacer(3)
     let starTask = RightRow1.addStack()
@@ -724,22 +736,34 @@ async function renderMedium(widget) {
     TaskIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
     TaskIcon.addSpacer()
     let taskStack = RightStack1.addStack()
-    let taskText = RightStack1.addStack()
     taskStack.addSpacer(8)
     let TaskElement = taskStack.addText(`每日委托`)
     TaskElement.textColor = ThemeColor.textColor
     TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let remaintasknum = resin.total_task_num - resin.finished_task_num
-    taskText.addSpacer()
     if (resin.is_extra_task_reward_received) {
+        RightStack1.addSpacer(2)
+        let taskText = RightStack1.addStack()
+        RightStack1.addSpacer(3)
+        taskText.addSpacer()
         let TaskElement2 = taskText.addText(`已领取`)
         TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
         TaskElement2.textColor = ThemeColor.infoColor
+        taskText.addSpacer()
+        taskText.centerAlignContent()
     } else if (remaintasknum === 0) {
+        RightStack1.addSpacer(2)
+        let taskText = RightStack1.addStack()
+        RightStack1.addSpacer(3)
+        taskText.addSpacer()
         let TaskElement2 = taskText.addText(`未领取`)
         TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-        TaskElement2.textColor = ThemeColor.infoColor
+        TaskElement2.textColor = ThemeColor.labelColor
+        taskText.addSpacer()
+        taskText.centerAlignContent()
     } else {
+        let taskText = RightStack1.addStack()
+        taskText.addSpacer()
         let TaskElement2 = taskText.addText(`剩`)
         let TaskElement3 = taskText.addText(` ${remaintasknum} `)
         let TaskElement4 = taskText.addText(`个`)
@@ -753,9 +777,10 @@ async function renderMedium(widget) {
         TaskElement4.textOpacity = 1
         TaskElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
         TaskElement4.textColor = ThemeColor.infoColor
+        taskText.addSpacer()
+        taskText.centerAlignContent()
     }
-    taskText.addSpacer()
-    taskText.centerAlignContent()
+
     // 指示标记
     let starTask = RightStack1.addStack()
     starTask.addSpacer()
