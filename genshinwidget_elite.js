@@ -305,20 +305,30 @@ async function renderSmall(widget) {
     let remaintasknum = resin.total_task_num - resin.finished_task_num
     let taskText = RightRow1.addStack()
     taskText.addSpacer()
-    let TaskElement2 = taskText.addText(`剩`)
-    let TaskElement3 = taskText.addText(` ${remaintasknum} `)
-    let TaskElement4 = taskText.addText(`个`)
+    if (resin.is_extra_task_reward_received) {
+        let TaskElement2 = taskText.addText(`已领取`)
+        TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+        TaskElement2.textColor = ThemeColor.infoColor
+    } else if (remaintasknum === 0) {
+        let TaskElement2 = taskText.addText(`未领取`)
+        TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+        TaskElement2.textColor = ThemeColor.infoColor
+    } else {
+        let TaskElement2 = taskText.addText(`剩`)
+        let TaskElement3 = taskText.addText(` ${remaintasknum} `)
+        let TaskElement4 = taskText.addText(`个`)
+        // TaskElement2.centerAlignText()
+        TaskElement2.textOpacity = 1
+        TaskElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+        TaskElement2.textColor = ThemeColor.infoColor
+        TaskElement3.textOpacity = 1
+        TaskElement3.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infosmallSize)
+        TaskElement3.textColor = ThemeColor.infoColor
+        TaskElement4.textOpacity = 1
+        TaskElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+        TaskElement4.textColor = ThemeColor.infoColor
+    }
     taskText.addSpacer()
-    TaskElement2.centerAlignText()
-    TaskElement2.textOpacity = 1
-    TaskElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.infosmallSize)
-    TaskElement2.textColor = ThemeColor.infoColor
-    TaskElement3.textOpacity = 1
-    TaskElement3.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infomediumSize)
-    TaskElement3.textColor = ThemeColor.infoColor
-    TaskElement4.textOpacity = 1
-    TaskElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.infosmallSize)
-    TaskElement4.textColor = ThemeColor.infoColor
     taskText.centerAlignContent()
     // 指示标记
     RightRow1.addSpacer(3)
@@ -444,7 +454,7 @@ async function renderMedium(widget) {
         infoSize: 23,
         infosmallSize: 11,
         tipSize: 6,
-        avatarSize: 24,
+        avatarSize: 30,
     } : {
         titleSize: 7,
         canvSize: 170,
@@ -721,20 +731,30 @@ async function renderMedium(widget) {
     TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let remaintasknum = resin.total_task_num - resin.finished_task_num
     taskText.addSpacer()
-    let TaskElement2 = taskText.addText(`剩`)
-    let TaskElement3 = taskText.addText(` ${remaintasknum} `)
-    let TaskElement4 = taskText.addText(`个`)
+    if (resin.is_extra_task_reward_received) {
+        let TaskElement2 = taskText.addText(`已领取`)
+        TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+        TaskElement2.textColor = ThemeColor.infoColor
+    } else if (remaintasknum === 0) {
+        let TaskElement2 = taskText.addText(`未领取`)
+        TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+        TaskElement2.textColor = ThemeColor.infoColor
+    } else {
+        let TaskElement2 = taskText.addText(`剩`)
+        let TaskElement3 = taskText.addText(` ${remaintasknum} `)
+        let TaskElement4 = taskText.addText(`个`)
+        // TaskElement2.centerAlignText()
+        TaskElement2.textOpacity = 1
+        TaskElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+        TaskElement2.textColor = ThemeColor.infoColor
+        TaskElement3.textOpacity = 1
+        TaskElement3.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infosmallSize)
+        TaskElement3.textColor = ThemeColor.infoColor
+        TaskElement4.textOpacity = 1
+        TaskElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+        TaskElement4.textColor = ThemeColor.infoColor
+    }
     taskText.addSpacer()
-    TaskElement2.centerAlignText()
-    TaskElement2.textOpacity = 1
-    TaskElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
-    TaskElement2.textColor = ThemeColor.infoColor
-    TaskElement3.textOpacity = 1
-    TaskElement3.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infosmallSize)
-    TaskElement3.textColor = ThemeColor.infoColor
-    TaskElement4.textOpacity = 1
-    TaskElement4.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
-    TaskElement4.textColor = ThemeColor.infoColor
     taskText.centerAlignContent()
     // 指示标记
     let starTask = RightStack1.addStack()
