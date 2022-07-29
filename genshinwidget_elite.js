@@ -10,6 +10,7 @@
  * @typedef {Object} ResinResponse
  * @property {number} total_task_num - 每日委托任务
  * @property {number} finished_task_num - 每日委托完成数
+ * @property {boolean} is_extra_task_reward_received - 每日委托额外奖励领取情况
  * @property {number} max_resin - 树脂上限
  * @property {number} current_resin - 当前树脂
  * @property {number} max_home_coin - 洞天宝钱上限
