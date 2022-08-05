@@ -22,17 +22,47 @@
  * @property {number} max_expedition_num - 探索派遣限制
  * @property {number} current_expedition_num - 当前探索派遣人数
  * @property {Array<{ status: string, avatar_side_icon: string, remained_time: string }>} expeditions - 派遣人员详情 
+ * @property {string} _time_string - 便笺数据获取时间 - 额外添加的时间戳属性
  */
-let resin = {}
+
+// 如果上方的配置缺失，将会显示一个简单的提示语句，而非直接闪退
+if (!config[0] || !config[1] || !config[2]) {
+    const widget = new ListWidget()
+    widget.addText('配置缺失，\n请打开脚本，\n添加配置。')
+    if (config.runsInWidget) {
+        Script.setWidget(widget)
+    } else {
+        widget.presentMedium()
+    }
+    Script.complete()
+    return  // 确保在Scriptable软件内的时候会停止运行余下脚本
+}
+
+const file = FileManager.local()
+const saveDirectory = file.joinPath(file.documentsDirectory(), 'genshin-widget')
+if (!file.isDirectory(saveDirectory)) {
+    file.createDirectory(saveDirectory)
+}
+
+const responseSavePath = file.joinPath(saveDirectory, 'last-response.json')
+let resin
 try {
     if (config[1].startsWith("os")) {
         resin = await getDataOs()
     } else {
         resin = await getData()
     }
-    resin = resin || {}
+    if (resin) {
+        var myDate = new Date()
+        resin._time_string = `${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}`
+        file.writeString(responseSavePath, JSON.stringify(resin))
+    }
 } catch (error) {
     console.error(error)
+}
+
+if (!resin) {
+    resin = JSON.parse(file.readString(responseSavePath))
 }
 
 // 背景图片定义
@@ -190,8 +220,7 @@ async function renderSmall(widget) {
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
     textItem.textColor = ThemeColor.infoColor
     // 添加更新时间
-    var myDate = new Date()
-    var textItem = stacktime.addText(`${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}更新`)
+    var textItem = stacktime.addText(`${resin._time_string}更新`)
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
     textItem.textColor = ThemeColor.infoColor
 
@@ -536,8 +565,7 @@ async function renderMedium(widget) {
     server.textColor = ThemeColor.infoColor
     server.font = Font.boldSystemFont(ThemeConfig.titleSize)
     // 添加更新时间
-    var myDate = new Date()
-    var textItem = stacktime.addText(`最近${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}更新`)
+    var textItem = stacktime.addText(`最近${resin._time_string}更新`)
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
     textItem.textColor = ThemeColor.infoColor
 
@@ -971,10 +999,23 @@ async function renderMedium(widget) {
     expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let expeditionsStack = RightRow2.addStack()
     expeditionsStack.addSpacer()
+    const iconSaveDirectory = file.joinPath(saveDirectory, 'avatar-icons')
+    if (!file.isDirectory(iconSaveDirectory)) {
+        file.createDirectory(iconSaveDirectory)
+    }
     const expeditions = resin.expeditions || []
     await Promise.all(expeditions.map(async (expedition) => {
-        let req = new Request(expedition.avatar_side_icon)
-        expedition.icon = await req.loadImage()
+        // 网址示例 https://.../game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Yelan.png
+        const iconUrl = expedition.avatar_side_icon
+        const iconPath = file.joinPath(iconSaveDirectory, iconUrl.substring(iconUrl.lastIndexOf('/') + 1))
+        const icon = Image.fromFile(iconPath)
+        if (icon) {
+            expedition.icon = icon
+        } else {
+            const req = new Request(expedition.avatar_side_icon)
+            expedition.icon = await req.loadImage()
+            file.writeImage(iconPath, expedition.icon)
+        }
     }));
     minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
     if (!resin.max_expedition_num) {
@@ -1118,7 +1159,7 @@ async function getDataOs() {
 
     let resp = await req.loadJSON()
     let data = resp.data
-
+    
     return data
 }
 
