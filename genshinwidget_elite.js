@@ -23,6 +23,20 @@
  * @property {number} current_expedition_num - 当前探索派遣人数
  * @property {Array<{ status: string, avatar_side_icon: string, remained_time: string }>} expeditions - 派遣人员详情 
  */
+
+// 如果上方的配置缺失，将会显示一个简单的提示语句，而非直接闪退
+if (!config[0] || !config[1] || !config[2]) {
+    const widget = new ListWidget()
+    widget.addText('配置缺失，\n请打开脚本，\n添加配置。')
+    if (config.runsInWidget) {
+        Script.setWidget(widget)
+    } else {
+        widget.presentMedium()
+    }
+    Script.complete()
+    return  // 确保在Scriptable软件内的时候会停止运行余下脚本
+}
+
 let resin = {}
 try {
     if (config[1].startsWith("os")) {
