@@ -39,12 +39,12 @@ if (!config[0] || !config[1] || !config[2]) {
 }
 
 const file = FileManager.local()
-const saveDirectory = `${file.documentsDirectory()}/genshin-widget`
+const saveDirectory = file.joinPath(file.documentsDirectory(), 'genshin-widget')
 if (!file.isDirectory(saveDirectory)) {
     file.createDirectory(saveDirectory)
 }
 
-const responseSavePath = `${saveDirectory}/last-response.json`
+const responseSavePath = file.joinPath(saveDirectory, 'last-response.json')
 let resin
 try {
     if (config[1].startsWith("os")) {
@@ -999,7 +999,7 @@ async function renderMedium(widget) {
     expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let expeditionsStack = RightRow2.addStack()
     expeditionsStack.addSpacer()
-    const iconSaveDirectory = `${saveDirectory}/avatar-icons`
+    const iconSaveDirectory = file.joinPath(saveDirectory, 'avatar-icons')
     if (!file.isDirectory(iconSaveDirectory)) {
         file.createDirectory(iconSaveDirectory)
     }
@@ -1007,7 +1007,7 @@ async function renderMedium(widget) {
     await Promise.all(expeditions.map(async (expedition) => {
         // 网址示例 https://.../game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Yelan.png
         const iconUrl = expedition.avatar_side_icon
-        const iconPath = `${iconSaveDirectory}/${iconUrl.substring(iconUrl.lastIndexOf('/') + 1)}`
+        const iconPath = file.joinPath(iconSaveDirectory, iconUrl.substring(iconUrl.lastIndexOf('/') + 1))
         const icon = Image.fromFile(iconPath)
         if (icon) {
             expedition.icon = icon
