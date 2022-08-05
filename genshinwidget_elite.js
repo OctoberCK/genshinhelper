@@ -37,6 +37,12 @@ if (!config[0] || !config[1] || !config[2]) {
     return  // 确保在Scriptable软件内的时候会停止运行余下脚本
 }
 
+const file = FileManager.local()
+const saveDirectory = `${file.documentsDirectory()}/genshin-widget`
+if (!file.isDirectory(saveDirectory)) {
+    file.createDirectory(saveDirectory)
+}
+
 let resin = {}
 try {
     if (config[1].startsWith("os")) {
@@ -985,10 +991,23 @@ async function renderMedium(widget) {
     expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let expeditionsStack = RightRow2.addStack()
     expeditionsStack.addSpacer()
+    const iconSaveDirectory = `${saveDirectory}/avatar-icons`
+    if (!file.isDirectory(iconSaveDirectory)) {
+        file.createDirectory(iconSaveDirectory)
+    }
     const expeditions = resin.expeditions || []
     await Promise.all(expeditions.map(async (expedition) => {
-        let req = new Request(expedition.avatar_side_icon)
-        expedition.icon = await req.loadImage()
+        // 网址示例 https://.../game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Yelan.png
+        const iconUrl = expedition.avatar_side_icon
+        const iconPath = `${iconSaveDirectory}/${iconUrl.substring(iconUrl.lastIndexOf('/') + 1)}`
+        const icon = Image.fromFile(iconPath)
+        if (icon) {
+            expedition.icon = icon
+        } else {
+            const req = new Request(expedition.avatar_side_icon)
+            expedition.icon = await req.loadImage()
+            file.writeImage(iconPath, expedition.icon)
+        }
     }));
     minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
     if (!resin.max_expedition_num) {
