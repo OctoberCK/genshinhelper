@@ -988,8 +988,7 @@ async function renderMedium(widget) {
     let expeditionsTitleStack = RightRow2.addStack()
     expeditionsTitleStack.layoutHorizontally()
     expeditionsTitleStack.centerAlignContent()
-    let isHasFinished = false
-    let minCoverTime = 0
+    let minRemainingTime = 0
     expeditionsTitleStack.addSpacer()
     let avatarIconElement = expeditionsTitleStack.addImage(avatarIcon)
     avatarIconElement.imageSize = new Size(ThemeConfig.iconSmallSize, ThemeConfig.iconSmallSize)
@@ -1017,18 +1016,17 @@ async function renderMedium(widget) {
             file.writeImage(iconPath, expedition.icon)
         }
     }));
-    minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
     if (!resin.max_expedition_num) {
         expeditionsStack.setPadding(ThemeConfig.avatarSize, ThemeConfig.avatarSize, 0, 0)
     }
     for (let i = 0; i < resin.max_expedition_num; i++) {
         let expeditionStack = expeditionsStack.addStack()
         expeditionStack.layoutHorizontally()
-        let isOngoing = !!expeditions[i]
-        if (isOngoing) {
-            const { status, icon, remained_time } = expeditions[i]
-            let char = expeditions[i]
-            let remainTime = formatExpRemainTime(parseInt(char["remained_time"]))
+        const expedition = expeditions[i]
+        if (!!expedition) {
+            const { icon, remained_time } = expedition
+            const remainingTime = parseInt(remained_time)
+            let remainTime = formatExpRemainTime(remainingTime)
             // 获取时间属性并加工
             let ssh = remainTime[0] * 60
             let ssm = remainTime[1]
@@ -1048,13 +1046,12 @@ async function renderMedium(widget) {
             canvas.drawImageInRect(
                 icon, new Rect(-5, -5, 140, 140)
             )
-            if (+remained_time < minCoverTime) minCoverTime = +remained_time
+            if (remainingTime > 0 && (minRemainingTime === 0 || minRemainingTime > remainingTime)) {
+                minRemainingTime = remainingTime
+            }
             let avatarImgElement = expeditionStack.addImage(canvas.getImage())
             avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
             avatarImgElement.cornerRadius = 0
-            if (status === 'Finished') {
-                isHasFinished = true
-            }
             expeditionStack.centerAlignContent()
         } else {
             let dayRadiusOffset = 20
@@ -1081,17 +1078,16 @@ async function renderMedium(widget) {
     minCoverTimeElement3.textColor = ThemeColor.infoColor
     minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
 
-    if (isHasFinished) {
+    if (minRemainingTime === 0) {
         let minCoverTimeElement4 = expeditionsTitleStack.addText(`    可领取奖励`)
         minCoverTimeElement4.textColor = ThemeColor.labelColor
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-    } else if (minCoverTime > 0) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(` ${await getClock(minCoverTime)}`)
+    } else {
+        let minCoverTimeElement4 = expeditionsTitleStack.addText(` ${await getClock(minRemainingTime)}`)
         minCoverTimeElement4.textColor = ThemeColor.infoColor
         minCoverTimeElement4.font = Font.boldRoundedSystemFont(7)
     }
     expeditionsTitleStack.addSpacer()
-    // console.log(minCoverTime)
     return widget
 }
 
