@@ -401,7 +401,7 @@ async function renderSmall(widget) {
     let expeditionsIconStack = RightRow2.addStack()
     expeditionsIconStack.centerAlignContent()
     let isHasFinished = false
-    let minCoverTime = 0
+    let minRemainingTime = 0
     expeditionsIconStack.addSpacer(2)
     let avatarIconElement = expeditionsIconStack.addImage(avatarIcon)
     avatarIconElement.imageSize = new Size(ThemeConfig.iconSmallSize, ThemeConfig.iconSmallSize)
@@ -409,7 +409,7 @@ async function renderSmall(widget) {
     expeditionsTitleElement.textColor = ThemeColor.textColor
     expeditionsTitleElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     const expeditions = resin.expeditions || []
-    minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
+    minRemainingTime = expeditions[0] ? +expeditions[0].remained_time : 0
     if (!resin.max_expedition_num) {
         let expeditionsTitleStack = RightRow2.addStack()
         expeditionsTitleStack.centerAlignContent()
@@ -422,30 +422,30 @@ async function renderSmall(widget) {
         let expeditionsTextStack = RightRow2.addStack()
         RightRow2.addSpacer(3)
         expeditionsTextStack.addSpacer()
-        let minCoverTimeElement = expeditionsTextStack.addText(`请添加派遣角色`)
-        minCoverTimeElement.textColor = ThemeColor.labelColor
-        minCoverTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        let minRemainingTimeElement = expeditionsTextStack.addText(`请添加派遣角色`)
+        minRemainingTimeElement.textColor = ThemeColor.labelColor
+        minRemainingTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
         expeditionsTextStack.addSpacer()
     } else {
         let expeditionsTitleStack = RightRow2.addStack()
         expeditionsTitleStack.centerAlignContent()
         expeditionsTitleStack.addSpacer()
-        let minCoverTimeElement = expeditionsTitleStack.addText(`共`)
-        minCoverTimeElement.textColor = ThemeColor.infoColor
-        minCoverTimeElement.font = Font.mediumRoundedSystemFont(ThemeConfig.textsmallSize)
-        let minCoverTimeElement2 = expeditionsTitleStack.addText(` ${resin.current_expedition_num} `)
-        minCoverTimeElement2.textColor = ThemeColor.infoColor
-        minCoverTimeElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.textSize)
-        let minCoverTimeElement3 = expeditionsTitleStack.addText(`人`)
-        minCoverTimeElement3.textColor = ThemeColor.infoColor
-        minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textsmallSize)
+        let minRemainingTimeElement = expeditionsTitleStack.addText(`共`)
+        minRemainingTimeElement.textColor = ThemeColor.infoColor
+        minRemainingTimeElement.font = Font.mediumRoundedSystemFont(ThemeConfig.textsmallSize)
+        let minRemainingTimeElement2 = expeditionsTitleStack.addText(` ${resin.current_expedition_num} `)
+        minRemainingTimeElement2.textColor = ThemeColor.infoColor
+        minRemainingTimeElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.textSize)
+        let minRemainingTimeElement3 = expeditionsTitleStack.addText(`人`)
+        minRemainingTimeElement3.textColor = ThemeColor.infoColor
+        minRemainingTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textsmallSize)
         expeditionsTitleStack.addSpacer()
     }
     for (let i = 0; i < resin.max_expedition_num; i++) {
         let isOngoing = !!expeditions[i]
         if (isOngoing) {
             const { status, remained_time } = expeditions[i]
-            if (+remained_time < minCoverTime) minCoverTime = +remained_time
+            if (+remained_time < minRemainingTime) minRemainingTime = +remained_time
             if (status === 'Finished') {
                 isHasFinished = true
             }
@@ -456,23 +456,23 @@ async function renderSmall(widget) {
         let expeditionsTextStack = RightRow2.addStack()
         RightRow2.addSpacer(3)
         expeditionsTextStack.addSpacer()
-        let minCoverTimeElement = expeditionsTextStack.addText(`派遣奖励可领取`)
-        minCoverTimeElement.textColor = ThemeColor.labelColor
-        minCoverTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        let minRemainingTimeElement = expeditionsTextStack.addText(`派遣奖励可领取`)
+        minRemainingTimeElement.textColor = ThemeColor.labelColor
+        minRemainingTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
         expeditionsTextStack.addSpacer()
-    } else if (minCoverTime > 0) {
+    } else if (minRemainingTime > 0) {
         RightRow2.addSpacer(1)
         let expeditionsTextStack = RightRow2.addStack()
         RightRow2.addSpacer(3)
         expeditionsTextStack.addSpacer()
-        let minCoverTimeElement = expeditionsTextStack.addText(`${await getClock(minCoverTime)}`)
-        minCoverTimeElement.textColor = ThemeColor.infoColor
-        minCoverTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
+        let minRemainingTimeElement = expeditionsTextStack.addText(`${await getClock(minRemainingTime)}`)
+        minRemainingTimeElement.textColor = ThemeColor.infoColor
+        minRemainingTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
         expeditionsTextStack.addSpacer()
     }
     let expeditionsProgStack = RightRow2.addStack()
     expeditionsProgStack.addSpacer()
-    let minGoneTime = 72000 - minCoverTime
+    let minGoneTime = 72000 - minRemainingTime
     let progressExpeditions = expeditionsProgStack.addImage(createProgress(72000, minGoneTime, primaryProgressWidth))
     progressExpeditions.imageSize = new Size(primaryProgressWidth, h)
     expeditionsProgStack.addSpacer()
@@ -988,8 +988,7 @@ async function renderMedium(widget) {
     let expeditionsTitleStack = RightRow2.addStack()
     expeditionsTitleStack.layoutHorizontally()
     expeditionsTitleStack.centerAlignContent()
-    let isHasFinished = false
-    let minCoverTime = 0
+    let minRemainingTime = 0
     expeditionsTitleStack.addSpacer()
     let avatarIconElement = expeditionsTitleStack.addImage(avatarIcon)
     avatarIconElement.imageSize = new Size(ThemeConfig.iconSmallSize, ThemeConfig.iconSmallSize)
@@ -1017,18 +1016,17 @@ async function renderMedium(widget) {
             file.writeImage(iconPath, expedition.icon)
         }
     }));
-    minCoverTime = expeditions[0] ? +expeditions[0].remained_time : 0
     if (!resin.max_expedition_num) {
         expeditionsStack.setPadding(ThemeConfig.avatarSize, ThemeConfig.avatarSize, 0, 0)
     }
     for (let i = 0; i < resin.max_expedition_num; i++) {
         let expeditionStack = expeditionsStack.addStack()
         expeditionStack.layoutHorizontally()
-        let isOngoing = !!expeditions[i]
-        if (isOngoing) {
-            const { status, icon, remained_time } = expeditions[i]
-            let char = expeditions[i]
-            let remainTime = formatExpRemainTime(parseInt(char["remained_time"]))
+        const expedition = expeditions[i]
+        if (!!expedition) {
+            const { icon, remained_time } = expedition
+            const remainingTime = parseInt(remained_time)
+            let remainTime = formatExpRemainTime(remainingTime)
             // 获取时间属性并加工
             let ssh = remainTime[0] * 60
             let ssm = remainTime[1]
@@ -1048,13 +1046,12 @@ async function renderMedium(widget) {
             canvas.drawImageInRect(
                 icon, new Rect(-5, -5, 140, 140)
             )
-            if (+remained_time < minCoverTime) minCoverTime = +remained_time
+            if (remainingTime > 0 && (minRemainingTime === 0 || minRemainingTime > remainingTime)) {
+                minRemainingTime = remainingTime
+            }
             let avatarImgElement = expeditionStack.addImage(canvas.getImage())
             avatarImgElement.imageSize = new Size(ThemeConfig.avatarSize, ThemeConfig.avatarSize)
             avatarImgElement.cornerRadius = 0
-            if (status === 'Finished') {
-                isHasFinished = true
-            }
             expeditionStack.centerAlignContent()
         } else {
             let dayRadiusOffset = 20
@@ -1071,27 +1068,26 @@ async function renderMedium(widget) {
         }
     }
     expeditionsStack.addSpacer()
-    let minCoverTimeElement = expeditionsTitleStack.addText(`共`)
-    minCoverTimeElement.textColor = ThemeColor.infoColor
-    minCoverTimeElement.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
-    let minCoverTimeElement2 = expeditionsTitleStack.addText(` ${resin.current_expedition_num} `)
-    minCoverTimeElement2.textColor = ThemeColor.infoColor
-    minCoverTimeElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infosmallSize)
-    let minCoverTimeElement3 = expeditionsTitleStack.addText(`人`)
-    minCoverTimeElement3.textColor = ThemeColor.infoColor
-    minCoverTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+    let minRemainingTimeElement = expeditionsTitleStack.addText(`共`)
+    minRemainingTimeElement.textColor = ThemeColor.infoColor
+    minRemainingTimeElement.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
+    let minRemainingTimeElement2 = expeditionsTitleStack.addText(` ${resin.current_expedition_num} `)
+    minRemainingTimeElement2.textColor = ThemeColor.infoColor
+    minRemainingTimeElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infosmallSize)
+    let minRemainingTimeElement3 = expeditionsTitleStack.addText(`人`)
+    minRemainingTimeElement3.textColor = ThemeColor.infoColor
+    minRemainingTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
 
-    if (isHasFinished) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(`    可领取奖励`)
-        minCoverTimeElement4.textColor = ThemeColor.labelColor
-        minCoverTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-    } else if (minCoverTime > 0) {
-        let minCoverTimeElement4 = expeditionsTitleStack.addText(` ${await getClock(minCoverTime)}`)
-        minCoverTimeElement4.textColor = ThemeColor.infoColor
-        minCoverTimeElement4.font = Font.boldRoundedSystemFont(7)
+    if (minRemainingTime === 0) {
+        let minRemainingTimeElement4 = expeditionsTitleStack.addText(`    可领取奖励`)
+        minRemainingTimeElement4.textColor = ThemeColor.labelColor
+        minRemainingTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
+    } else {
+        let minRemainingTimeElement4 = expeditionsTitleStack.addText(` ${await getClock(minRemainingTime)}`)
+        minRemainingTimeElement4.textColor = ThemeColor.infoColor
+        minRemainingTimeElement4.font = Font.boldRoundedSystemFont(7)
     }
     expeditionsTitleStack.addSpacer()
-    // console.log(minCoverTime)
     return widget
 }
 
