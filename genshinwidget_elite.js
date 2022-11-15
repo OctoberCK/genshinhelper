@@ -1119,7 +1119,7 @@ async function getData() {
     req.method = "get"
     req.headers = {
         "DS": timestamp + "," + randomStr + "," + sign,
-        "x-rpc-app_version": "2.19.1",
+        "x-rpc-app_version": "2.40.1",
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/2.11.1",
         "x-rpc-client_type": "5",
         "Referer": "https://webstatic.mihoyo.com/",
