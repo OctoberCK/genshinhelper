@@ -44,7 +44,8 @@ if (!file.isDirectory(saveDirectory)) {
     file.createDirectory(saveDirectory)
 }
 
-const responseSavePath = file.joinPath(saveDirectory, 'last-response.json')
+const saveFileName = `last-response-${config[0]}-.json`
+const responseSavePath = file.joinPath(saveDirectory, saveFileName)
 let resin
 try {
     if (config[1].startsWith("os")) {
